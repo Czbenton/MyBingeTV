@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 /**
@@ -20,16 +21,19 @@ public class MyBingeTvController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
 
-        model.addAttribute("display", session.getAttribute("allofit"));
+        model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
         return "index";
     }
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)
-    public String logout(Model model, HttpSession session) throws IOException {
+    public String search(Model model, HttpSession session, String userInput) throws IOException {
 
-        String display = "";
+        String jsonResults = "";
+        if(userInput.contains(" ")){
+        }
 
-        URL url = new URL("http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/shows/all/50/15/all/");
+        String encoded = URLEncoder.encode(userInput, "UTF-8");
+        URL url = new URL("http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/"+encoded+"/fuzzy");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
@@ -39,18 +43,14 @@ public class MyBingeTvController {
         } else {
             Scanner scanner = new Scanner(url.openStream());
             while (scanner.hasNext()) {
-                display += scanner.nextLine();
+                jsonResults += scanner.nextLine();
             }
             System.out.println("\nJSON data in sting format");
-            System.out.println(display);
+            System.out.println(jsonResults);
             scanner.close();
         }
-
-        session.setAttribute("allofit", display);
+        session.setAttribute("jsonResults", jsonResults);
         return "redirect:/";
     }
-
-    //TODO: I WANT TO MERGE THIS AND NOT LOSE IT!!
-
 
 }
