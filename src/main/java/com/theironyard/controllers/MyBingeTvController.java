@@ -31,7 +31,7 @@ public class MyBingeTvController {
 
         String display = "";
 
-        URL url = new URL("http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/shows/");
+        URL url = new URL("http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/shows/all/50/15/all/");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
