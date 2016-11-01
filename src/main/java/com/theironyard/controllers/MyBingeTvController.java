@@ -32,6 +32,7 @@ public class MyBingeTvController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
 
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
         return "index";
     }
@@ -40,7 +41,6 @@ public class MyBingeTvController {
     public String login() {
         return "login";
     }
-
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
@@ -50,13 +50,12 @@ public class MyBingeTvController {
             throw new Exception("wrong password");
         }
         session.setAttribute("username", username);
-        response.sendRedirect("/index");
+        response.sendRedirect("/");
         return user;
     }
-
     @RequestMapping(path = "/create-account", method = RequestMethod.POST)
-    public User createAccount(HttpSession session, String newusername, String newpassword, String validatepassword,
-                              HttpServletResponse response) throws Exception {
+    public String createAccount(HttpSession session, String newusername, String newpassword, String validatepassword,
+                                HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
         if (user != null) {
             throw new Exception("Username already in user, please choose another");
@@ -66,10 +65,9 @@ public class MyBingeTvController {
         user = new User(newusername, PasswordStorage.createHash(newpassword));
         users.save(user);
         session.setAttribute("username", newusername);
-        response.sendRedirect("/index");
-        return user;
+//        response.sendRedirect("/");
+        return "redirect:/";
     }
-
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public void logout(HttpSession session, HttpServletResponse response) throws Exception {
         session.invalidate();
