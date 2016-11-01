@@ -1,5 +1,6 @@
 package com.theironyard.controllers;
 
+import com.google.gson.Gson;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -77,9 +80,6 @@ public class MyBingeTvController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
-        if (userInput.contains(" ")) {
-        }
-
         String encoded = URLEncoder.encode(userInput, "UTF-8");
         URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
                 "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/" + encoded + "/fuzzy");
@@ -98,8 +98,19 @@ public class MyBingeTvController {
             System.out.println(jsonResults);
             scanner.close();
         }
+        session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
-        return "redirect:/";
+        return "redirect:/searchResults";
     }
+
+    @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
+    public String searchResults(Model model, HttpSession session) throws IOException {
+
+        String results = (String) session.getAttribute("jsonResults");
+        
+        model.addAttribute("jsonResults", results);
+        return "searchResults";
+    }
+
 
 }
