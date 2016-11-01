@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="/create-account" method="post">
+    Create a new account
+    <input type="text" placeholder="Enter a new username" name="newusername"/>
+    <input type="password" placeholder="Enter a password" name="newpassword"/>
+    <input type="password" placeholder="Re-enter your passowrd" name="validatepassword"/>
+    <button type="submit">Create Account</button>
+</form>
+<form action="/login" method="post">
+    Login to your account
+    <input type="text" placeholder="User name" name="username"/>
+    <input type="password" placeholder="Password" name="password"/>
+    <button type="submit">Login</button>
+</form>
 </body>
 </html>

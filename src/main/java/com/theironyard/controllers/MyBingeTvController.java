@@ -1,12 +1,17 @@
 package com.theironyard.controllers;
 
 import com.theironyard.entities.Show;
+import com.theironyard.entities.User;
+import com.theironyard.services.UserRepo;
+import com.theironyard.utilities.PasswordStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -18,6 +23,7 @@ import java.util.Scanner;
  */
 @Controller
 public class MyBingeTvController {
+
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
@@ -51,6 +57,7 @@ public class MyBingeTvController {
         session.setAttribute("allofit", display);
         return "redirect:/";
     }
+
 
 
 }
