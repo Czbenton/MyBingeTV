@@ -7,20 +7,25 @@
     <link rel="shortcut icon" type="image/png" href="/public/favicon.png">
 </head>
 <body>
+<form action="/login" method="get">
+    <button type="submit">Login / Create Accout</button>
+</form>
+
 
 Welcome message
 
 <form action="/search" method="post">
-    <input type="text" placeholder="Search here" userName="search">
+    <input type="text" placeholder="Search here" name="userInput">
     <button type="submit">Display JSON</button>
 </form>
 
 
 display json here:
+<br>
 
-{{#display}}
+{{#jsonResults}}
 {{.}}
-{{/display}}
+{{/jsonResults}}
 
 
 </body>
