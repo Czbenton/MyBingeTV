@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
+import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
@@ -65,7 +66,6 @@ public class MyBingeTvController {
         user = new User(newusername, PasswordStorage.createHash(newpassword));
         users.save(user);
         session.setAttribute("username", newusername);
-//        response.sendRedirect("/");
         return "redirect:/";
     }
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
@@ -105,7 +105,12 @@ public class MyBingeTvController {
     public String searchResults(Model model, HttpSession session) throws IOException {
 
         String results = (String) session.getAttribute("jsonResults");
-        
+
+        Gson gson = new Gson();
+
+        System.out.println(
+        gson.fromJson(results,Show.class));
+
         model.addAttribute("jsonResults", results);
         return "searchResults";
     }
