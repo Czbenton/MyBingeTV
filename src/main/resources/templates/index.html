@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBingeTV</title>
+    <link rel="stylesheet" href="../public/app.css">
+    <link rel="shortcut icon" type="image/png" href="/public/favicon.png">
+</head>
+<body>
+
+Welcome message
+
+<form action="/search" method="post">
+    <input type="text" placeholder="Search here" userName="search">
+    <button type="submit">Display JSON</button>
+</form>
+
+
+display json here:
+
+{{#display}}
+{{.}}
+{{/display}}
+
+
+</body>
+</html>
