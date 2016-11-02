@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -37,7 +38,10 @@ public class MyBingeTvController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
 
+        model.addAttribute("showList", showList);
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
         return "index";
