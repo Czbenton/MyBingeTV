@@ -140,9 +140,9 @@ public class MyBingeTvController {
         for (Result r : resultList) {
             if (r.getId().equals(getId)){
                 System.out.println(r.getId());
-                ArrayList<Result> defList = new ArrayList<>();
-                defList.add(r);
-                user.setUserList(defList);
+                ArrayList<Result> defaultList = new ArrayList<>();
+                defaultList.add(r);
+                user.setUserList(defaultList);
                 users.save(user);
             }
         }
