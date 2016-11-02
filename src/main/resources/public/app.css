@@ -1,9 +1,43 @@
-body{
-    /*background-image: url("https://www.placecage.com/1024/768");*/
-    /*background-image: url("http://www.placekitten.com/1024/768");*/
-
+body {
+    margin: 0;
+    font-family: sans-serif;
 }
 
-.addBtn{
-    display: inline;
+ul {
+    padding-left: none;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+html {
+    background: url("https://www.placecage.com/g/1024/768") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.section {
+    padding: 1rem;
+}
+
+.container {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem;
+}
+
+.row__item {
+    flex-basis: calc(100% / 4 - 2rem);
+    flex-grow: 1;
+    margin: 0.5rem;
+    min-width: 12rem;
 }

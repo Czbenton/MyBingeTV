@@ -20,8 +20,8 @@ public class User {
     @Column(nullable = false)
     String password;
 
-    @Column
-    ArrayList<Result> userList;
+//    @Column
+//    ArrayList<Result> userList;
 
     public User() {
 
@@ -32,13 +32,13 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Result> getUserList() {
-        return userList;
-    }
+//    public ArrayList<Result> getUserList() {
+//        return userList;
+//    }
 
-    public void setUserList(ArrayList<Result> userList) {
-        this.userList = userList;
-    }
+//    public void setUserList(ArrayList<Result> userList) {
+//        this.userList = userList;
+//    }
 
     public int getId() {
         return id;

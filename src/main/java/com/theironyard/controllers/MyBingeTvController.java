@@ -2,8 +2,10 @@ package com.theironyard.controllers;
 
 import com.google.gson.Gson;
 import com.theironyard.entities.Result;
+import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
+import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,9 +33,15 @@ public class MyBingeTvController {
     @Autowired
     UserRepo users;
 
+    @Autowired
+    SavedShowRepo savedShows;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
 
+        model.addAttribute("showList", showList);
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
         return "index";
@@ -61,7 +70,7 @@ public class MyBingeTvController {
                                 HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
         if (user != null) {
-            throw new Exception("Username already in user, please choose another");
+            throw new Exception("Username already in use, please choose another");
         } else if (!newpassword.equals(validatepassword)) {
             throw new Exception("Error: passwords do not match");
         }
@@ -139,11 +148,13 @@ public class MyBingeTvController {
         ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
         for (Result r : resultList) {
             if (r.getId().equals(getId)){
-                System.out.println(r.getId());
-                ArrayList<Result> defaultList = new ArrayList<>();
-                defaultList.add(r);
-                user.setUserList(defaultList);
-                users.save(user);
+////                System.out.println(r.getId());
+//                ArrayList<Result> defaultList = new ArrayList<>();
+//                defaultList.add(r);
+//                user.setUserList(defaultList);
+//                users.save(user);
+                SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
+                savedShows.save(addToList);
             }
         }
 
