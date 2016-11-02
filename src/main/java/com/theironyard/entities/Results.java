@@ -23,18 +23,18 @@ public class Results {
     private Tvrage tvrage;
     private String container_show;
 
-//    @Override
-//    public String toString() {
-//        return "this is a string";
-//    }
-
     @Override
     public String toString() {
-        return "artwork_448x252 = " + artwork_448x252 + ", first_aired = " + first_aired + ", artwork_608x342 = " + artwork_608x342 + ", " +
-                "wikipedia_id = " + wikipedia_id + ", themoviedb = " + themoviedb + ", alternate_titles = " + alternate_titles + ", id = " + id + ", " +
-                "title = " + title + ", artwork_208x117 = " + artwork_208x117 + ", imdb_id = " + imdb_id + ", tvdb = " + tvdb + ", " +
-                "artwork_304x171 = " + artwork_304x171 + ", freebase = " + freebase + ", tvrage = " + tvrage + ", container_show = " + container_show + "";
+        return "STRING OVERRIDE:--Results-- title = " + title + ", artwork = " + artwork_448x252;
     }
+
+//    @Override
+//    public String toString() {
+//        return "artwork_448x252 = " + artwork_448x252 + ", first_aired = " + first_aired + ", artwork_608x342 = " + artwork_608x342 + ", " +
+//                "wikipedia_id = " + wikipedia_id + ", themoviedb = " + themoviedb + ", alternate_titles = " + alternate_titles + ", id = " + id + ", " +
+//                "title = " + title + ", artwork_208x117 = " + artwork_208x117 + ", imdb_id = " + imdb_id + ", tvdb = " + tvdb + ", " +
+//                "artwork_304x171 = " + artwork_304x171 + ", freebase = " + freebase + ", tvrage = " + tvrage + ", container_show = " + container_show + "";
+//    }
 
     public String getArtwork_448x252() {
         return artwork_448x252;

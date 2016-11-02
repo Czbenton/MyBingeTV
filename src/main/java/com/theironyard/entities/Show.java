@@ -9,11 +9,19 @@ public class Show {
 
 //    @Override
 //    public String toString() {
-//        return "String Override: results = " + results + ", total_results = " + total_results + "";
+//        return "STRING OVERRIDE:--Show-- results = " + results + ", total_results = " + total_results + "";
 //    }
+
+    @Override
+    public String toString() {
+        return results[0].getId();
+    }
 
     public Results[] getResults() {
         return results;
+    }
+    public Results getResults(int index) {
+        return results[index];
     }
 
     public void setResults(Results[] results) {

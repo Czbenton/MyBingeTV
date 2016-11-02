@@ -95,6 +95,7 @@ public class MyBingeTvController {
             while (scanner.hasNext()) {
                 jsonResults += scanner.nextLine();
             }
+            //todo: get rid of this sout line when you don't need it anymore
             System.out.println("\nJSON data in sting format");
             System.out.println(jsonResults);
             scanner.close();
@@ -111,10 +112,14 @@ public class MyBingeTvController {
         String results = (String) session.getAttribute("jsonResults");
 
         Show show = gson.fromJson(results,Show.class);
-
         System.out.println(show.toString());
 
-        model.addAttribute("jsonResults", show);
+        model.addAttribute("jsonResults", show.getResults());
+
+        model.addAttribute("getTitle", show.getResults(0).getTitle());
+        model.addAttribute("getArtwork", show.getResults(0).getArtwork_448x252());
+//        model.addAttribute("getId", show.getResults(0).getId());
+        model.addAttribute("getId", show);
         return "searchResults";
     }
 

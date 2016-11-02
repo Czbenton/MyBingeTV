@@ -8,10 +8,19 @@
 
 display json here:
 <br>
-
 {{#jsonResults}}
 {{.}}
 {{/jsonResults}}
-
+<br><br>
+{{#getTitle}}
+{{.}}
+{{/getTitle}}
+<br><br>
+{{#getArtwork}}
+<div>
+    {{#getId}}<a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{.}}">{{/getId}}
+        <img src="{{.}}"></a>
+</div>
+{{/getArtwork}}
 </body>
 </html>
