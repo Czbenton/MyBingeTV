@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>SearchResults</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
 <body>
 
 <br><br>
 {{#resultList}}
-<div>
-    <div>{{getTitle}}</div><br>
-    <a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{getId}}">
-        <img src="{{getArtwork_448x252}}"></a>
-    <form action="/addToUserList" method="post" class="addBtn">
-        <input type="hidden" value="{{getId}}" name="getId">
-        <button type="submit">Add to your shows</button>
-    </form>
-</div>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="row__item">
+                <div>{{getTitle}}</div>
+                <br>
+                <a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{getId}}">
+                    <img src="{{getArtwork_448x252}}"></a>
+                <form action="/addToUserList" method="post" class="addBtn">
+                    <input type="hidden" value="{{getId}}" name="getId">
+                    <button type="submit" class="btn">Add to your shows</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 {{/resultList}}
 </body>
 </html>
