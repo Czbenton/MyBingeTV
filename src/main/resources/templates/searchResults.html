@@ -12,8 +12,8 @@
     <div>{{getTitle}}</div><br>
     <a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{getId}}">
         <img src="{{getArtwork_448x252}}"></a>
-    <form action="/addToList" method="post" class="addBtn">
-        <input type="hidden" value="{{getId}}">
+    <form action="/addToUserList" method="post" class="addBtn">
+        <input type="hidden" value="{{getId}}" name="getId">
         <button type="submit">Add to your shows</button>
     </form>
 </div>

@@ -2,11 +2,13 @@ package com.theironyard.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by Zach on 11/1/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Result {
+public class Result implements Serializable {
     private String artwork_448x252;
     private String first_aired;
     private String artwork_608x342;

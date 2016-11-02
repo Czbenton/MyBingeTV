@@ -117,20 +117,39 @@ public class MyBingeTvController {
         for (int i = 0; i < show.getResults().length; i++) {
             String t = show.getResults(i).getTitle();
             String a = show.getResults(i).getArtwork_448x252();
+            String a2 = show.getResults(i).getArtwork_208x117();
             String d = show.getResults(i).getId();
 
             Result result = new Result();
             result.setTitle(t);
             result.setArtwork_448x252(a);
+            result.setArtwork_208x117(a2);
             result.setId(d);
             resultList.add(result);
         }
-
+        session.setAttribute("resultList", resultList);
         model.addAttribute("resultList", resultList);
         return "searchResults";
     }
 
-    
+    @RequestMapping(path = "/addToUserList", method = RequestMethod.POST)
+    public String addToUserList(Model model, HttpSession session, String getId) {
+
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
+        for (Result r : resultList) {
+            if (r.getId().equals(getId)){
+                System.out.println(r.getId());
+                ArrayList<Result> defList = new ArrayList<>();
+                defList.add(r);
+                user.setUserList(defList);
+                users.save(user);
+            }
+        }
+
+        model.addAttribute("resultList", session.getAttribute("resultList"));
+        return "searchResults";
+    }
 
 
 }
