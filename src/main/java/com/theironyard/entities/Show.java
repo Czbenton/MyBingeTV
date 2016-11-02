@@ -4,19 +4,23 @@ package com.theironyard.entities;
  * Created by Zach on 11/2/16.
  */
 public class Show {
-    private Results[] results;
+    private Result[] results;
     private String total_results;
 
-//    @Override
-//    public String toString() {
-//        return "String Override: results = " + results + ", total_results = " + total_results + "";
-//    }
-
-    public Results[] getResults() {
-        return results;
+    @Override
+    public String toString() {
+        return "STRING OVERRIDE:--Show-- results = " + results + ", total_results = " + total_results + "";
     }
 
-    public void setResults(Results[] results) {
+
+    public Result[] getResults() {
+        return results;
+    }
+    public Result getResults(int index) {
+        return results[index];
+    }
+
+    public void setResults(Result[] results) {
         this.results = results;
     }
 

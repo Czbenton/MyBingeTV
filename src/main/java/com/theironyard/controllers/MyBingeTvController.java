@@ -1,8 +1,7 @@
 package com.theironyard.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.theironyard.entities.Results;
+import com.theironyard.entities.Result;
 import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepo;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -95,6 +95,7 @@ public class MyBingeTvController {
             while (scanner.hasNext()) {
                 jsonResults += scanner.nextLine();
             }
+            //todo: get rid of this sout line when you don't need it anymore
             System.out.println("\nJSON data in sting format");
             System.out.println(jsonResults);
             scanner.close();
@@ -109,12 +110,44 @@ public class MyBingeTvController {
 
         Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
+        Show show = gson.fromJson(results, Show.class);
 
-        Show show = gson.fromJson(results,Show.class);
+        ArrayList<Result> resultList = new ArrayList<>();
 
-        System.out.println(show.toString());
+        for (int i = 0; i < show.getResults().length; i++) {
+            String t = show.getResults(i).getTitle();
+            String a = show.getResults(i).getArtwork_448x252();
+            String a2 = show.getResults(i).getArtwork_208x117();
+            String d = show.getResults(i).getId();
 
-        model.addAttribute("jsonResults", show);
+            Result result = new Result();
+            result.setTitle(t);
+            result.setArtwork_448x252(a);
+            result.setArtwork_208x117(a2);
+            result.setId(d);
+            resultList.add(result);
+        }
+        session.setAttribute("resultList", resultList);
+        model.addAttribute("resultList", resultList);
+        return "searchResults";
+    }
+
+    @RequestMapping(path = "/addToUserList", method = RequestMethod.POST)
+    public String addToUserList(Model model, HttpSession session, String getId) {
+
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
+        for (Result r : resultList) {
+            if (r.getId().equals(getId)){
+                System.out.println(r.getId());
+                ArrayList<Result> defList = new ArrayList<>();
+                defList.add(r);
+                user.setUserList(defList);
+                users.save(user);
+            }
+        }
+
+        model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
     }
 

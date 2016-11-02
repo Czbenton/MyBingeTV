@@ -1,6 +1,7 @@
 package com.theironyard.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 /**
  * Created by Zach on 10/31/16.
@@ -19,6 +20,9 @@ public class User {
     @Column(nullable = false)
     String password;
 
+    @Column
+    ArrayList<Result> userList;
+
     public User() {
 
     }
@@ -26,6 +30,14 @@ public class User {
     public User(String userName, String password) {
         this.name = userName;
         this.password = password;
+    }
+
+    public ArrayList<Result> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(ArrayList<Result> userList) {
+        this.userList = userList;
     }
 
     public int getId() {
