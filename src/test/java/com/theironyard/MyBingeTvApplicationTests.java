@@ -10,7 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class MyBingeTvApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public String contextLoads() {
+
+		return "";
 	}
 
 }
