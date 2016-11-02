@@ -1,6 +1,8 @@
 package com.theironyard.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.theironyard.entities.Results;
 import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepo;
@@ -17,8 +19,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -42,6 +42,7 @@ public class MyBingeTvController {
     public String login() {
         return "login";
     }
+
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
@@ -54,6 +55,7 @@ public class MyBingeTvController {
         response.sendRedirect("/");
         return user;
     }
+
     @RequestMapping(path = "/create-account", method = RequestMethod.POST)
     public String createAccount(HttpSession session, String newusername, String newpassword, String validatepassword,
                                 HttpServletResponse response) throws Exception {
@@ -68,6 +70,7 @@ public class MyBingeTvController {
         session.setAttribute("username", newusername);
         return "redirect:/";
     }
+
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public void logout(HttpSession session, HttpServletResponse response) throws Exception {
         session.invalidate();
@@ -104,14 +107,14 @@ public class MyBingeTvController {
     @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
     public String searchResults(Model model, HttpSession session) throws IOException {
 
+        Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
 
-        Gson gson = new Gson();
+        Show show = gson.fromJson(results,Show.class);
 
-        System.out.println(
-        gson.fromJson(results,Show.class));
+        System.out.println(show.toString());
 
-        model.addAttribute("jsonResults", results);
+        model.addAttribute("jsonResults", show);
         return "searchResults";
     }
 
