@@ -30,6 +30,8 @@ public class Result implements Serializable {
         return "STRING OVERRIDE:--Result-- title = " + title + ", artwork = " + artwork_448x252;
     }
 
+
+
 //    @Override
 //    public String toString() {
 //        return "artwork_448x252 = " + artwork_448x252 + ", first_aired = " + first_aired + ", artwork_608x342 = " + artwork_608x342 + ", " +
