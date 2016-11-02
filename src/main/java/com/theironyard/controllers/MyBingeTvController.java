@@ -1,8 +1,7 @@
 package com.theironyard.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.theironyard.entities.Results;
+import com.theironyard.entities.Result;
 import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepo;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -110,18 +110,27 @@ public class MyBingeTvController {
 
         Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
+        Show show = gson.fromJson(results, Show.class);
 
-        Show show = gson.fromJson(results,Show.class);
-        System.out.println(show.toString());
+        ArrayList<Result> resultList = new ArrayList<>();
 
-        model.addAttribute("jsonResults", show.getResults());
+        for (int i = 0; i < show.getResults().length; i++) {
+            String t = show.getResults(i).getTitle();
+            String a = show.getResults(i).getArtwork_448x252();
+            String d = show.getResults(i).getId();
 
-        model.addAttribute("getTitle", show.getResults(0).getTitle());
-        model.addAttribute("getArtwork", show.getResults(0).getArtwork_448x252());
-//        model.addAttribute("getId", show.getResults(0).getId());
-        model.addAttribute("getId", show);
+            Result result = new Result();
+            result.setTitle(t);
+            result.setArtwork_448x252(a);
+            result.setId(d);
+            resultList.add(result);
+        }
+
+        model.addAttribute("resultList", resultList);
         return "searchResults";
     }
+
+    
 
 
 }

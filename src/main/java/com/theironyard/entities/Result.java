@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by Zach on 11/1/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Results {
+public class Result {
     private String artwork_448x252;
     private String first_aired;
     private String artwork_608x342;
@@ -25,7 +25,7 @@ public class Results {
 
     @Override
     public String toString() {
-        return "STRING OVERRIDE:--Results-- title = " + title + ", artwork = " + artwork_448x252;
+        return "STRING OVERRIDE:--Result-- title = " + title + ", artwork = " + artwork_448x252;
     }
 
 //    @Override
