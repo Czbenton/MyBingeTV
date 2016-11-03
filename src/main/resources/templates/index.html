@@ -29,10 +29,24 @@ Welcome message
 
 {{#username}}
 {{#showList}}
-{{getTitle}}
-<img src="{{getArtwork}}">
-"description?"
-"link to show"
+<div>
+    <table class="userTable">
+        <!--  <tr>-->
+        <!--    <th>Firstname</th>-->
+        <!--    <th>Lastname</th>-->
+        <!--    <th>Age</th>-->
+        <!--  </tr>-->
+        <tr>
+            <td><img src="{{getArtwork}}"></td>
+            <td>"description?"</td>
+            <td>"link to show"</td>
+            <td>"other stuff"</td>
+            <td>"even more stuff</td>
+        </tr>
+    </table>
+
+
+</div>
 {{/showList}}
 {{/username}}
 

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
 import com.theironyard.entities.ViewResult;
-import com.theironyard.jsonInputEntities.Result;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.services.SavedShowRepo;
@@ -121,7 +120,7 @@ public class MyBingeTvController {
             String jsonResults = "";
             URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
                     "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/" + d);
-            String detailedResults = queryJsonAPI(jsonResults,url);
+            String detailedResults = queryJsonAPI(jsonResults, url);
             ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
             String o = showDetail.getOverview();
             ViewResult viewResult = new ViewResult();
@@ -129,13 +128,14 @@ public class MyBingeTvController {
             viewResult.setArtwork_448x252(a);
             viewResult.setArtwork_208x117(a2);
             viewResult.setId(d);
-            viewResult.setOverview(o);
+            if (o.equals("")) {
+                viewResult.setOverview("Sorry, There is no detailed show information for this program.");
+            } else {
+                viewResult.setOverview(o);
+            }
             viewList.add(viewResult);
 
         }
-
-
-
         session.setAttribute("resultList", viewList);
 
         model.addAttribute("resultList", viewList);
@@ -153,7 +153,6 @@ public class MyBingeTvController {
                 savedShows.save(addToList);
             }
         }
-
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
     }
