@@ -1,10 +1,10 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
-import com.theironyard.entities.Result;
 import com.theironyard.entities.SavedShow;
-import com.theironyard.entities.Show;
 import com.theironyard.entities.User;
+import com.theironyard.jsonInputEntities.Result;
+import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
@@ -104,9 +104,6 @@ public class MyBingeTvController {
             while (scanner.hasNext()) {
                 jsonResults += scanner.nextLine();
             }
-            //todo: get rid of this sout line when you don't need it anymore
-            System.out.println("\nJSON data in sting format");
-            System.out.println(jsonResults);
             scanner.close();
         }
         session.setAttribute("userInput", encoded);
@@ -147,12 +144,7 @@ public class MyBingeTvController {
         User user = users.findFirstByName((String) session.getAttribute("username"));
         ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
         for (Result r : resultList) {
-            if (r.getId().equals(getId)){
-////                System.out.println(r.getId());
-//                ArrayList<Result> defaultList = new ArrayList<>();
-//                defaultList.add(r);
-//                user.setUserList(defaultList);
-//                users.save(user);
+            if (r.getId().equals(getId)) {
                 SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
                 savedShows.save(addToList);
             }
