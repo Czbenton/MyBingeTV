@@ -1,6 +1,7 @@
-package com.theironyard.entities;
+package com.theironyard.jsonInputEntities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 

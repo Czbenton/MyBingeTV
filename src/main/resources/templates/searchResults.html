@@ -10,13 +10,11 @@
 <br><br>
 <!--insert info header here with home button and user information????-->
 
-<form action="/" method="get">
-
+<form action="/" method="get" class="homeBtn">
     <button type="submit">Go Home</button>
 </form>
 
 {{#resultList}}
-
 <section class="section">
     <div class="container">
         <div class="row">
@@ -29,6 +27,10 @@
                     <input type="hidden" value="{{getId}}" name="getId">
                     <button type="submit" class="btn">Add to your shows</button>
                 </form>
+                <input type="hidden" value="{{getId}}" name="getDetailId">
+            </div>
+            <div class="row__item" style="color: aliceblue">
+                {{getOverview}}
             </div>
         </div>
     </div>

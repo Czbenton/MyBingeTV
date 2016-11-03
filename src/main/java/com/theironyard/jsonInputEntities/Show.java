@@ -1,4 +1,4 @@
-package com.theironyard.entities;
+package com.theironyard.jsonInputEntities;
 
 /**
  * Created by Zach on 11/2/16.
