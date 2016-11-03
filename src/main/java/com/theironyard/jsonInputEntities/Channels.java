@@ -1,6 +1,7 @@
 package com.theironyard.jsonInputEntities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Created by Zach on 11/3/16.
@@ -23,7 +24,7 @@ public class Channels {
 
     private String is_primary;
 
-    private LiveStream live_stream;
+    private Object live_stream;
 
     private String short_name;
 
@@ -32,6 +33,14 @@ public class Channels {
     @Override
     public String toString() {
         return "ClassPojo [id = " + id + ", artwork_448x252 = " + artwork_448x252 + ", artwork_608x342 = " + artwork_608x342 + ", artwork_208x117 = " + artwork_208x117 + ", social = " + social + ", name = " + name + ", artwork_304x171 = " + artwork_304x171 + ", is_primary = " + is_primary + ", live_stream = " + live_stream + ", short_name = " + short_name + ", channel_type = " + channel_type + "]";
+    }
+
+    public Object getLive_stream() {
+        return live_stream;
+    }
+
+    public void setLive_stream(Object live_stream) {
+        this.live_stream = live_stream;
     }
 
     public String getId() {
@@ -98,13 +107,6 @@ public class Channels {
         this.is_primary = is_primary;
     }
 
-    public LiveStream getLiveStream() {
-        return live_stream;
-    }
-
-    public void setLiveStream(LiveStream live_stream) {
-        this.live_stream = live_stream;
-    }
 
     public String getShort_name() {
         return short_name;

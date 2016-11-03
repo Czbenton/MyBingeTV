@@ -1,11 +1,13 @@
 package com.theironyard.jsonInputEntities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.annotations.Expose;
 
 /**
  * Created by Zach on 11/3/16.
  */
-@JsonIgnoreProperties(ignoreUnknown = true) //todo do on all
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ShowDetail {
 
     private String artwork_448x252;
@@ -74,9 +76,20 @@ public class ShowDetail {
 
     private String air_day_of_week;
 
+    private Object live_stream;
+
     @Override
     public String toString() {
         return "ClassPojo [artwork_448x252 = " + artwork_448x252 + ", first_aired = " + first_aired + ", genres = " + genres + ", runtime = " + runtime + ", type = " + type + ", themoviedb = " + themoviedb + ", network = " + network + ", fanart = " + fanart + ", id = " + id + ", title = " + title + ", artwork_208x117 = " + artwork_208x117 + ", social = " + social + ", air_time = " + air_time + ", container_show = " + container_show + ", banner = " + banner + ", tags = " + tags + ", artwork_608x342 = " + artwork_608x342 + ", status = " + status + ", channels = " + channels + ", wikipedia_id = " + wikipedia_id + ", url = " + url + ", alternate_titles = " + alternate_titles + ", metacritic = " + metacritic + ", cast = " + cast + ", overview = " + overview + ", tv_com = " + tv_com + ", imdb_id = " + imdb_id + ", tvdb = " + tvdb + ", artwork_304x171 = " + artwork_304x171 + ", poster = " + poster + ", freebase = " + freebase + ", rating = " + rating + ", air_day_of_week = " + air_day_of_week + "]";
+    }
+
+
+    public Object getLive_stream() {
+        return live_stream;
+    }
+
+    public void setLive_stream(Object live_stream) {
+        this.live_stream = live_stream;
     }
 
     public String getArtwork_448x252() {

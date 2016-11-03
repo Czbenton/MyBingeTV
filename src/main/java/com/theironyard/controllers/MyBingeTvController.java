@@ -3,8 +3,10 @@ package com.theironyard.controllers;
 import com.google.gson.Gson;
 import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
+import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Result;
 import com.theironyard.jsonInputEntities.Show;
+import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
@@ -90,51 +92,53 @@ public class MyBingeTvController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
-        String encoded = URLEncoder.encode(userInput, "UTF-8");
+        String encoded = URLEncoder.encode(userInput, "UTF-8");                 //TODO: make the URL FINAL
         URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
                 "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/" + encoded + "/fuzzy");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
-        int responseCode = conn.getResponseCode();
-        if (responseCode != 200) {
-            throw new RuntimeException("ERROR Http ResponseCode: " + responseCode);
-        } else {
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                jsonResults += scanner.nextLine();
-            }
-            scanner.close();
-        }
+
+        jsonResults = queryJsonAPI(jsonResults, url);
+
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
         return "redirect:/searchResults";
     }
 
     @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
-    public String searchResults(Model model, HttpSession session) throws IOException {
-
+    public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
         Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
         Show show = gson.fromJson(results, Show.class);
 
-        ArrayList<Result> resultList = new ArrayList<>();
+        ArrayList<ViewResult> viewList = new ArrayList<>();
 
-        for (int i = 0; i < show.getResults().length; i++) {
+        for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
             String t = show.getResults(i).getTitle();
             String a = show.getResults(i).getArtwork_448x252();
             String a2 = show.getResults(i).getArtwork_208x117();
             String d = show.getResults(i).getId();
 
-            Result result = new Result();
-            result.setTitle(t);
-            result.setArtwork_448x252(a);
-            result.setArtwork_208x117(a2);
-            result.setId(d);
-            resultList.add(result);
+
+            String jsonResults = "";
+            URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
+                    "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/" + d);
+            String detailedResults = queryJsonAPI(jsonResults,url);
+            ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
+            String o = showDetail.getOverview();
+            ViewResult viewResult = new ViewResult();
+            viewResult.setTitle(t);
+            viewResult.setArtwork_448x252(a);
+            viewResult.setArtwork_208x117(a2);
+            viewResult.setId(d);
+            viewResult.setOverview(o);
+            viewList.add(viewResult);
+
         }
-        session.setAttribute("resultList", resultList);
-        model.addAttribute("resultList", resultList);
+
+
+
+        session.setAttribute("resultList", viewList);
+
+        model.addAttribute("resultList", viewList);
         return "searchResults";
     }
 
@@ -152,6 +156,23 @@ public class MyBingeTvController {
 
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
+    }
+
+    private String queryJsonAPI(String jsonResults, URL url) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.connect();
+        int responseCode = conn.getResponseCode();
+        if (responseCode != 200) {
+            throw new RuntimeException("ERROR Http ResponseCode: " + responseCode);
+        } else {
+            Scanner scanner = new Scanner(url.openStream());
+            while (scanner.hasNext()) {
+                jsonResults += scanner.nextLine();
+            }
+            scanner.close();
+        }
+        return jsonResults;
     }
 
 

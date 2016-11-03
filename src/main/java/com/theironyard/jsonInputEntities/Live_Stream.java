@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by Zach on 11/3/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LiveStream {
+public class Live_Stream {
 
     private String[] android;
 
