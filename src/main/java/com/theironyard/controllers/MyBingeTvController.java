@@ -146,8 +146,8 @@ public class MyBingeTvController {
     public String addToUserList(Model model, HttpSession session, String getId) {
 
         User user = users.findFirstByName((String) session.getAttribute("username"));
-        ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
-        for (Result r : resultList) {
+        ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
+        for (ViewResult r : resultList) {
             if (r.getId().equals(getId)) {
                 SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
                 savedShows.save(addToList);
