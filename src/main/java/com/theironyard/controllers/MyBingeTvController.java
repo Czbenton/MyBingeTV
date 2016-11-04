@@ -136,6 +136,7 @@ public class MyBingeTvController {
             viewList.add(viewResult);
 
         }
+
         session.setAttribute("resultList", viewList);
 
         model.addAttribute("resultList", viewList);
