@@ -13,6 +13,7 @@
     <button type="submit">Login / Create Account</button>
 </form>
 {{/username}}
+
 {{#username}}
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
@@ -25,6 +26,29 @@ Welcome message
     <input type="text" placeholder="Search here" name="userInput">
     <button type="submit">Display JSON</button>
 </form>
+
+{{#username}}
+{{#showList}}
+<div>
+    <table class="userTable">
+        <!--  <tr>-->
+        <!--    <th>Firstname</th>-->
+        <!--    <th>Lastname</th>-->
+        <!--    <th>Age</th>-->
+        <!--  </tr>-->
+        <tr>
+            <td><img src="{{getArtwork}}"></td>
+            <td>"description?"</td>
+            <td>"link to show"</td>
+            <td>"other stuff"</td>
+            <td>"even more stuff</td>
+        </tr>
+    </table>
+
+
+</div>
+{{/showList}}
+{{/username}}
 
 
 </body>

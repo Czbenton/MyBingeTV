@@ -1,9 +1,12 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
-import com.theironyard.entities.Result;
-import com.theironyard.entities.Show;
+import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
+import com.theironyard.entities.ViewResult;
+import com.theironyard.jsonInputEntities.Show;
+import com.theironyard.jsonInputEntities.ShowDetail;
+import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,9 +34,15 @@ public class MyBingeTvController {
     @Autowired
     UserRepo users;
 
+    @Autowired
+    SavedShowRepo savedShows;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
 
+        model.addAttribute("showList", showList);
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
         return "index";
@@ -61,7 +71,11 @@ public class MyBingeTvController {
                                 HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
         if (user != null) {
+<<<<<<< HEAD
             throw new Exception("Username              already              in              user,              please              choose              another");
+=======
+            throw new Exception("Username already in use, please choose another");
+>>>>>>> e73e32219471619bd1129f90530e80cc3a273974
         } else if (!newpassword.equals(validatepassword)) {
             throw new Exception("Error:              passwords              do              not              match");
         }
@@ -81,9 +95,10 @@ public class MyBingeTvController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
-        String encoded = URLEncoder.encode(userInput, "UTF-8");
+        String encoded = URLEncoder.encode(userInput, "UTF-8");                 //TODO: make the URL FINAL
         URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
                 "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/" + encoded + "/fuzzy");
+<<<<<<< HEAD
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
@@ -100,35 +115,53 @@ public class MyBingeTvController {
             System.out.println(jsonResults);
             scanner.close();
         }
+=======
+
+        jsonResults = queryJsonAPI(jsonResults, url);
+
+>>>>>>> e73e32219471619bd1129f90530e80cc3a273974
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
         return "redirect:/searchResults";
     }
 
     @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
-    public String searchResults(Model model, HttpSession session) throws IOException {
-
+    public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
         Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
         Show show = gson.fromJson(results, Show.class);
 
-        ArrayList<Result> resultList = new ArrayList<>();
+        ArrayList<ViewResult> viewList = new ArrayList<>();
 
-        for (int i = 0; i < show.getResults().length; i++) {
+        for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
             String t = show.getResults(i).getTitle();
             String a = show.getResults(i).getArtwork_448x252();
             String a2 = show.getResults(i).getArtwork_208x117();
             String d = show.getResults(i).getId();
 
-            Result result = new Result();
-            result.setTitle(t);
-            result.setArtwork_448x252(a);
-            result.setArtwork_208x117(a2);
-            result.setId(d);
-            resultList.add(result);
+
+            String jsonResults = "";
+            URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
+                    "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/" + d);
+            String detailedResults = queryJsonAPI(jsonResults, url);
+            ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
+            String o = showDetail.getOverview();
+            ViewResult viewResult = new ViewResult();
+            viewResult.setTitle(t);
+            viewResult.setArtwork_448x252(a);
+            viewResult.setArtwork_208x117(a2);
+            viewResult.setId(d);
+            if (o.equals("")) {
+                viewResult.setOverview("Sorry, There is no detailed show information for this program.");
+            } else {
+                viewResult.setOverview(o);
+            }
+            viewList.add(viewResult);
+
         }
-        session.setAttribute("resultList", resultList);
-        model.addAttribute("resultList", resultList);
+        session.setAttribute("resultList", viewList);
+
+        model.addAttribute("resultList", viewList);
         return "searchResults";
     }
 
@@ -136,6 +169,7 @@ public class MyBingeTvController {
     public String addToUserList(Model model, HttpSession session, String getId) {
 
         User user = users.findFirstByName((String) session.getAttribute("username"));
+<<<<<<< HEAD
         ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
         for (Result r : resultList) {
             if (r.getId().equals(getId)) {
@@ -144,11 +178,34 @@ public class MyBingeTvController {
                 defaultList.add(r);
                 user.setUserList(defaultList);
                 users.save(user);
+=======
+        ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
+        for (ViewResult r : resultList) {
+            if (r.getId().equals(getId)) {
+                SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
+                savedShows.save(addToList);
+>>>>>>> e73e32219471619bd1129f90530e80cc3a273974
             }
         }
-
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
+    }
+
+    private String queryJsonAPI(String jsonResults, URL url) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.connect();
+        int responseCode = conn.getResponseCode();
+        if (responseCode != 200) {
+            throw new RuntimeException("ERROR Http ResponseCode: " + responseCode);
+        } else {
+            Scanner scanner = new Scanner(url.openStream());
+            while (scanner.hasNext()) {
+                jsonResults += scanner.nextLine();
+            }
+            scanner.close();
+        }
+        return jsonResults;
     }
 
 

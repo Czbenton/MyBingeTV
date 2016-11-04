@@ -1,4 +1,4 @@
-package com.theironyard.entities;
+package com.theironyard.jsonInputEntities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
