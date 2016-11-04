@@ -29,6 +29,6 @@ public class Tags {
 
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", tag = " + tag + "]";
+        return tag + " ";
     }
 }
