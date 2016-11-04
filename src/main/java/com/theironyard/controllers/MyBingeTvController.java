@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created              by              Zach              on              10/31/16.
+ * Created by Zach on 10/31/16.
  */
 @Controller
 public class MyBingeTvController {
@@ -57,9 +57,9 @@ public class MyBingeTvController {
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
         if (user == null) {
-            throw new Exception("Username              not              found,              please              create              an              account");
+            throw new Exception("Username not found, please create an account");
         } else if (!PasswordStorage.verifyPassword(password, user.getPassword())) {
-            throw new Exception("wrong              password");
+            throw new Exception("wrong password");
         }
         session.setAttribute("username", username);
         response.sendRedirect("/");
@@ -71,13 +71,9 @@ public class MyBingeTvController {
                                 HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
         if (user != null) {
-<<<<<<< HEAD
-            throw new Exception("Username              already              in              user,              please              choose              another");
-=======
             throw new Exception("Username already in use, please choose another");
->>>>>>> e73e32219471619bd1129f90530e80cc3a273974
         } else if (!newpassword.equals(validatepassword)) {
-            throw new Exception("Error:              passwords              do              not              match");
+            throw new Exception("Error: passwords do not match");
         }
         user = new User(newusername, PasswordStorage.createHash(newpassword));
         users.save(user);
@@ -98,28 +94,9 @@ public class MyBingeTvController {
         String encoded = URLEncoder.encode(userInput, "UTF-8");                 //TODO: make the URL FINAL
         URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
                 "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/" + encoded + "/fuzzy");
-<<<<<<< HEAD
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
-        int responseCode = conn.getResponseCode();
-        if (responseCode != 200) {
-            throw new RuntimeException("ERROR              Http              ResponseCode:              " + responseCode);
-        } else {
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                jsonResults += scanner.nextLine();
-            }
-            //todo:              get              rid              of              this              sout              line              when              you              don't              need              it              anymore
-            System.out.println("\nJSON              data              in              sting              format");
-            System.out.println(jsonResults);
-            scanner.close();
-        }
-=======
 
         jsonResults = queryJsonAPI(jsonResults, url);
 
->>>>>>> e73e32219471619bd1129f90530e80cc3a273974
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
         return "redirect:/searchResults";
@@ -169,22 +146,11 @@ public class MyBingeTvController {
     public String addToUserList(Model model, HttpSession session, String getId) {
 
         User user = users.findFirstByName((String) session.getAttribute("username"));
-<<<<<<< HEAD
-        ArrayList<Result> resultList = (ArrayList) session.getAttribute("resultList");
-        for (Result r : resultList) {
-            if (r.getId().equals(getId)) {
-                System.out.println(r.getId());
-                ArrayList<Result> defaultList = new ArrayList<>();
-                defaultList.add(r);
-                user.setUserList(defaultList);
-                users.save(user);
-=======
         ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
         for (ViewResult r : resultList) {
             if (r.getId().equals(getId)) {
                 SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
                 savedShows.save(addToList);
->>>>>>> e73e32219471619bd1129f90530e80cc3a273974
             }
         }
         model.addAttribute("resultList", session.getAttribute("resultList"));
