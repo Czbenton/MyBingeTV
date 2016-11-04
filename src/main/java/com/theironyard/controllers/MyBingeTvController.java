@@ -22,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -111,11 +112,7 @@ public class MyBingeTvController {
         ArrayList<ViewResult> viewList = new ArrayList<>();
 
         for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
-            String t = show.getResults(i).getTitle();
-            String a = show.getResults(i).getArtwork_448x252();
-            String a2 = show.getResults(i).getArtwork_208x117();
             String d = show.getResults(i).getId();
-
 
             String jsonResults = "";
             URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
@@ -124,10 +121,19 @@ public class MyBingeTvController {
             ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
             String o = showDetail.getOverview();
             ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(t);
-            viewResult.setArtwork_448x252(a);
-            viewResult.setArtwork_208x117(a2);
-            viewResult.setId(d);
+            viewResult.setTitle(show.getResults(i).getTitle());
+            viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
+            viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
+            viewResult.setId(show.getResults(i).getId());
+            viewResult.setNetwork(showDetail.getNetwork());
+
+            String s = Arrays.toString(showDetail.getTags());
+
+            viewResult.setTagString(s);
+            viewResult.setChannels(showDetail.getChannels());
+            viewResult.setSocial(showDetail.getSocial());
+            viewResult.setRating(showDetail.getRating());
+            viewResult.setGenres(showDetail.getGenres());
             if (o.equals("")) {
                 viewResult.setOverview("Sorry, There is no detailed show information for this program.");
             } else {
