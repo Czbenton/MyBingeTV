@@ -1,5 +1,7 @@
 package com.theironyard.entities;
 
+import com.theironyard.jsonInputEntities.*;
+
 /**
  * Created by Zach on 11/3/16.
  */
@@ -9,6 +11,35 @@ public class ViewResult {
     private String id;
     private String title;
     private String overview;
+    private String first_aired;
+    private Genres[] genres;
+    private String runtime;
+    private String type;
+    private String themoviedb;
+    private String network;
+    private String fanart;
+    private Social social;
+    private String air_time;
+    private String container_show;
+    private String banner;
+    private Tags[] tags;
+    private String artwork_608x342;
+    private String status;
+    private Channels[] channels;
+    private String wikipedia_id;
+    private String url;
+    private String[] alternate_titles;
+    private String metacritic;
+    private Cast[] cast;
+    private String tv_com;
+    private String imdb_id;
+    private String tvdb;
+    private String artwork_304x171;
+    private String poster;
+    private String freebase;
+    private String rating;
+    private String air_day_of_week;
+    private Object live_stream;
 
 
     public ViewResult() {
