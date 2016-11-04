@@ -19,8 +19,6 @@
     <div class="container">
         <div class="row">
             <div class="row__item">
-                <div>{{getTitle}}</div>
-                <br>
                 <a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{getId}}">
                     <img src="{{getArtwork_448x252}}"></a>
                 <form action="/addToUserList" method="post" class="addBtn">
@@ -30,7 +28,7 @@
                 <input type="hidden" value="{{getId}}" name="getDetailId">
             </div>
             <div class="row__item" style="color: aliceblue">
-                {{getOverview}}
+                {{getOverview}} {{getRating}} Show tags include: {{getTagString}}
             </div>
         </div>
     </div>
