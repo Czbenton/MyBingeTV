@@ -30,7 +30,7 @@ public class SearchController {
 
         String jsonResults = "";
         String encoded = URLEncoder.encode(userInput, "UTF-8");
-        URL url = new URL(API_URL + API_KEY + "/search/title/" + encoded + "/fuzzy");
+        URL url = new URL(API_URL + API_KEY + "/search/title/" + enc oded + "/fuzzy");
 
         jsonResults = queryJsonAPI(jsonResults, url);
 
