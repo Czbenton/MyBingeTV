@@ -21,23 +21,23 @@
             <div class="row__item">
                 <a href="http://api-public.guidebox.com/v1.43/US/rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/{{getId}}">
                     <img src="{{getArtwork_448x252}}"></a>
+                <input type="hidden" value="{{getId}}" name="getDetailId">
+            </div>
+            <div id="search_result_links" class="row__item">
                 <form action="/addToUserList" method="post" class="addBtn">
                     <input type="hidden" value="{{getId}}" name="getId">
                     <button type="submit" class="btn">Add to your shows</button>
                 </form>
-                <input type="hidden" value="{{getId}}" name="getDetailId">
-            </div>
-            <div class="row__item">
-                <a href="{{getUrl}}">Go to show</a>
+                <form action="{{getUrl}}">
+                    <button type="submit" class="btn">Go to show</button>
+                </form>
             </div>
             <div class="row__item" style="color: aliceblue">
-                {{getOverview}} {{getRating}} Show tags include: {{getTagString}}
+                {{getOverview}} {{getRating}} <!--Show tags include: {{getTagString}}-->
             </div>
         </div>
     </div>
 </section>
-
-small change!
 
 
 {{/resultList}}
