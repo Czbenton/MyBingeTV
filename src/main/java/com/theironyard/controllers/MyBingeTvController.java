@@ -88,8 +88,6 @@ public class MyBingeTvController {
         response.sendRedirect("/");
     }
 
-
-
     @RequestMapping(path = "/addToUserList", method = RequestMethod.POST)
     public String addToUserList(Model model, HttpSession session, String getId) {
 
@@ -105,7 +103,12 @@ public class MyBingeTvController {
         return "searchResults";
     }
 
-
-
-
+    @RequestMapping(path = "/removeFromUserList", method = RequestMethod.POST)
+    public String removeFromUserList(Model model, HttpSession session, String getId) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
+        for (SavedShow s : showList) {
+            if (s.getId() == Integer.parseInt(getId))
+        }
+    }
 }
