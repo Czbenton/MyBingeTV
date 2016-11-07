@@ -19,11 +19,14 @@
     <div class="container">
         <div class="row">
             <div class="row__item">
-                <a href="showDetail.html">
-                    <img src="{{getArtwork_448x252}}"></a>
-                <input type="hidden" value="{{getId}}" name="getDetailId">
+                    <a href="showDetail.html">
+                        <img src="{{getArtwork_448x252}}"></a>
             </div>
             <div id="search_result_links" class="row__item">
+                <form action="/showDetail" method="get">
+                    <input type="hidden" value="{{getId}}" name="getDetailId">
+                    <button type="submit" class="btn">Detailed Show Info</button>
+                </form>
                 <form action="/addToUserList" method="post" class="addBtn">
                     <input type="hidden" value="{{getId}}" name="getId">
                     <button type="submit" class="btn">Add to your shows</button>
