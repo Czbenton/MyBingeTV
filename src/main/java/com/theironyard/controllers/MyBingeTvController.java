@@ -111,10 +111,8 @@ public class MyBingeTvController {
             if (s.getId() == Integer.parseInt(getId))
         }
     }
-<<<<<<< HEAD
+    
+}
 
 
-}
-=======
-}
->>>>>>> 1d3de49a5eee02100c04a487d85b0a6bab192cf6
+
