@@ -29,6 +29,6 @@ public class Social {
 
     @Override
     public String toString() {
-        return "ClassPojo [twitter = " + twitter + ", facebook = " + facebook + "]";
+        return "twitter = " + twitter + ", facebook = " + facebook ;
     }
 }
