@@ -42,6 +42,10 @@ Welcome message
             <td>"link to show"</td>
             <td>"other stuff"</td>
             <td>"even more stuff</td>
+            <form action="/removeFromUserList" method="post">
+                <input type="hidden" value="{{getId}}" name="getId"/>
+                <button type="submit">Remove from My List</button>
+            </form>
         </tr>
     </table>
 

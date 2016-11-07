@@ -46,9 +46,12 @@ public class SearchController {
         Show show = gson.fromJson(results, Show.class);
 
         ArrayList<ViewResult> viewList = new ArrayList<>();
-
-        for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
+        int counterResults = show.getResults().length;
+        int loop = 5;
+        if(counterResults < 5){loop = counterResults;}
+        for (int i = 0; i < loop; i++) {    //TODO: limit results
             String d = show.getResults(i).getId();
+//            show.getResults().length;
 
             String jsonResults = "";
             URL url = new URL(API_URL + API_KEY + "/show/" + d);
