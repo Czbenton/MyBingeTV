@@ -103,7 +103,17 @@ public class MyBingeTvController {
         return "searchResults";
     }
 
-   //small change
+    @RequestMapping(path = "/removeFromUserList", method = RequestMethod.POST)
+    public String removeFromUserList(HttpSession session, String getId) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
+        for (SavedShow s : showList) {
+            if (s.getId() == Integer.parseInt(getId)) {
+                savedShows.delete(s.getId());
+            }
+        }
+        return "redirect:/";
+    }
     
 }
 
