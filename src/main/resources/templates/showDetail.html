@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show detail</title>
+</head>
+<body>
+{{#showDetail}}
+SHOW DETAILS HERE
+<br>
+{{getTitle}}
+<br>
+{{getArtwork_608x342}}
+<br>
+{{getFirst_aired}}
+<br>
+Genres:
+{{#getGenres}}{{.}}, {{/getGenres}}
+<br>
+{{getRuntime}}
+<br>
+{{getType}}
+<br>
+{{getThemoviedb}}
+<br>
+{{getNetwork}}
+<br>
+{{getFanart}}
+<br>
+{{getId}}
+<br>
+{{getTitle}}
+<br>
+{{#getSocial}} {{.}} {{/getSocial}} <!-- fix -->
+<br>
+Airtime:
+{{getAir_time}}
+<br>
+{{getContainer_show}}
+<br>
+{{getBanner}}
+<br>
+{{#getTags}} {{.}} {{/getTags}}<!-- fix -->
+<br>
+{{getStatus}}
+<br>
+{{#getChannels}} {{.}} {{/getChannels}} <!-- fix -->
+<br>
+{{getWikipedia_id}}
+<br>
+{{getUrl}}
+<br>
+{{#getAlternate_titles}} {{.}} {{/getAlternate_titles}} <!-- fix -->
+<br>
+{{getMetacritic}}
+<br>
+{{#getCast}} {{.}} {{/getCast}} <!-- fix -->
+<br>
+{{getOverview}}
+<br>
+{{getRating}}
+<br>
+
+{{/showDetail}}
+
+</body>
+
+</html>
