@@ -39,6 +39,6 @@ public class Cast {
 
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", character_name = " + character_name + ", name = " + name + "]";
+        return "character_name = " + character_name + ", name = " + name + "]";
     }
 }

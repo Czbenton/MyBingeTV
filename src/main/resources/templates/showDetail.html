@@ -14,7 +14,8 @@ SHOW DETAILS HERE
 <br>
 {{getFirst_aired}}
 <br>
-{{getGenres}}
+Genres:
+{{#getGenres}}{{.}}, {{/getGenres}}
 <br>
 {{getRuntime}}
 <br>
@@ -30,29 +31,30 @@ SHOW DETAILS HERE
 <br>
 {{getTitle}}
 <br>
-{{getSocial}}
+{{#getSocial}} {{.}} {{/getSocial}} <!-- fix -->
 <br>
+Airtime:
 {{getAir_time}}
 <br>
-{getContainer_show}}
+{{getContainer_show}}
 <br>
 {{getBanner}}
 <br>
-{{getTags}}
+{{#getTags}} {{.}} {{/getTags}}<!-- fix -->
 <br>
 {{getStatus}}
 <br>
-{{getChannels}}
+{{#getChannels}} {{.}} {{/getChannels}} <!-- fix -->
 <br>
 {{getWikipedia_id}}
 <br>
 {{getUrl}}
 <br>
-{{getAlternate_titles}}
+{{#getAlternate_titles}} {{.}} {{/getAlternate_titles}} <!-- fix -->
 <br>
 {{getMetacritic}}
 <br>
-{{getCast}}
+{{#getCast}} {{.}} {{/getCast}} <!-- fix -->
 <br>
 {{getOverview}}
 <br>
