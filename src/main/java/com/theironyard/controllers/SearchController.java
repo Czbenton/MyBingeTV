@@ -47,8 +47,6 @@ public class SearchController {
 
         ArrayList<ViewResult> viewList = new ArrayList<>();
 
-        int counter = 0;
-
         for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
             String d = show.getResults(i).getId();
 
@@ -71,6 +69,7 @@ public class SearchController {
             viewResult.setSocial(showDetail.getSocial());
             viewResult.setRating(showDetail.getRating());
             viewResult.setGenres(showDetail.getGenres());
+            viewResult.setUrl(showDetail.getUrl());
             if (o.equals("")) {
                 viewResult.setOverview("Sorry, There is no detailed show information for this program.");
             } else {

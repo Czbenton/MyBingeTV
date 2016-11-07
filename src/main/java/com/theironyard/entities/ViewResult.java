@@ -21,6 +21,7 @@ public class ViewResult {
     private String rating;
     private Genres[] genres;
     private String tagString;
+    private String url;
 
 
     public ViewResult() {
@@ -48,6 +49,14 @@ public class ViewResult {
         this.channels = channels;
         this.rating = rating;
         this.genres = genres;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getTagString() {
