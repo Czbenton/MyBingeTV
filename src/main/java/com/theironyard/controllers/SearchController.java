@@ -73,9 +73,15 @@ public class SearchController {
             viewResult.setRating(showDetail.getRating());
             viewResult.setGenres(showDetail.getGenres());
             viewResult.setUrl(showDetail.getUrl());
+
             if (o.equals("")) {
                 viewResult.setOverview("Sorry, There is no detailed show information for this program.");
-            } else {
+            }
+            else if (o.length() > 400) {
+                String limitedDetail = o.substring(0, 400);
+                viewResult.setOverview(limitedDetail);
+            }
+            else {
                 viewResult.setOverview(o);
             }
             viewList.add(viewResult);
