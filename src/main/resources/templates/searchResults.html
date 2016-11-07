@@ -14,13 +14,20 @@
     <button type="submit">Go Home</button>
 </form>
 
+{{^resultList}}
+NO RESULTS
+<form action="/search" method="post">
+    <input type="text" placeholder="Search here" name="userInput">
+    <button type="submit">Display JSON</button>
+</form>
+{{/resultList}}
+
 {{#resultList}}
 <section class="section">
     <div class="container">
         <div class="row">
             <div class="row__item">
-                    <a href="showDetail.html">
-                        <img src="{{getArtwork_448x252}}"></a>
+                    <a><img src="{{getArtwork_448x252}}"></a>
             </div>
             <div id="search_result_links" class="row__item">
                 <form action="/showDetail" method="get">
@@ -36,7 +43,9 @@
                 </form>
             </div>
             <div class="row__item" style="color: aliceblue">
-                {{getOverview}} {{getRating}} <!--Show tags include: {{getTagString}}-->
+                <div class="truncate">{{getOverview}}</div>    <!--add scrollable or a 2nd div with truncated message-->
+                <button class="open-truncate">Show More</button>
+                <p>{{getRating}}</p> <!--Show tags include: {{getTagString}}-->
             </div>
         </div>
     </div>
@@ -44,5 +53,7 @@
 
 
 {{/resultList}}
+
+<script src="/app.js"></script>
 </body>
 </html>

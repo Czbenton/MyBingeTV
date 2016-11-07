@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * Created by jeremypitt on 11/6/16.
@@ -26,6 +24,7 @@ import java.util.Scanner;
 public class SearchController {
     public static final String API_URL = "http://api-public.guidebox.com/v1.43/US/";
     public static final String API_KEY = "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO";
+
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
@@ -50,7 +49,10 @@ public class SearchController {
 
         int counterResults = show.getResults().length;
         int loop = 5;
-        if(counterResults < 5){loop = counterResults;}
+
+        if (counterResults < 5) {
+            loop = counterResults;
+        }
         for (int i = 0; i < loop; i++) {
             String d = show.getResults(i).getId();
 
@@ -78,12 +80,10 @@ public class SearchController {
 
             if (o.equals("")) {
                 viewResult.setOverview("Sorry, There is no detailed show information for this program.");
-            }
-            else if (o.length() > 400) {
-                String limitedDetail = o.substring(0, 400);
-                viewResult.setOverview(limitedDetail);
-            }
-            else {
+//            } else if (o.length() > 400) {
+//                String limitedDetail = o.substring(0, 400);
+//                viewResult.setOverview(limitedDetail);
+            } else {
                 viewResult.setOverview(o);
             }
             viewList.add(viewResult);
