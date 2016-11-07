@@ -46,7 +46,7 @@ public class SearchController {
         Show show = gson.fromJson(results, Show.class);
 
         ArrayList<ViewResult> viewList = new ArrayList<>();
-
+        int counter; 
         for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
             String d = show.getResults(i).getId();
 
