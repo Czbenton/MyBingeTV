@@ -88,67 +88,6 @@ public class MyBingeTvController {
         response.sendRedirect("/");
     }
 
-    @RequestMapping(path = "/search", method = RequestMethod.POST)
-    public String search(Model model, HttpSession session, String userInput) throws IOException {
-
-        String jsonResults = "";
-        String encoded = URLEncoder.encode(userInput, "UTF-8");                 //TODO: make the URL FINAL
-        URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
-                "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/search/title/" + encoded + "/fuzzy");
-
-        jsonResults = queryJsonAPI(jsonResults, url);
-
-        session.setAttribute("userInput", encoded);
-        session.setAttribute("jsonResults", jsonResults);
-        return "redirect:/searchResults";
-    }
-
-    @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
-    public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
-        Gson gson = new Gson();
-        String results = (String) session.getAttribute("jsonResults");
-        Show show = gson.fromJson(results, Show.class);
-
-        ArrayList<ViewResult> viewList = new ArrayList<>();
-
-        for (int i = 0; i < show.getResults().length; i++) {    //TODO: limit results
-            String d = show.getResults(i).getId();
-
-            String jsonResults = "";
-            URL url = new URL("http://api-public.guidebox.com/v1.43/US/" +
-                    "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO/show/" + d);
-            String detailedResults = queryJsonAPI(jsonResults, url);
-            ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
-            String o = showDetail.getOverview();
-            ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(show.getResults(i).getTitle());
-            viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
-            viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
-            viewResult.setId(show.getResults(i).getId());
-            viewResult.setNetwork(showDetail.getNetwork());
-
-            String s = Arrays.toString(showDetail.getTags());
-
-            viewResult.setTagString(s);
-            viewResult.setChannels(showDetail.getChannels());
-            viewResult.setSocial(showDetail.getSocial());
-            viewResult.setRating(showDetail.getRating());
-            viewResult.setGenres(showDetail.getGenres());
-            if (o.equals("")) {
-                viewResult.setOverview("Sorry, There is no detailed show information for this program.");
-            } else {
-                viewResult.setOverview(o);
-            }
-            viewList.add(viewResult);
-
-        }
-
-        session.setAttribute("resultList", viewList);
-
-        model.addAttribute("resultList", viewList);
-        return "searchResults";
-    }
-
     @RequestMapping(path = "/addToUserList", method = RequestMethod.POST)
     public String addToUserList(Model model, HttpSession session, String getId) {
 
@@ -164,22 +103,18 @@ public class MyBingeTvController {
         return "searchResults";
     }
 
-    private String queryJsonAPI(String jsonResults, URL url) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
-        int responseCode = conn.getResponseCode();
-        if (responseCode != 200) {
-            throw new RuntimeException("ERROR Http ResponseCode: " + responseCode);
-        } else {
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                jsonResults += scanner.nextLine();
-            }
-            scanner.close();
+    @RequestMapping(path = "/removeFromUserList", method = RequestMethod.POST)
+    public String removeFromUserList(Model model, HttpSession session, String getId) {
+        User user = users.findFirstByName((String) session.getAttribute("username"));
+        List<SavedShow> showList = savedShows.findAllByUser(user);
+        for (SavedShow s : showList) {
+            if (s.getId() == Integer.parseInt(getId))
         }
-        return jsonResults;
     }
+<<<<<<< HEAD
 
 
 }
+=======
+}
+>>>>>>> 1d3de49a5eee02100c04a487d85b0a6bab192cf6
