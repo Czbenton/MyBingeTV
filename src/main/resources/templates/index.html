@@ -21,10 +21,16 @@
 {{/username}}
 
 Welcome message
+{{#admin}}
+<form action="/adminSearch" method="post">
+    <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
+    <button type="submit">Search</button>
+</form>
+{{/admin}}
 
 <form action="/search" method="post">
     <input type="text" placeholder="Search here" name="userInput">
-    <button type="submit">Display JSON</button>
+    <button type="submit">Search</button>
 </form>
 
 {{#username}}

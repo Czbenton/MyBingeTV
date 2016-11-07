@@ -42,7 +42,7 @@ public class MyBingeTvController {
     public String index(Model model, HttpSession session) {
         User user = users.findFirstByName((String) session.getAttribute("username"));
         List<SavedShow> showList = savedShows.findAllByUser(user);
-
+        model.addAttribute("admin", session.getAttribute("admin"));
         model.addAttribute("showList", showList);
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("jsonResults", session.getAttribute("jsonResults"));
@@ -61,6 +61,9 @@ public class MyBingeTvController {
             throw new Exception("Username not found, please create an account");
         } else if (!PasswordStorage.verifyPassword(password, user.getPassword())) {
             throw new Exception("wrong password");
+        }
+        if (user.isAdmin()) {
+            session.setAttribute("admin", user.isAdmin());
         }
         session.setAttribute("username", username);
         response.sendRedirect("/");
