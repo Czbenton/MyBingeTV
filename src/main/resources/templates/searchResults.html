@@ -5,8 +5,7 @@
     <title>SearchResults</title>
     <link rel="stylesheet" href="/app.css">
 </head>
-<body>
-
+<body class="background">
 <br><br>
 <!--insert info header here with home button and user information????-->
 
@@ -18,12 +17,12 @@
 NO RESULTS
 <form action="/search" method="post">
     <input type="text" placeholder="Search here" name="userInput">
-    <button type="submit">Display JSON</button>
+    <button type="submit">Search</button>
 </form>
 {{/resultList}}
 
 {{#resultList}}
-<section class="section">
+<section class="section-search-results">
     <div class="container">
         <div class="row">
             <div class="row__item">

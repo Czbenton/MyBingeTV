@@ -12,7 +12,8 @@ img {
     max-width: 100%;
 }
 
-html {
+
+.background{
     background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg");
     /*background: url("http://www.placekitten.com/g/1024/768") no-repeat center center fixed;*/
     -webkit-background-size: cover;
@@ -20,6 +21,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
+
 .btn {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -53,8 +55,17 @@ a{
     appearance: button;
 }
 
-.section {
+.detail_page{
+    background: white;
+}
+
+.section-search-results {
     padding: 1rem;
+}
+
+.hero{
+    display: flex;
+    align-items: center;
 }
 
 .container {
