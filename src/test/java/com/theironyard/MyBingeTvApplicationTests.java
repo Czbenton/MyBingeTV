@@ -1,7 +1,9 @@
 package com.theironyard;
 
+import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
 import com.theironyard.jsonInputEntities.Result;
+import com.theironyard.jsonInputEntities.Show;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,13 +23,18 @@ public class MyBingeTvApplicationTests {
     }
 
     @Test
-    public void UserHasList() {
+    public void UserAdmin() {
         User user = new User("eric", "1234");
-        Result result = new Result();
-        ArrayList<Result> defaultList = new ArrayList<>();
-        defaultList.add(result);
-//		user.setUserList(defaultList);
-//		Assert.assertTrue(user.getUserList().size() != 0 );
+        user.setAdmin(true);
+        Assert.assertTrue(user.isAdmin() == true);
     }
 
+    @Test
+    public void UserPassword(){
+        User user = new User("eric", "1234");
+        Assert.assertTrue(user.getPassword() == "1234");
+    }
 }
+
+
+
