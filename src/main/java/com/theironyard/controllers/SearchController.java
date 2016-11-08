@@ -79,7 +79,7 @@ public class SearchController {
             viewResult.setUrl(showDetail.getUrl());
 
             if (o.equals("")) {
-                viewResult.setOverview("Sorry, There is no detailed show information for this program.");
+                viewResult.setOverview("No description available.");
 //            } else if (o.length() > 400) {
 //                String limitedDetail = o.substring(0, 400);
 //                viewResult.setOverview(limitedDetail);
