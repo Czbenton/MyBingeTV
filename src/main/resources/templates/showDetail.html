@@ -3,100 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>show detail</title>
-    <link rel="stylesheet" href="/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
+    <link rel="stylesheet" href="/app.css">
 </head>
 {{#showDetail}}
 <section class="detail_page">
-<body>
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column">
-                <div class="card is-fullwidth">
-                    <div class="card-image">
-                        <figure class="image is-16by9">
-                            <img src="{{ getArtwork_608x342 }}" alt="{{getTitle}}">
-                        </figure>
+    <body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="card is-fullwidth">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="{{ getArtwork_608x342 }}" alt="{{getTitle}}">
+                            </figure>
+                        </div>
                     </div>
                 </div>
+                <div class="column">
+                    <h1 class="title">
+                        {{getTitle}}
+                    </h1>
+                    <h2 class="subtitle">
+                        {{getOverview}}
+                    </h2>
+                </div>
             </div>
-            <div class="column">
-                <h1 class="title">
-                    {{getTitle}}
-                </h1>
-                <h2 class="subtitle">
-                    {{getOverview}}
-                </h2>
-            </div>
-        </div>
-
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-        <div class="content">
-
-
-            <br>
-            {{getTitle}}
-            <br>
-            {{getArtwork_608x342}}
-            <br>
-            {{getFirst_aired}}
-            <br>
-            Genres:
-            {{#getGenres}}{{.}}, {{/getGenres}}
-            <br>
-            {{getRuntime}}
-            <br>
-            {{getType}}
-            <br>
-            {{getThemoviedb}}
-            <br>
-            {{getNetwork}}
-            <br>
-            {{getFanart}}
-            <br>
-            {{getId}}
-            <br>
-            {{getTitle}}
-            <br>
-            {{#getSocial}} {{#getTwitter}} {{getLink}} {{/getTwitter}} {{/getSocial}}
-            <br>
-            Airtime:
-            {{getAir_time}}
-            <br>
-            {{getContainer_show}}
-            <br>
-            {{getBanner}}
-            <br>
-            {{#getTags}} {{.}} {{/getTags}}<!-- fix -->
-            <br>
-            {{getStatus}}
-            <br>
-            {{#getChannels}} {{.}} {{/getChannels}} <!-- fix -->
-            <br>
-            {{^getWikipedia_id}} {{.}} {{/getWikipedia_id}}
-            <br>
-            {{getUrl}}
-            <br>
-            {{#getAlternate_titles}} {{.}} {{/getAlternate_titles}} <!-- fix -->
-            <br>
-            {{^getMetacritic}} {{.}} {{/getMetacritic}}
-            <br>
-            {{#getCast}} {{.}} {{/getCast}} <!-- fix -->
-            <br>
-            {{getOverview}}
-            <br>
-            {{getRating}}
-            <br>
-
 
         </div>
-    </div>
-</section>
-</body>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+
+
+                <br>
+                Original Air Date: {{getFirst_aired}}
+                <br>
+                Genres:
+                {{#getGenres}}{{.}}, {{/getGenres}}
+                <br>
+                Runtime: {{getRuntime}}
+                <br>
+                Network: {{getNetwork}}
+                <br>
+                {{#getSocial}} {{#getTwitter}} <a class="twitter-link" href="{{getLink}}"><img src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a>
+                {{/getTwitter}} {{/getSocial}}
+                <br>
+                Airtime:
+                {{getAir_time}}
+                <br>
+                Tags:
+                {{#getTags}}
+                <ul>
+                    {{.}}
+                </ul>
+                {{/getTags}}<!-- fix -->
+                <br>
+                Status: {{getStatus}}
+                <br>
+                Channel:
+                {{#getChannels}} {{getName}} {{/getChannels}} <!-- fix -->
+                <br>
+                <a href="{{getUrl}}">Go To Show Page</a>
+                <br>
+                {{^getMetacritic}} <a href="{{.}}">Metacritic</a> {{/getMetacritic}}
+                <br>
+                Cast Members:
+                {{#getCast}}
+                <ul>
+                    <a href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
+                    , {{getCharacter_name}}
+                </ul>
+                {{/getCast}} <!-- fix -->
+                <br>
+                Rating: {{getRating}}
+                <br>
+
+
+            </div>
+        </div>
+    </section>
+    </body>
 </section>
 {{/showDetail}}
 </html>

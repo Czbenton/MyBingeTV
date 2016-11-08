@@ -26,30 +26,13 @@ public class ShowDetailsController {
 
         ShowDetail showDetail = gson.fromJson(results, ShowDetail.class);
 
-//        showDetail.setArtwork_608x342(showDetail.getArtwork_608x342());
-//        showDetail.setFirst_aired(showDetail.getFirst_aired());
-//        showDetail.setGenres(showDetail.getGenres());
-//        showDetail.setRuntime(showDetail.getRuntime());
-//        showDetail.setType(showDetail.getType());
-//        showDetail.setThemoviedb(showDetail.getThemoviedb());
-//        showDetail.setNetwork(showDetail.getNetwork());
-//        showDetail.setFanart(showDetail.getFanart());
-//        showDetail.setId(showDetail.getId());
-//        showDetail.setTitle(showDetail.getTitle());
-//        showDetail.setSocial(showDetail.getSocial());
-//        showDetail.setAir_time(showDetail.getAir_time());
-//        showDetail.setContainer_show(showDetail.getContainer_show());
-//        showDetail.setBanner(showDetail.getBanner());
-//        showDetail.setTags(showDetail.getTags());
-//        showDetail.setStatus(showDetail.getStatus());
-//        showDetail.setChannels(showDetail.getChannels());
-//        showDetail.setWikipedia_id(showDetail.getWikipedia_id());
-//        showDetail.setUrl(showDetail.getUrl());
-//        showDetail.setAlternate_titles(showDetail.getAlternate_titles());
-//        showDetail.setMetacritic(showDetail.getMetacritic());
-//        showDetail.setCast(showDetail.getCast());
-//        showDetail.setOverview(showDetail.getOverview());
-//        showDetail.setRating(showDetail.getRating());
+        if (showDetail.getSocial().getFacebook().getFacebook_id() == null){
+            showDetail.getSocial().getFacebook().setLink("no link available");
+
+        }
+        if (showDetail.getSocial().getTwitter().getTwitter_id() == null){
+            showDetail.getSocial().getTwitter().setLink("no link available");
+        }
 
         model.addAttribute("showDetail", showDetail);
 
