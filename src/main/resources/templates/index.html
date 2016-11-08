@@ -35,31 +35,28 @@ Welcome message
 
 {{#username}}
 {{#showList}}
-<div>
+<div class="row">
+
     <table class="userTable">
-        <!--  <tr>-->
-        <!--    <th>Firstname</th>-->
-        <!--    <th>Lastname</th>-->
-        <!--    <th>Age</th>-->
-        <!--  </tr>-->
-        <tr>
-            <td><img src="{{getArtwork}}"></td>
-            <td>"description?"</td>
-            <td>"link to show"</td>
-            <td>"other stuff"</td>
-            <td>"even more stuff</td>
+    <tr>
+        <td><img src="{{getArtwork}}"></td>
+        <td>{{getOverview}}</td>
+        <td>{{getRating}}</td>
+        <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
+        <td>
             <form action="/removeFromUserList" method="post">
                 <input type="hidden" value="{{getId}}" name="getId"/>
                 <button type="submit">Remove from My List</button>
             </form>
-        </tr>
-    </table>
+        </td>
+    </tr>
+</table>
 
 
 </div>
 {{/showList}}
 {{/username}}
 
-
+<script src="/app.js"></script>
 </body>
 </html>
