@@ -26,14 +26,6 @@ public class ShowDetailsController {
 
         ShowDetail showDetail = gson.fromJson(results, ShowDetail.class);
 
-        if (showDetail.getSocial().getFacebook().getFacebook_id() == null){
-            showDetail.getSocial().getFacebook().setLink("no link available");
-
-        }
-        if (showDetail.getSocial().getTwitter().getTwitter_id() == null){
-            showDetail.getSocial().getTwitter().setLink("no link available");
-        }
-
         model.addAttribute("showDetail", showDetail);
 
         return "showDetail";

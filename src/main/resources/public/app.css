@@ -129,3 +129,12 @@ border: none;
     width: 22%;
     margin-left: .5rem;
 }
+
+.show_detail_ul{
+    display: flex;
+    flex-direction: row;
+}
+
+/*.detail_links {*/
+    /*border: 0;*/
+/*}*/
