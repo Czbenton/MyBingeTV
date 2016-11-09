@@ -141,7 +141,7 @@ a {
 
 .indexSection {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -158,8 +158,6 @@ a {
     font-size: 16px;
     background: white url('http://www.dliflc.edu/wp-content/themes/DLIFLC/images/icon-find.png') no-repeat 5px 5px;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
 
 }
 
@@ -185,7 +183,12 @@ a {
     width: 20%;
 }
 
-.title{
+.title {
     align-self: center;
-    max-width: 31%;
+    max-width: 50%;
+    padding-bottom: 4rem
+}
+
+.titleSubText{
+    padding-bottom: 1rem;
 }
