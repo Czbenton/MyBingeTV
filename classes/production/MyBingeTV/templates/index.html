@@ -6,57 +6,78 @@
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
 </head>
-<body>
+<div class="fullPage">
+    <body class="background">
 
-{{^username}}
-<form action="/login" method="get">
-    <button type="submit">Login / Create Account</button>
-</form>
-{{/username}}
 
-{{#username}}
-<form action="/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
-{{/username}}
+    {{^username}}
+    <form action="/login" method="get">
+        <button type="submit">Login / Create Account</button>
+    </form>
 
-Welcome message
-{{#admin}}
-<form action="/adminSearch" method="post">
-    <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
-    <button type="submit">Search</button>
-</form>
-{{/admin}}
 
-<form action="/search" method="post">
-    <input type="text" placeholder="Search here" name="userInput">
-    <button type="submit">Search</button>
-</form>
+    <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
 
-{{#username}}
-{{#showList}}
-<div class="columns">
-
-    <table class="userTable">
-    <tr>
-        <td><img src="{{getArtwork}}"></td>
-        <td>{{getOverview}}</td>
-        <td>{{getRating}}</td>
-        <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
-        <td>
-            <form action="/removeFromUserList" method="post">
-                <input type="hidden" value="{{getId}}" name="getId"/>
-                <button type="submit">Remove from My List</button>
+    <div class="indexContainer">
+        <div class="MOAR_STUFF"><h2 class="title">Welcome to MyBingeTv!!</h2>
+            <p>Here you can search to get information about any TV show. If you want to add shows to your custom list,
+                please create an account.</p></div>
+        <div class="indexSection">
+            <form class="search-form" action="/search" method="post">
+                <input type="text" placeholder="Search here" name="userInput" class="search-form__input">
+                <button id="myButton" class="sr-only">Search</button>
             </form>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+
+    {{/username}}
+
+    <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
+    {{#username}}
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    {{/username}}
 
 
+    {{#admin}}
+    <form action="/adminSearch" method="post">
+        <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
+        <button type="submit">Search</button>
+    </form>
+    {{/admin}}
+
+
+    {{#username}}
+    <form action="/search" method="post">
+        <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
+    </form>
+
+
+    {{#showList}}
+    <div class="columns">
+
+        <table class="userTable">
+            <tr>
+                <td><img src="{{getArtwork}}"></td>
+                <td>{{getOverview}}</td>
+                <td>{{getRating}}</td>
+                <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
+                <td>
+                    <form action="/removeFromUserList" method="post">
+                        <input type="hidden" value="{{getId}}" name="getId"/>
+                        <button type="submit">Remove from My List</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+    {{/showList}}
+    {{/username}}
+
+    <script src="/app.js"></script>
+    </body>
 </div>
-{{/showList}}
-{{/username}}
-
-<script src="/app.js"></script>
-</body>
 </html>

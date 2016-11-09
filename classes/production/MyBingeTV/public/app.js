@@ -12,4 +12,16 @@
             }
         });
     });
+
+    var searchForm = document.querySelector('.search-form');
+    var searchFormInput = document.querySelector('.search-form__input');
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(ev) {
+            if (!searchFormInput || searchFormInput.value === '') {
+                alert('You must fill in the form');
+                ev.preventDefault();
+            }
+        });
+    }
 })();
