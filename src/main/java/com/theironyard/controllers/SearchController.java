@@ -31,6 +31,7 @@ public class SearchController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
+
         String encoded = URLEncoder.encode(userInput, "UTF-8");
         URL url = new URL(API_URL + API_KEY + "/search/title/" + encoded + "/fuzzy");
 
