@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
+import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by jeremypitt on 11/6/16.
@@ -34,6 +36,8 @@ public class SearchController {
 
         jsonResults = ApiCall.queryJsonAPI(jsonResults, url);
 
+
+
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
         return "redirect:/searchResults";
@@ -41,6 +45,7 @@ public class SearchController {
 
     @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
     public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
+
         Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
         Show show = gson.fromJson(results, Show.class);
@@ -80,9 +85,6 @@ public class SearchController {
 
             if (o.equals("")) {
                 viewResult.setOverview("No description available.");
-//            } else if (o.length() > 400) {
-//                String limitedDetail = o.substring(0, 400);
-//                viewResult.setOverview(limitedDetail);
             } else {
                 viewResult.setOverview(o);
             }
@@ -95,6 +97,7 @@ public class SearchController {
         model.addAttribute("resultList", viewList);
         return "searchResults";
     }
+
 
 
 }

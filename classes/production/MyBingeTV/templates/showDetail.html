@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
+    <link rel="stylesheet" href="/app.css">
+</head>
+{{#showDetail}}
+<section class="detail_page">
+    <body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="card is-fullwidth">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="{{ getArtwork_608x342 }}" alt="{{getTitle}}">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h1 class="title">
+                        {{getTitle}}
+                    </h1>
+                    <h2 class="subtitle">
+                        {{getOverview}}
+                    </h2>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+
+
+                <br>
+                Original Air Date: {{getFirst_aired}}
+                <br>
+                Genres:
+                {{#getGenres}}{{.}}, {{/getGenres}}
+                <br>
+                Runtime: {{getRuntime}}
+                <br>
+                Network: {{getNetwork}}
+                <br>
+                {{#getSocial}} {{#getTwitter}} <a class="twitter-link" href="{{getLink}}"><img src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a>
+                {{/getTwitter}} {{/getSocial}}
+                <br>
+                Airtime:
+                {{getAir_time}}
+                <br>
+                Tags:
+                {{#getTags}}
+                <ul>
+                    {{.}}
+                </ul>
+                {{/getTags}}<!-- fix -->
+                <br>
+                Status: {{getStatus}}
+                <br>
+                Channel:
+                {{#getChannels}} {{getName}} {{/getChannels}} <!-- fix -->
+                <br>
+                <a href="{{getUrl}}">Go To Show Page</a>
+                <br>
+                {{^getMetacritic}} <a href="{{.}}">Metacritic</a> {{/getMetacritic}}
+                <br>
+                Cast Members:
+                {{#getCast}}
+                <ul>
+                    <a href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
+                    , {{getCharacter_name}}
+                </ul>
+                {{/getCast}} <!-- fix -->
+                <br>
+                Rating: {{getRating}}
+                <br>
+
+
+            </div>
+        </div>
+    </section>
+    </body>
+</section>
+{{/showDetail}}
+</html>

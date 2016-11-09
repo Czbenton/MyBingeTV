@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+ul {
+    padding-left: none;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+.background{
+    background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg");
+    /*background: url("http://www.placekitten.com/g/1024/768") no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.btn {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 4px 4px 4px 4px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+a {
+  display: flex;
+
+}
+
+.content .twitter-link:not(.button) {
+border: none;
+}
+
+.detail_page{
+    background: white;
+}
+
+.section-search-results {
+    padding: 1rem;
+}
+
+.hero{
+    display: flex;
+    align-items: center;
+}
+
+
+.homeBtn{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.userTable{
+    width: 100%;
+    padding: 15px;
+}
+
+#search_result_links{
+    /*max-width: 4rem;*/
+
+}
+
+.truncate {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container {
+    max-width: 65rem;
+    margin: auto;
+}
+
+.result_image {
+    width: 44%;
+}
+
+.columns {
+    display: flex;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.search_result_links {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: .5rem;
+}
+
+.search_result_text {
+    width: 100%;
+}
+
+
+.form-stuff {
+    width: 22%;
+    margin-left: .5rem;
+}
