@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SearchResults</title>
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body class="background">
+<br><br>
+<!--insert info header here with home button and user information????-->
+
+<form action="/" method="get" class="homeBtn">
+    <button type="submit">Go Home</button>
+</form>
+
+{{^resultList}}
+NO RESULTS
+<form action="/search" method="post">
+    <input type="text" placeholder="Search here" name="userInput">
+    <button type="submit">Search</button>
+</form>
+{{/resultList}}
+
+{{#resultList}}
+<section class="section-search-results">
+    <div class="container">
+        <div class="columns">
+            <div class="result_image">
+                    <img src="{{getArtwork_448x252}}">
+            </div>
+            <div class="right-side">
+            <div id="search_result_links" class="search_result_links">
+                <form class="form-stuff" action="/showDetail" method="get">
+                    <input type="hidden" value="{{getId}}" name="getDetailId">
+                    <button type="submit" class="btn">Detailed Show Info</button>
+                </form>
+                <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
+                    <input type="hidden" value="{{getId}}" name="getId">
+                    <button onclick="javascript: style.visibility = 'hidden';" type="submit" class="btn">Add to your shows</button>
+                </form>
+                <form class="form-stuff" action="{{getUrl}}">
+                    <button type="submit" class="btn">Go to show</button>
+                </form>
+            </div>
+            <div class="search_result_text" style="color: aliceblue">
+                <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>    <!--add scrollable or a 2nd div with truncated message-->
+                <button class="open-truncate">Show More</button>
+                <p>{{getRating}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{/resultList}}
+
+<script src="/app.js"></script>
+</body>
+</html>

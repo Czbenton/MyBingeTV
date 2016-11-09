@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBingeTV</title>
+    <link rel="stylesheet" href="/app.css">
+    <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
+</head>
+<body>
+
+{{^username}}
+<form action="/login" method="get">
+    <button type="submit">Login / Create Account</button>
+</form>
+{{/username}}
+
+{{#username}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+{{/username}}
+
+Welcome message
+{{#admin}}
+<form action="/adminSearch" method="post">
+    <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
+    <button type="submit">Search</button>
+</form>
+{{/admin}}
+
+<form action="/search" method="post">
+    <input type="text" placeholder="Search here" name="userInput">
+    <button type="submit">Search</button>
+</form>
+
+{{#username}}
+{{#showList}}
+<div class="columns">
+
+    <table class="userTable">
+    <tr>
+        <td><img src="{{getArtwork}}"></td>
+        <td>{{getOverview}}</td>
+        <td>{{getRating}}</td>
+        <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
+        <td>
+            <form action="/removeFromUserList" method="post">
+                <input type="hidden" value="{{getId}}" name="getId"/>
+                <button type="submit">Remove from My List</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+</div>
+{{/showList}}
+{{/username}}
+
+<script src="/app.js"></script>
+</body>
+</html>
