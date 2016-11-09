@@ -1,3 +1,7 @@
+.fullPage {
+    height: 100vh;
+}
+
 body {
     margin: 0;
     font-family: sans-serif;
@@ -12,8 +16,7 @@ img {
     max-width: 100%;
 }
 
-
-.background{
+.background {
     background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg");
     /*background: url("http://www.placekitten.com/g/1024/768") no-repeat center center fixed;*/
     -webkit-background-size: cover;
@@ -50,15 +53,15 @@ img {
 }
 
 a {
-  display: flex;
+    display: flex;
 
 }
 
 .content .twitter-link:not(.button) {
-border: none;
+    border: none;
 }
 
-.detail_page{
+.detail_page {
     background: white;
 }
 
@@ -66,26 +69,20 @@ border: none;
     padding: 1rem;
 }
 
-.hero{
+.hero {
     display: flex;
     align-items: center;
 }
 
-
-.homeBtn{
+.homeBtn {
     position: fixed;
     top: 0;
     left: 0;
 }
 
-.userTable{
+.userTable {
     width: 100%;
     padding: 15px;
-}
-
-#search_result_links{
-    /*max-width: 4rem;*/
-
 }
 
 .truncate {
@@ -124,17 +121,71 @@ border: none;
     width: 100%;
 }
 
-
 .form-stuff {
     width: 22%;
     margin-left: .5rem;
 }
 
-.show_detail_ul{
+.show_detail_ul {
     display: flex;
     flex-direction: row;
 }
 
-/*.detail_links {*/
-    /*border: 0;*/
-/*}*/
+.indexContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.indexSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MOAR_STUFF {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchInput {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white url('http://www.dliflc.edu/wp-content/themes/DLIFLC/images/icon-find.png') no-repeat 5px 5px;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+
+.searchInput:focus {
+    width: 100%;
+}
+
+.searchInputSmall {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white url('http://www.dliflc.edu/wp-content/themes/DLIFLC/images/icon-find.png') no-repeat 0px 0px;
+    background-size: 20px;
+    padding: 0px 10px 5px 30px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+
+.searchInputSmall:focus {
+    width: 20%;
+}
+
+.title{
+    align-self: center;
+    max-width: 31%;
+}
