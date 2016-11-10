@@ -13,12 +13,11 @@
     <button type="submit">Go Home</button>
 </form>
 
-    <form action="/sortSearch" method="post">
-        <select>
+    <form class="sort_search" action="/sortSearch" method="get">
+        <select onchange="this.form.submit();">
             <option selected>Popularity</option>
             <option>Alphabetical</option>
         </select>
-        <button type="submit">Sort</button>
     </form>
 
 

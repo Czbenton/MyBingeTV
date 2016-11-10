@@ -68,6 +68,11 @@ a {
     top: 0;
     left: 0;
 }
+.sort_search{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
 
 .userTable {
     width: 100%;
