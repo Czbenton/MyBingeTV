@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <title>SearchResults</title>
     <link rel="stylesheet" href="/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
 <body class="background">
-<br><br>
-<!--insert info header here with home button and user information????-->
+<div class="main-container-searchResults">
 
 <form action="/" method="get" class="homeBtn">
     <button type="submit">Go Home</button>
 </form>
+
+    <form action="/sortSearch" method="post">
+        <select>
+            <option selected>Popularity</option>
+            <option>Alphabetical</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+
 
 {{^resultList}}
 NO RESULTS
@@ -56,5 +65,6 @@ NO RESULTS
 {{/resultList}}
 
 <script src="/app.js"></script>
+</div>
 </body>
 </html>

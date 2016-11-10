@@ -5,10 +5,10 @@
     <title>MyBingeTV</title>
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
-<div class="fullPage">
-    <body class="background">
-
+<body class="background">
+<div class="main-container-index">
 
     {{^username}}
     <form action="/login" method="get">
@@ -19,13 +19,14 @@
     <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
 
     <div class="indexContainer">
-        <div class="MOAR_STUFF"><h2 class="title">Welcome to MyBingeTv!!</h2>
-            <p>Here you can search to get information about any TV show. If you want to add shows to your custom list,
+        <div class="MOAR_STUFF">
+            <h1 class="title">Welcome to MyBingeTv!!</h1>
+            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows
+                to your custom list,
                 please create an account.</p></div>
         <div class="indexSection">
             <form class="search-form" action="/search" method="post">
-                <input type="text" placeholder="Search here" name="userInput" class="search-form__input">
-                <button id="myButton" class="sr-only">Search</button>
+                <input class="searchInput" type="text" placeholder="Search..." name="userInput">
             </form>
         </div>
     </div>
@@ -78,6 +79,6 @@
     {{/username}}
 
     <script src="/app.js"></script>
-    </body>
 </div>
+</body>
 </html>

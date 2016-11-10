@@ -5,10 +5,11 @@
     <title>show detail</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
     <link rel="stylesheet" href="/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
 {{#showDetail}}
-<section class="detail_page">
-    <body>
+<body>
+<div class="main-container-showDetail">
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -38,54 +39,61 @@
             <div class="content">
 
 
-                <br>
-                Original Air Date: {{getFirst_aired}}
-                <br>
-                Genres:
-                {{#getGenres}}{{.}}, {{/getGenres}}
-                <br>
-                Runtime: {{getRuntime}}
-                <br>
-                Network: {{getNetwork}}
-                <br>
-                {{#getSocial}} {{#getTwitter}} <a class="twitter-link" href="{{getLink}}"><img src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a>
-                {{/getTwitter}} {{/getSocial}}
-                <br>
-                Airtime:
-                {{getAir_time}}
-                <br>
-                Tags:
-                {{#getTags}}
+                <p>Original Air Date: {{getFirst_aired}}</p>
+
+                <p>Genres:
+                    {{#getGenres}}{{.}}, {{/getGenres}}</p>
+
+                <p>Runtime: {{getRuntime}}</p>
+
+                <p>Network: {{getNetwork}}</p>
+
+                {{#getSocial}}
+                {{#getTwitter}}
+                {{^getLink}}
+                <p>no twitter available</p>
+                {{/getLink}}
+                {{/getTwitter}}
+                {{/getSocial}}
+
+                {{#getSocial}}
+                {{#getTwitter}}
+                {{#getLink}}
+                <p><a class="twitter-link" href="{{getLink}}"><img
+                        src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a></p>
+                {{/getLink}}
+                {{/getTwitter}}
+                {{/getSocial}}
+
+                <p>Airtime: {{getAir_time}}</p>
+
+                <p>Tags: {{#getTags}}
                 <ul>
                     {{.}}
                 </ul>
-                {{/getTags}}<!-- fix -->
-                <br>
-                Status: {{getStatus}}
-                <br>
-                Channel:
-                {{#getChannels}} {{getName}} {{/getChannels}} <!-- fix -->
-                <br>
-                <a href="{{getUrl}}">Go To Show Page</a>
-                <br>
-                {{^getMetacritic}} <a href="{{.}}">Metacritic</a> {{/getMetacritic}}
-                <br>
-                Cast Members:
-                {{#getCast}}
-                <ul>
-                    <a href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
-                    , {{getCharacter_name}}
-                </ul>
-                {{/getCast}} <!-- fix -->
-                <br>
-                Rating: {{getRating}}
-                <br>
+                {{/getTags}}</p>
 
+                <p>Status: {{getStatus}}</p>
+
+                <p>Channel: {{#getChannels}} {{getName}} {{/getChannels}}</p>
+
+                <p><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></p>
+
+                <p>{{#getMetacritic}} <a style="border: none" href="{{.}}">Metacritic</a> {{/getMetacritic}}</p>
+
+                <p>Cast Members:{{#getCast}}
+                    <ul class="show_detail_ul">
+                        <a style="border: none;" href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
+                <p>, {{getCharacter_name}}</p>
+                </ul>
+                {{/getCast}}</p>
+
+                <p>Rating: {{getRating}}</p>
 
             </div>
         </div>
     </section>
-    </body>
-</section>
+</div>
+</body>
 {{/showDetail}}
 </html>
