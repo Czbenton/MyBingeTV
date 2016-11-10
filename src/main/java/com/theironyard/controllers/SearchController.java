@@ -6,6 +6,7 @@ import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.utilities.ApiCall;
+import com.theironyard.utilities.ControllerMethods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,7 @@ public class SearchController {
     public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
 
         Gson gson = new Gson();
-        Show show = getShow(session, gson);
+        Show show = ControllerMethods.getShow(session, gson);
 
         ArrayList<ViewResult> viewList = new ArrayList<>();
 
@@ -98,10 +99,7 @@ public class SearchController {
         return "searchResults";
     }
 
-    private Show getShow(HttpSession session, Gson gson) {
-        String results = (String) session.getAttribute("jsonResults");
-        return gson.fromJson(results, Show.class);
-    }
+
 
 
 }
