@@ -20,8 +20,24 @@
             if (!searchFormInput || searchFormInput.value === '') {
                 alert('You must fill in the form');
                 ev.preventDefault();
+            }else {
+                var x = document.querySelector('.fa-spinner')
+                x.style.visibility="visible";
             }
         });
     }
+
+    var searchForm2 = document.querySelector('.search-formSmall');
+    var searchFormInput2 = document.querySelector('.searchInputSmall');
+    if (searchForm2) {
+        searchForm2.addEventListener('submit', function (ev) {
+            if (!searchFormInput2 || searchFormInput2.value === '') {
+                alert('You must fill in the form');
+                ev.preventDefault();
+            }
+        });
+    }
+
+
 
 })();
