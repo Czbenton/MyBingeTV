@@ -7,9 +7,8 @@
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
-<div class="fullPage">
-    <body class="background">
-
+<body class="background">
+<div class="main-container-index">
 
     {{^username}}
     <form action="/login" method="get">
@@ -22,7 +21,8 @@
     <div class="indexContainer">
         <div class="MOAR_STUFF">
             <h1 class="title">Welcome to MyBingeTv!!</h1>
-            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows to your custom list,
+            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows
+                to your custom list,
                 please create an account.</p></div>
         <div class="indexSection">
             <form class="search-form" action="/search" method="post">
@@ -79,6 +79,6 @@
     {{/username}}
 
     <script src="/app.js"></script>
-    </body>
 </div>
+</body>
 </html>

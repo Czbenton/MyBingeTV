@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
 {{#showDetail}}
-<section class="detail_page">
-    <body>
+<body>
+<div class="main-container-showDetail">
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -82,8 +82,8 @@
                 <p>{{#getMetacritic}} <a style="border: none" href="{{.}}">Metacritic</a> {{/getMetacritic}}</p>
 
                 <p>Cast Members:{{#getCast}}
-                <ul class="show_detail_ul">
-                    <a style="border: none;" href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
+                    <ul class="show_detail_ul">
+                        <a style="border: none;" href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
                 <p>, {{getCharacter_name}}</p>
                 </ul>
                 {{/getCast}}</p>
@@ -93,7 +93,7 @@
             </div>
         </div>
     </section>
-    </body>
-</section>
+</div>
+</body>
 {{/showDetail}}
 </html>
