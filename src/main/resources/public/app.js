@@ -21,7 +21,7 @@
                 alert('You must fill in the form');
                 ev.preventDefault();
             }else {
-                var x = document.querySelector('.fa-spinner')
+                var x = document.querySelector('.fa')
                 x.style.visibility="visible";
             }
         });

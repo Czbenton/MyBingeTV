@@ -9,9 +9,9 @@
 <body>
 <div class="main-container-searchResults">
 
-<form action="/" method="get" class="homeBtn">
-    <button type="submit">Go Home</button>
-</form>
+    <form action="/" method="get" class="homeBtn">
+        <button type="submit">Go Home</button>
+    </form>
 
     <form class="sort_search" action="/sortSearch" method="get">
         <select onchange="this.form.submit();">
@@ -21,49 +21,56 @@
     </form>
 
 
-{{^resultList}}
-NO RESULTS
-<form action="/search" method="post">
-    <input type="text" placeholder="Search here" name="userInput">
-    <button type="submit">Search</button>
-</form>
-{{/resultList}}
-
-{{#resultList}}
-<section class="section-search-results">
-    <div class="container">
-        <div class="columns">
-            <div class="result_image">
-                    <img src="{{getArtwork_448x252}}">
-            </div>
-            <div class="right-side">
-            <div class="search_result_links">
-                <form class="form-stuff" action="/showDetail" method="get">
-                    <input type="hidden" value="{{getId}}" name="getDetailId">
-                    <button type="submit" class="btn">Detailed Show Info</button>
+    {{^resultList}}
+    <div class="index-container-wrapper">
+        <div class="indexContainer">
+            <h1>Sorry, No Results Were Found...</h1>
+            <div class="indexSection">
+                <form class="search-form" action="/search" method="post">
+                    <input class="searchInput" type="text" placeholder="Search..." name="userInput">
+                    <!--<button type="submit">Search</button>-->
                 </form>
-                <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
-                    <input type="hidden" value="{{getId}}" name="getId">
-                    <button type="submit" class="btn">Add to your shows</button>
-                </form>
-                <form class="form-stuff" action="{{getUrl}}">
-                    <button type="submit" class="btn">Go to show</button>
-                </form>
-            </div>
-            <div class="search_result_text" style="color: aliceblue">
-                <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>    <!--add scrollable or a 2nd div with truncated message-->
-                <button class="open-truncate">Show More</button>
-                <p>{{getRating}}</p>
-            </div>
             </div>
         </div>
     </div>
-</section>
+    {{/resultList}}
+
+    {{#resultList}}
+    <section class="section-search-results">
+        <div class="container">
+            <div class="columns">
+                <div class="result_image">
+                    <img src="{{getArtwork_448x252}}">
+                </div>
+                <div class="right-side">
+                    <div class="search_result_links">
+                        <form class="form-stuff" action="/showDetail" method="get">
+                            <input type="hidden" value="{{getId}}" name="getDetailId">
+                            <button type="submit" class="btn">Detailed Show Info</button>
+                        </form>
+                        <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
+                            <input type="hidden" value="{{getId}}" name="getId">
+                            <button type="submit" class="btn">Add to your shows</button>
+                        </form>
+                        <form class="form-stuff" action="{{getUrl}}">
+                            <button type="submit" class="btn">Go to show</button>
+                        </form>
+                    </div>
+                    <div class="search_result_text" style="color: aliceblue">
+                        <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>
+                        <!--add scrollable or a 2nd div with truncated message-->
+                        <button class="open-truncate">Show More</button>
+                        <p>{{getRating}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-{{/resultList}}
+    {{/resultList}}
 
-<script src="/app.js"></script>
+    <script src="/app.js"></script>
 </div>
 </body>
 </html>
