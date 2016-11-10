@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body class="background">
 <div class="main-container-index">
@@ -29,6 +30,7 @@
                 <input class="searchInput" type="text" placeholder="Search..." name="userInput">
             </form>
         </div>
+        <span class="fa fa-spinner fa-spin"></span>
     </div>
 
     {{/username}}
@@ -50,7 +52,7 @@
 
 
     {{#username}}
-    <form action="/search" method="post">
+    <form class="search-formSmall" action="/search" method="post">
         <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
     </form>
 

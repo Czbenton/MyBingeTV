@@ -15,26 +15,18 @@
     <div class="create-account-form">
         <h2>Create a new account</h2>
         <form class="control" action="/create-account" method="post">
-            <p class="control"><input class="input is-info" type="text" placeholder="Enter a new username" name="newusername"/></p>
-            <p class="control"><input class="input is-info" type="password" placeholder="Enter a password" name="newpassword"/></p>
-            <p class="control"><input class="input is-info" type="password" placeholder="Re-enter your passowrd" name="validatepassword"/></p>
+            <p class="control"><input required class="input is-info" type="text" placeholder="Enter a new username" name="newusername"/></p>
+            <p class="control"><input required class="input is-info" type="password" placeholder="Enter a password" name="newpassword"/></p>
+            <p class="control"><input required class="input is-info" type="password" placeholder="Re-enter your passowrd" name="validatepassword"/></p>
             <p class="control"><button class="button is-info" type="submit">Create Account</button></p>
         </form>
     </div>
 
-    <!--<div class="account-login-form">-->
-        <!--<h2>Login to your account</h2>-->
-        <!--<form class="control" action="/login" method="post">-->
-            <!--<input class="input is-info" type="text" placeholder="User name" name="username"/>-->
-            <!--<input class="input is-info" type="password" placeholder="Password" name="password"/>-->
-            <!--<button class="button is-info" type="submit">Login</button>-->
-        <!--</form>-->
-    <!--</div>-->
     <div class="account-login-form">
         <h2>Login to your account</h2>
         <form class="control" action="/login" method="post">
-            <p class="control"><input class="input is-info" type="text" placeholder="User name" name="username"/></p>
-            <p class="control"><input class="input is-info" type="password" placeholder="Password" name="password"/></p>
+            <p class="control"><input required class="input is-info" type="text" placeholder="User name" name="username"/></p>
+            <p class="control"><input required class="input is-info" type="password" placeholder="Password" name="password"/></p>
             <p class="control"><button class="button is-info" type="submit">Login</button></p>
         </form>
     </div>
