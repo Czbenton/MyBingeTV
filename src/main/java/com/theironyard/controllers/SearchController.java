@@ -54,12 +54,14 @@ public class SearchController {
         return "searchResults";
     }
 
-    @RequestMapping(path = "/sortSearch", method = RequestMethod.POST)
+    @RequestMapping(path = "/sortSearch", method = RequestMethod.GET)
     public String sortSearch(Model model, HttpSession session) {
         ArrayList<ViewResult> viewList = (ArrayList<ViewResult>) session.getAttribute("resultList");
         Collections.sort(viewList);
 
-        return "/";
+        model.addAttribute("resultList", viewList);
+
+        return "searchResults";
     }
 
 
