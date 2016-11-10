@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
 </head>
 <body class="background">
-<div class="main-container-searchResults">
+<br><br>
+<!--insert info header here with home button and user information????-->
 
 <form action="/" method="get" class="homeBtn">
     <button type="submit">Go Home</button>
@@ -30,8 +31,8 @@ NO RESULTS
             </div>
             <div class="right-side">
             <div class="search_result_links">
-                <form class="form-stuff" action="/showDetail" method="get">
-                    <input type="hidden" value="{{getId}}" name="getDetailId">
+                <form class="form-stuff" action="/adminShowDetail" method="get">
+                    <input type="hidden" value="{{getTitle}}" name="getDetailTitle">
                     <button type="submit" class="btn">Detailed Show Info</button>
                 </form>
                 <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
@@ -56,6 +57,5 @@ NO RESULTS
 {{/resultList}}
 
 <script src="/app.js"></script>
-</div>
 </body>
 </html>

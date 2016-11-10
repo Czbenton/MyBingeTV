@@ -57,17 +57,25 @@ public class MyBingeTvController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
+        checkIfAcctExists(password, user);
+        checkIfAdmin(session, user);
+        session.setAttribute("username", username);
+        response.sendRedirect("/");
+        return user;
+    }
+
+    private void checkIfAdmin(HttpSession session, User user) {
+        if (user.isAdmin()) {
+            session.setAttribute("admin", user.isAdmin());
+        }
+    }
+
+    private void checkIfAcctExists(String password, User user) throws Exception {
         if (user == null) {
             throw new Exception("Username not found, please create an account");
         } else if (!PasswordStorage.verifyPassword(password, user.getPassword())) {
             throw new Exception("wrong password");
         }
-        if (user.isAdmin()) {
-            session.setAttribute("admin", user.isAdmin());
-        }
-        session.setAttribute("username", username);
-        response.sendRedirect("/");
-        return user;
     }
 
     @RequestMapping(path = "/create-account", method = RequestMethod.POST)
@@ -98,7 +106,7 @@ public class MyBingeTvController {
         ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
         for (ViewResult r : resultList) {
             if (r.getId().equals(getId)) {
-                SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), user);
+                SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), user);
                 savedShows.save(addToList);
             }
         }

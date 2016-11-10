@@ -4,19 +4,40 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
 </head>
-<body>
-<form action="/create-account" method="post">
-    Create a new account
-    <input type="text" placeholder="Enter a new username" name="newusername"/>
-    <input type="password" placeholder="Enter a password" name="newpassword"/>
-    <input type="password" placeholder="Re-enter your passowrd" name="validatepassword"/>
-    <button type="submit">Create Account</button>
-</form>
-<form action="/login" method="post">
-    Login to your account
-    <input type="text" placeholder="User name" name="username"/>
-    <input type="password" placeholder="Password" name="password"/>
-    <button type="submit">Login</button>
-</form>
+
+<body class="background">
+<div class="main-container-login">
+
+<div class="login-container">
+    <div class="create-account-form">
+        <h2>Create a new account</h2>
+        <form class="control" action="/create-account" method="post">
+            <p class="control"><input class="input is-info" type="text" placeholder="Enter a new username" name="newusername"/></p>
+            <p class="control"><input class="input is-info" type="password" placeholder="Enter a password" name="newpassword"/></p>
+            <p class="control"><input class="input is-info" type="password" placeholder="Re-enter your passowrd" name="validatepassword"/></p>
+            <p class="control"><button class="button is-info" type="submit">Create Account</button></p>
+        </form>
+    </div>
+
+    <!--<div class="account-login-form">-->
+        <!--<h2>Login to your account</h2>-->
+        <!--<form class="control" action="/login" method="post">-->
+            <!--<input class="input is-info" type="text" placeholder="User name" name="username"/>-->
+            <!--<input class="input is-info" type="password" placeholder="Password" name="password"/>-->
+            <!--<button class="button is-info" type="submit">Login</button>-->
+        <!--</form>-->
+    <!--</div>-->
+    <div class="account-login-form">
+        <h2>Login to your account</h2>
+        <form class="control" action="/login" method="post">
+            <p class="control"><input class="input is-info" type="text" placeholder="User name" name="username"/></p>
+            <p class="control"><input class="input is-info" type="password" placeholder="Password" name="password"/></p>
+            <p class="control"><button class="button is-info" type="submit">Login</button></p>
+        </form>
+    </div>
+</div>
+</div>
 </body>

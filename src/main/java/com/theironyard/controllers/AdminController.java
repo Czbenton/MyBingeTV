@@ -1,7 +1,6 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
-import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
@@ -17,23 +16,24 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
- * Created by jeremypitt on 11/6/16.
+ * Created by jeremypitt on 11/10/16.
  */
 @Controller
-public class SearchController {
-    public static final String API_URL = "http://api-public.guidebox.com/v1.43/US/";
-    public static final String API_KEY = "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO";
+public class AdminController {
 
-    @RequestMapping(path = "/search", method = RequestMethod.POST)
-    public String search(Model model, HttpSession session, String userInput) throws IOException {
+    private static final String HEROKU_URL = "https://aqueous-ravine-87698.herokuapp.com";
+    private static final String HEROKU_FUZZY = "/show_fuzzy_search?searchName=";
+    private static final String HEROKU_DETAIL = "/show_detail?showName=";
+
+    @RequestMapping(path = "/adminSearch", method = RequestMethod.POST)
+    public String search(Model model, HttpSession session, String adminSearch) throws IOException {
 
         String jsonResults = "";
 
-        String encoded = URLEncoder.encode(userInput, "UTF-8");
-        URL url = new URL(API_URL + API_KEY + "/search/title/" + encoded + "/fuzzy");
+        String encoded = URLEncoder.encode(adminSearch, "UTF-8");
+        URL url = new URL(HEROKU_URL + HEROKU_FUZZY + encoded);
 
         jsonResults = ApiCall.queryJsonAPI(jsonResults, url);
 
@@ -41,14 +41,15 @@ public class SearchController {
 
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
-        return "redirect:/searchResults";
+        return "redirect:/adminSearchResults";
     }
 
-    @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
+    @RequestMapping(path = "/adminSearchResults", method = RequestMethod.GET)
     public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
 
         Gson gson = new Gson();
-        Show show = getShow(session, gson);
+        String results = (String) session.getAttribute("jsonResults");
+        Show show = gson.fromJson(results, Show.class);
 
         ArrayList<ViewResult> viewList = new ArrayList<>();
 
@@ -59,16 +60,19 @@ public class SearchController {
             loop = counterResults;
         }
         for (int i = 0; i < loop; i++) {
-            String d = show.getResults(i).getId();
+            String title = show.getResults(i).getTitle();
+            if (!title.equalsIgnoreCase("house") && !title.equalsIgnoreCase("justified")) {
+                title = "ANYTHING";
+            }
 
             String jsonResults = "";
-            URL url = new URL(API_URL + API_KEY + "/show/" + d);
+            URL url = new URL(HEROKU_URL + HEROKU_DETAIL + title);
             String detailedResults = ApiCall.queryJsonAPI(jsonResults, url);
             ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
             String o = showDetail.getOverview();
 
             ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(show.getResults(i).getTitle());
+            viewResult.setTitle(title);
             viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
             viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
             viewResult.setId(show.getResults(i).getId());
@@ -95,13 +99,21 @@ public class SearchController {
         session.setAttribute("resultList", viewList);
 
         model.addAttribute("resultList", viewList);
-        return "searchResults";
+        return "adminSearchResults";
     }
 
-    private Show getShow(HttpSession session, Gson gson) {
-        String results = (String) session.getAttribute("jsonResults");
-        return gson.fromJson(results, Show.class);
-    }
+    @RequestMapping(path = "/adminShowDetail", method = RequestMethod.GET)
+    public String showDetail(Model model, HttpSession session, String getDetailTitle) throws IOException {
+        Gson gson = new Gson();
+        String jsonResults = "";
+        URL url = new URL(HEROKU_URL + HEROKU_DETAIL + getDetailTitle.toLowerCase());
+        String results = ApiCall.queryJsonAPI(jsonResults, url);
 
+        ShowDetail showDetail = gson.fromJson(results, ShowDetail.class);
+
+        model.addAttribute("showDetail", showDetail);
+
+        return "showDetail";
+    }
 
 }
