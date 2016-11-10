@@ -1,9 +1,9 @@
 /*.fullPage {*/
-    /*height: 100vh;*/
+/*height: 100vh;*/
 /*}*/
 
 body {
-    height: 100vh;
+
     margin: 0;
     font-family: 'Martel Sans', sans-serif;
     /*font-family: 'Roboto', sans-serif;*/
@@ -16,11 +16,6 @@ ul {
 
 img {
     max-width: 100%;
-}
-
-.background {
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
-    background-size: cover;
 }
 
 .btn {
@@ -72,6 +67,11 @@ a {
     position: fixed;
     top: 0;
     left: 0;
+}
+.sort_search{
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .userTable {
@@ -183,44 +183,72 @@ a {
     padding-bottom: 4rem
 }
 
-.titleSubText{
+.titleSubText {
     padding-bottom: 1rem;
 }
 
-.main-container-login{
+.main-container-login {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
-.login-container{
+.login-container {
     display: flex;
     flex-direction: column;
     width: 30%;
 }
 
-.create-account-form{
+.create-account-form {
     padding: 1rem;
 }
 
-.account-login-form{
+.account-login-form {
     padding: 1rem;
 }
 
-.main-container-index{
+.main-container-index {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main-container-searchResults {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+}
+
+.main-container-showDetail {
     width: 100%;
     height: 100%;
 }
 
-.main-container-searchResults{
-    width: 100%;
-    height: 100%;
+.fa-spinner {
+    visibility: hidden;
+    font-size: 20rem;
 }
 
-.main-container-showDetail{
-    width: 100%;
-    height: 100%;
+.index-container-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
 }
+

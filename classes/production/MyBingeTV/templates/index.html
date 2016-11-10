@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
-<body class="background">
-<div class="main-container-index">
+<body>
 
+
+<div class="main-container-index">
     {{^username}}
     <form action="/login" method="get">
         <button type="submit">Login / Create Account</button>
     </form>
 
+
+    <div class="index-container-wrapper">
 
     <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
 
@@ -29,9 +33,11 @@
                 <input class="searchInput" type="text" placeholder="Search..." name="userInput">
             </form>
         </div>
+        <span class="fa fa-spinner fa-spin"></span>
     </div>
 
     {{/username}}
+
 
     <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
     {{#username}}
@@ -50,7 +56,7 @@
 
 
     {{#username}}
-    <form action="/search" method="post">
+    <form class="search-formSmall" action="/search" method="post">
         <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
     </form>
 
@@ -80,5 +86,7 @@
 
     <script src="/app.js"></script>
 </div>
+</div>
+<!--<footer> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cupiditate dolore eius enim ex in, ipsum maxime quaerat quasi reiciendis repellat, sunt voluptatem! A adipisci aperiam explicabo nemo quibusdam quidem.</footer>-->
 </body>
 </html>
