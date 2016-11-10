@@ -16,9 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jeremypitt on 11/6/16.
@@ -54,6 +52,14 @@ public class SearchController {
 
         model.addAttribute("resultList", viewList);
         return "searchResults";
+    }
+
+    @RequestMapping(path = "/sortSearch", method = RequestMethod.POST)
+    public String sortSearch(Model model, HttpSession session) {
+        ArrayList<ViewResult> viewList = (ArrayList<ViewResult>) session.getAttribute("resultList");
+        Collections.sort(viewList);
+
+        return "/";
     }
 
 
