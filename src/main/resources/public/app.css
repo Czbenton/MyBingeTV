@@ -3,7 +3,7 @@
 /*}*/
 
 body {
-    height: 100vh;
+
     margin: 0;
     font-family: 'Martel Sans', sans-serif;
     /*font-family: 'Roboto', sans-serif;*/
@@ -16,11 +16,6 @@ ul {
 
 img {
     max-width: 100%;
-}
-
-.background {
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
-    background-size: cover;
 }
 
 .btn {
@@ -188,10 +183,14 @@ a {
 }
 
 .main-container-login {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
 }
@@ -211,13 +210,24 @@ a {
 }
 
 .main-container-index {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
 }
 
 .main-container-searchResults {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
 }
 
 .main-container-showDetail {
@@ -227,4 +237,13 @@ a {
 
 .fa-spinner {
     visibility: hidden;
+    font-size: 20rem;
 }
+
+.index-container-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+}
+
