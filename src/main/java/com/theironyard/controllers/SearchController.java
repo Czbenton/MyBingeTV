@@ -32,13 +32,10 @@ public class SearchController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
-
         String encoded = URLEncoder.encode(userInput, "UTF-8");
         URL url = new URL(API_URL + API_KEY + "/search/title/" + encoded + "/fuzzy");
 
         jsonResults = ApiCall.queryJsonAPI(jsonResults, url);
-
-
 
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
@@ -51,47 +48,7 @@ public class SearchController {
         Gson gson = new Gson();
         Show show = ControllerMethods.getShow(session, gson);
 
-        ArrayList<ViewResult> viewList = new ArrayList<>();
-
-        int counterResults = show.getResults().length;
-        int loop = 5;
-
-        if (counterResults < 5) {
-            loop = counterResults;
-        }
-        for (int i = 0; i < loop; i++) {
-            String d = show.getResults(i).getId();
-
-            String jsonResults = "";
-            URL url = new URL(API_URL + API_KEY + "/show/" + d);
-            String detailedResults = ApiCall.queryJsonAPI(jsonResults, url);
-            ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
-            String o = showDetail.getOverview();
-
-            ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(show.getResults(i).getTitle());
-            viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
-            viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
-            viewResult.setId(show.getResults(i).getId());
-            viewResult.setNetwork(showDetail.getNetwork());
-
-            String s = Arrays.toString(showDetail.getTags());
-
-            viewResult.setTagString(s);
-            viewResult.setChannels(showDetail.getChannels());
-            viewResult.setSocial(showDetail.getSocial());
-            viewResult.setRating(showDetail.getRating());
-            viewResult.setGenres(showDetail.getGenres());
-            viewResult.setUrl(showDetail.getUrl());
-
-            if (o.equals("")) {
-                viewResult.setOverview("No description available.");
-            } else {
-                viewResult.setOverview(o);
-            }
-            viewList.add(viewResult);
-
-        }
+        ArrayList<ViewResult> viewList = ControllerMethods.populateViewList(gson, show);
 
         session.setAttribute("resultList", viewList);
 

@@ -58,8 +58,10 @@ public class MyBingeTvController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
+
         ControllerMethods.checkIfAcctExists(password, user);
         ControllerMethods.checkIfAdmin(session, user);
+
         session.setAttribute("username", username);
         response.sendRedirect("/");
         return user;
@@ -69,7 +71,9 @@ public class MyBingeTvController {
     public String createAccount(HttpSession session, String newusername, String newpassword, String validatepassword,
                                 HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
+
         ControllerMethods.validateNewUserInfo(newpassword, validatepassword, user);
+
         user = new User(newusername, PasswordStorage.createHash(newpassword));
         users.save(user);
         session.setAttribute("username", newusername);
@@ -87,20 +91,9 @@ public class MyBingeTvController {
 
         User user = users.findFirstByName((String) session.getAttribute("username"));
 
-        savedShows.save(addToUserList(session, getId, user));
+        savedShows.save(ControllerMethods.addToUserList(session, getId, user));
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
-    }
-
-    private SavedShow addToUserList(HttpSession session, String getId, User user) {
-        ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
-        SavedShow addToList = null;
-        for (ViewResult r : resultList) {
-            if (r.getId().equals(getId)) {
-                addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), user);
-            }
-        }
-        return addToList;
     }
 
     @RequestMapping(path = "/removeFromUserList", method = RequestMethod.POST)
@@ -114,8 +107,4 @@ public class MyBingeTvController {
         }
         return "redirect:/";
     }
-
 }
-
-
-
