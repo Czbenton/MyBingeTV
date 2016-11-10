@@ -60,6 +60,7 @@ public class SearchController {
         Collections.sort(viewList);
 
         model.addAttribute("resultList", viewList);
+        
 
         return "searchResults";
     }
