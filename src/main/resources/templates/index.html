@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>MyBingeTV</title>
     <link rel="stylesheet" href="/app.css">
-    <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
@@ -25,9 +25,11 @@
     <div class="indexContainer">
         <div class="MOAR_STUFF">
             <h1 class="title">Welcome to MyBingeTv!!</h1>
-            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows
+            <div class="titleSubText-wrapper"><p class="titleSubText">Here you can search to get information about any TV show. If you want to add
+                shows
                 to your custom list,
                 please create an account.</p></div>
+        </div>
         <div class="indexSection">
             <form class="search-form" action="/search" method="post">
                 <input class="searchInput" type="text" placeholder="Search..." name="userInput">

@@ -5,6 +5,7 @@
     <title>SearchResults</title>
     <link rel="stylesheet" href="/app.css">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
 </head>
 <body>
 <div class="main-container-searchResults">
@@ -26,7 +27,6 @@
         <div class="indexContainer">
             <h1>Sorry, No Results Were Found...</h1>
             <div class="indexSection">
-                <p>OMG WHAT IS HAPPENING?</p>
                 <form class="search-form" action="/search" method="post">
                     <input class="searchInput" type="text" placeholder="Search..." name="userInput">
                     <!--<button type="submit">Search</button>-->
@@ -47,14 +47,14 @@
                     <div class="search_result_links">
                         <form class="form-stuff" action="/showDetail" method="get">
                             <input type="hidden" value="{{getId}}" name="getDetailId">
-                            <button type="submit" class="btn">Detailed Show Info</button>
+                            <button type="submit" class="button is-info">Detailed Show Info</button>
                         </form>
                         <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
                             <input type="hidden" value="{{getId}}" name="getId">
-                            <button type="submit" class="btn">Add to your shows</button>
+                            <button type="submit" class="button is-info">Add to your shows</button>
                         </form>
                         <form class="form-stuff" action="{{getUrl}}">
-                            <button type="submit" class="btn">Go to show</button>
+                            <button type="submit" class="button is-info">Go to show</button>
                         </form>
                     </div>
                     <div class="search_result_text" style="color: aliceblue">

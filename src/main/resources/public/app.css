@@ -91,7 +91,7 @@ a {
 }
 
 .result_image {
-    width: 44%;
+    width: 40%;
 }
 
 .columns {
@@ -159,6 +159,7 @@ a {
     width: 100%;
 }
 
+
 .searchInputSmall {
     width: 130px;
     box-sizing: border-box;
@@ -180,11 +181,20 @@ a {
 .title {
     align-self: center;
     max-width: 50%;
-    padding-bottom: 4rem
+    padding-bottom: 1rem
 }
 
 .titleSubText {
     padding-bottom: 1rem;
+    font-size: 1.5rem;
+    width: 50%;
+    text-align: center;
+}
+
+.titleSubText-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-container-login {
@@ -251,6 +261,7 @@ a {
     flex-grow: 1;
     align-items: center;
 }
+
 
 .login-h2{
     font-size: 2rem;
