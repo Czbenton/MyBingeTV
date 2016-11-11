@@ -252,3 +252,12 @@ a {
     align-items: center;
 }
 
+.login-h2{
+    font-size: 2rem;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+.login-h2:first-letter{
+    font-size: 3rem;
+}
