@@ -11,7 +11,19 @@
 <body>
 
 
+
 <div class="main-container-index">
+    <div class="alert-error" id="error-alert">
+        <div class="icon">X</div>
+        <div class="text-position">
+
+            <div class="text-wrap">
+                <p class="text"> Long range scanners detect nothing in the search bar captain.</p>
+                <!-- <p class="text">Damn.</p> -->
+            </div>
+        </div>
+    </div>
+
     {{^username}}
     <form action="/login" method="get">
         <button type="submit">Login / Create Account</button>

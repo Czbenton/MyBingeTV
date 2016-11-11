@@ -18,8 +18,17 @@
     if (searchForm) {
         searchForm.addEventListener('submit', function (ev) {
             if (!searchFormInput || searchFormInput.value === '') {
-                alert('You must fill in the form');
                 ev.preventDefault();
+                const hider = document.querySelector("#error-alert");
+
+                hider.classList.remove("cancel");
+                hider.classList.add("show-me");
+                const icon = document.querySelector(".icon");
+                icon.addEventListener('click', function(ev)  {
+                    ev.preventDefault()
+                    const swoosh = document.querySelector("#error-alert");
+                swoosh.classList.add("cancel");
+            });
             }else {
                 var x = document.querySelector('.fa')
                 x.style.visibility="visible";
