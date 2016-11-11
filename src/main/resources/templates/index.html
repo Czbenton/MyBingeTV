@@ -7,6 +7,7 @@
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
 </head>
 <body>
 <div class="main-container-index">
@@ -24,7 +25,7 @@
 
     {{^username}}
     <form action="/login" method="get">
-        <button type="submit">Login / Create Account</button>
+        <button class="button is-info" type="submit">Login / Create Account</button>
     </form>
 
 
@@ -53,12 +54,14 @@
 
 
         <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
-        {{#username}}
-        <form action="/logout" method="post">
-            <button type="submit">Logout</button>
-        </form>
-        {{/username}}
-
+        <div class="logout-btn">
+            {{#username}}
+            <form action="/logout" method="post">
+                <button class="button is-info is-small" type="submit">Logout</button>
+            </form>
+            {{/username}}
+        </div>
+        
 
         {{#admin}}
         <form action="/adminSearch" method="post">
@@ -70,7 +73,7 @@
 
         {{#username}}
         <form class="search-formSmall" action="/search" method="post">
-            <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
+            <input class="searchInputSmall" type="text" placeholder="Find More Shows" name="userInput">
         </form>
 
 
@@ -85,11 +88,14 @@
                     </div>
                 <div class="userList-links">
                     <div class="userList-detail">
-                        go to detail page??
+                        <form class="form-stuff" action="/showDetail" method="get">
+                            <input type="hidden" value="{{getId}}" name="getDetailId">
+                            <button type="submit" class="button is-info is-small">Detailed Show Info</button>
+                        </form>
                     </div>
                     <form action="/removeFromUserList" method="post">
                         <input type="hidden" value="{{getId}}" name="getId"/>
-                        <button type="submit">Remove from My List</button>
+                        <button class="button is-info is-small" type="submit">Remove from My List</button>
                     </form>
                 </div>
             </div>

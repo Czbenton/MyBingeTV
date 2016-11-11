@@ -157,7 +157,7 @@ a {
 }
 
 .searchInputSmall {
-    width: 130px;
+    width: 175px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -268,6 +268,10 @@ a {
     font-size: 3rem;
 }
 
+.logout-btn{
+    padding-bottom: 1rem;
+}
+
 /*Dan's awesome alert box*/
 .alert-error {
     display: flex;
@@ -326,6 +330,9 @@ a {
 
 .userList-wrapper {
     display: flex;
+    font-family: 'Martel Sans', sans-serif;
+    font-size: 1.10rem;
+    font-weight: bold;
 }
 
 .userList {
@@ -348,4 +355,11 @@ a {
 
 .userlist-detail {
 
+}
+
+.userList-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70%;
 }
