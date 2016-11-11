@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
-
-
-
 <div class="main-container-index">
+
     <div class="alert-error" id="error-alert">
         <div class="icon">X</div>
         <div class="text-position">
@@ -32,74 +30,75 @@
 
     <div class="index-container-wrapper">
 
-    <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
+        <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
 
-    <div class="indexContainer">
-        <div class="MOAR_STUFF">
-            <h1 class="title">Welcome to MyBingeTv!!</h1>
-            <div class="titleSubText-wrapper"><p class="titleSubText">Here you can search to get information about any TV show. If you want to add
-                shows
-                to your custom list,
-                please create an account.</p></div>
+        <div class="indexContainer">
+            <div class="MOAR_STUFF">
+                <h1 class="title">Welcome to MyBingeTv!!</h1>
+                <div class="titleSubText-wrapper"><p class="titleSubText">Here you can search to get information about
+                    any TV show. If you want to add
+                    shows
+                    to your custom list,
+                    please create an account.</p></div>
+            </div>
+            <div class="indexSection">
+                <form class="search-form" action="/search" method="post">
+                    <input class="searchInput" type="text" placeholder="Search..." name="userInput">
+                </form>
+            </div>
+            <span class="fa "> <img src="http://www.asus.com/media/img/loadingAnimation.gif"></span>
         </div>
-        <div class="indexSection">
-            <form class="search-form" action="/search" method="post">
-                <input class="searchInput" type="text" placeholder="Search..." name="userInput">
-            </form>
-        </div>
-        <span class="fa "> <img src="http://www.asus.com/media/img/loadingAnimation.gif"></span>
-    </div>
 
-    {{/username}}
+        {{/username}}
 
 
-    <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
-    {{#username}}
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
-    {{/username}}
+        <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
+        {{#username}}
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+        {{/username}}
 
 
-    {{#admin}}
-    <form action="/adminSearch" method="post">
-        <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
-        <button type="submit">Search</button>
-    </form>
-    {{/admin}}
+        {{#admin}}
+        <form action="/adminSearch" method="post">
+            <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
+            <button type="submit">Search</button>
+        </form>
+        {{/admin}}
 
 
-    {{#username}}
-    <form class="search-formSmall" action="/search" method="post">
-        <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
-    </form>
+        {{#username}}
+        <form class="search-formSmall" action="/search" method="post">
+            <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
+        </form>
 
 
-    {{#showList}}
-    <div class="columns">
-
-        <table class="userTable">
-            <tr>
-                <td><img src="{{getArtwork}}"></td>
-                <td>{{getOverview}}</td>
-                <td>{{getRating}}</td>
-                <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
-                <td>
+        {{#showList}}
+        <div class="userList-wrapper">
+            <div class="userList">
+                <div class="userList-image">
+                    <img src="{{getArtwork}}">
+                </div>
+                    <div class="userList-overview">
+                        {{getOverview}}
+                    </div>
+                <div class="userList-links">
+                    <div class="userList-detail">
+                        go to detail page??
+                    </div>
                     <form action="/removeFromUserList" method="post">
                         <input type="hidden" value="{{getId}}" name="getId"/>
                         <button type="submit">Remove from My List</button>
                     </form>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        {{/showList}}
+        {{/username}}
 
-
+        <script src="/app.js"></script>
     </div>
-    {{/showList}}
-    {{/username}}
-
-    <script src="/app.js"></script>
-</div>
 </div>
 <!--<footer> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cupiditate dolore eius enim ex in, ipsum maxime quaerat quasi reiciendis repellat, sunt voluptatem! A adipisci aperiam explicabo nemo quibusdam quidem.</footer>-->
 </body>
