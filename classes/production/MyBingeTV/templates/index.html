@@ -5,32 +5,39 @@
     <title>MyBingeTV</title>
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
-<div class="fullPage">
-    <body class="background">
+<body>
 
 
+<div class="main-container-index">
     {{^username}}
     <form action="/login" method="get">
         <button type="submit">Login / Create Account</button>
     </form>
 
 
+    <div class="index-container-wrapper">
+
     <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
 
     <div class="indexContainer">
-        <div class="MOAR_STUFF"><h2 class="title">Welcome to MyBingeTv!!</h2>
-            <p>Here you can search to get information about any TV show. If you want to add shows to your custom list,
+        <div class="MOAR_STUFF">
+            <h1 class="title">Welcome to MyBingeTv!!</h1>
+            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows
+                to your custom list,
                 please create an account.</p></div>
         <div class="indexSection">
             <form class="search-form" action="/search" method="post">
-                <input type="text" placeholder="Search here" name="userInput" class="search-form__input">
-                <button id="myButton" class="sr-only">Search</button>
+                <input class="searchInput" type="text" placeholder="Search..." name="userInput">
             </form>
         </div>
+        <span class="fa fa-spinner fa-spin"></span>
     </div>
 
     {{/username}}
+
 
     <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
     {{#username}}
@@ -49,7 +56,7 @@
 
 
     {{#username}}
-    <form action="/search" method="post">
+    <form class="search-formSmall" action="/search" method="post">
         <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
     </form>
 
@@ -78,6 +85,8 @@
     {{/username}}
 
     <script src="/app.js"></script>
-    </body>
 </div>
+</div>
+<!--<footer> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cupiditate dolore eius enim ex in, ipsum maxime quaerat quasi reiciendis repellat, sunt voluptatem! A adipisci aperiam explicabo nemo quibusdam quidem.</footer>-->
+</body>
 </html>

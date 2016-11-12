@@ -1,10 +1,12 @@
-.fullPage {
-    height: 100vh;
-}
+/*.fullPage {*/
+/*height: 100vh;*/
+/*}*/
 
 body {
+
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Martel Sans', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 ul {
@@ -14,15 +16,6 @@ ul {
 
 img {
     max-width: 100%;
-}
-
-.background {
-    background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg");
-    /*background: url("http://www.placekitten.com/g/1024/768") no-repeat center center fixed;*/
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 .btn {
@@ -61,10 +54,6 @@ a {
     border: none;
 }
 
-.detail_page {
-    background: white;
-}
-
 .section-search-results {
     padding: 1rem;
 }
@@ -78,6 +67,11 @@ a {
     position: fixed;
     top: 0;
     left: 0;
+}
+.sort_search{
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .userTable {
@@ -141,7 +135,7 @@ a {
 
 .indexSection {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -158,8 +152,6 @@ a {
     font-size: 16px;
     background: white url('http://www.dliflc.edu/wp-content/themes/DLIFLC/images/icon-find.png') no-repeat 5px 5px;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
 
 }
 
@@ -185,7 +177,78 @@ a {
     width: 20%;
 }
 
-.title{
+.title {
     align-self: center;
-    max-width: 31%;
+    max-width: 50%;
+    padding-bottom: 4rem
 }
+
+.titleSubText {
+    padding-bottom: 1rem;
+}
+
+.main-container-login {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.create-account-form {
+    padding: 1rem;
+}
+
+.account-login-form {
+    padding: 1rem;
+}
+
+.main-container-index {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main-container-searchResults {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+}
+
+.main-container-showDetail {
+    width: 100%;
+    height: 100%;
+}
+
+.fa-spinner {
+    visibility: hidden;
+    font-size: 20rem;
+}
+
+.index-container-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+}
+

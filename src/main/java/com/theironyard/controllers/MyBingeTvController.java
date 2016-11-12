@@ -8,6 +8,7 @@ import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
+import com.theironyard.utilities.ControllerMethods;
 import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,36 +58,22 @@ public class MyBingeTvController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(HttpSession session, String username, String password, HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(username);
-        checkIfAcctExists(password, user);
-        checkIfAdmin(session, user);
+
+        ControllerMethods.checkIfAcctExists(password, user);
+        ControllerMethods.checkIfAdmin(session, user);
+
         session.setAttribute("username", username);
         response.sendRedirect("/");
         return user;
-    }
-
-    private void checkIfAdmin(HttpSession session, User user) {
-        if (user.isAdmin()) {
-            session.setAttribute("admin", user.isAdmin());
-        }
-    }
-
-    private void checkIfAcctExists(String password, User user) throws Exception {
-        if (user == null) {
-            throw new Exception("Username not found, please create an account");
-        } else if (!PasswordStorage.verifyPassword(password, user.getPassword())) {
-            throw new Exception("wrong password");
-        }
     }
 
     @RequestMapping(path = "/create-account", method = RequestMethod.POST)
     public String createAccount(HttpSession session, String newusername, String newpassword, String validatepassword,
                                 HttpServletResponse response) throws Exception {
         User user = users.findFirstByName(newusername);
-        if (user != null) {
-            throw new Exception("Username already in use, please choose another");
-        } else if (!newpassword.equals(validatepassword)) {
-            throw new Exception("Error: passwords do not match");
-        }
+
+        ControllerMethods.validateNewUserInfo(newpassword, validatepassword, user);
+
         user = new User(newusername, PasswordStorage.createHash(newpassword));
         users.save(user);
         session.setAttribute("username", newusername);
@@ -103,13 +90,8 @@ public class MyBingeTvController {
     public String addToUserList(Model model, HttpSession session, String getId) {
 
         User user = users.findFirstByName((String) session.getAttribute("username"));
-        ArrayList<ViewResult> resultList = (ArrayList) session.getAttribute("resultList");
-        for (ViewResult r : resultList) {
-            if (r.getId().equals(getId)) {
-                SavedShow addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), user);
-                savedShows.save(addToList);
-            }
-        }
+
+        savedShows.save(ControllerMethods.addToUserList(session, getId, user));
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
     }
@@ -125,8 +107,4 @@ public class MyBingeTvController {
         }
         return "redirect:/";
     }
-    
 }
-
-
-

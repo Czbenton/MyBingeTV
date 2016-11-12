@@ -6,6 +6,7 @@ import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.utilities.ApiCall;
+import com.theironyard.utilities.ControllerMethods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jeremypitt on 11/6/16.
@@ -31,13 +30,10 @@ public class SearchController {
     public String search(Model model, HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
-
         String encoded = URLEncoder.encode(userInput, "UTF-8");
         URL url = new URL(API_URL + API_KEY + "/search/title/" + encoded + "/fuzzy");
 
         jsonResults = ApiCall.queryJsonAPI(jsonResults, url);
-
-
 
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
@@ -48,49 +44,9 @@ public class SearchController {
     public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
 
         Gson gson = new Gson();
-        Show show = getShow(session, gson);
+        Show show = ControllerMethods.getShow(session, gson);
 
-        ArrayList<ViewResult> viewList = new ArrayList<>();
-
-        int counterResults = show.getResults().length;
-        int loop = 5;
-
-        if (counterResults < 5) {
-            loop = counterResults;
-        }
-        for (int i = 0; i < loop; i++) {
-            String d = show.getResults(i).getId();
-
-            String jsonResults = "";
-            URL url = new URL(API_URL + API_KEY + "/show/" + d);
-            String detailedResults = ApiCall.queryJsonAPI(jsonResults, url);
-            ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
-            String o = showDetail.getOverview();
-
-            ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(show.getResults(i).getTitle());
-            viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
-            viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
-            viewResult.setId(show.getResults(i).getId());
-            viewResult.setNetwork(showDetail.getNetwork());
-
-            String s = Arrays.toString(showDetail.getTags());
-
-            viewResult.setTagString(s);
-            viewResult.setChannels(showDetail.getChannels());
-            viewResult.setSocial(showDetail.getSocial());
-            viewResult.setRating(showDetail.getRating());
-            viewResult.setGenres(showDetail.getGenres());
-            viewResult.setUrl(showDetail.getUrl());
-
-            if (o.equals("")) {
-                viewResult.setOverview("No description available.");
-            } else {
-                viewResult.setOverview(o);
-            }
-            viewList.add(viewResult);
-
-        }
+        ArrayList<ViewResult> viewList = ControllerMethods.populateViewList(gson, show);
 
         session.setAttribute("resultList", viewList);
 
@@ -98,10 +54,18 @@ public class SearchController {
         return "searchResults";
     }
 
-    private Show getShow(HttpSession session, Gson gson) {
-        String results = (String) session.getAttribute("jsonResults");
-        return gson.fromJson(results, Show.class);
+    @RequestMapping(path = "/sortSearch", method = RequestMethod.GET)
+    public String sortSearch(Model model, HttpSession session) {
+        ArrayList<ViewResult> viewList = (ArrayList<ViewResult>) session.getAttribute("resultList");
+        Collections.sort(viewList);
+
+        model.addAttribute("resultList", viewList);
+        
+
+        return "searchResults";
     }
+
+
 
 
 }

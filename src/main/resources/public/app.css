@@ -1,9 +1,5 @@
-/*.fullPage {*/
-    /*height: 100vh;*/
-/*}*/
-
 body {
-    height: 100vh;
+
     margin: 0;
     font-family: 'Martel Sans', sans-serif;
     /*font-family: 'Roboto', sans-serif;*/
@@ -16,11 +12,6 @@ ul {
 
 img {
     max-width: 100%;
-}
-
-.background {
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
-    background-size: cover;
 }
 
 .btn {
@@ -74,6 +65,12 @@ a {
     left: 0;
 }
 
+.sort_search {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
 .userTable {
     width: 100%;
     padding: 15px;
@@ -91,7 +88,7 @@ a {
 }
 
 .result_image {
-    width: 44%;
+    width: 40%;
 }
 
 .columns {
@@ -105,10 +102,11 @@ a {
 }
 
 .search_result_links {
-    width: 100%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     margin-bottom: .5rem;
+    justify-content: space-between;
 }
 
 .search_result_text {
@@ -117,7 +115,6 @@ a {
 
 .form-stuff {
     width: 22%;
-    margin-left: .5rem;
 }
 
 .show_detail_ul {
@@ -160,7 +157,7 @@ a {
 }
 
 .searchInputSmall {
-    width: 130px;
+    width: 175px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -180,47 +177,189 @@ a {
 .title {
     align-self: center;
     max-width: 50%;
-    padding-bottom: 4rem
+    padding-bottom: 1rem
 }
 
-.titleSubText{
+.titleSubText {
     padding-bottom: 1rem;
+    font-size: 1.5rem;
+    width: 50%;
+    text-align: center;
 }
 
-.main-container-login{
-    width: 100%;
-    height: 100%;
+.titleSubText-wrapper {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login-container{
+.main-container-login {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
     display: flex;
     flex-direction: column;
     width: 30%;
 }
 
-.create-account-form{
+.create-account-form {
     padding: 1rem;
 }
 
-.account-login-form{
+.account-login-form {
     padding: 1rem;
 }
 
-.main-container-index{
+.main-container-index {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main-container-searchResults {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+}
+
+.main-container-showDetail {
     width: 100%;
     height: 100%;
 }
 
-.main-container-searchResults{
-    width: 100%;
-    height: 100%;
+.fa {
+    visibility: hidden;
+    font-size: 20rem;
 }
 
-.main-container-showDetail{
+.index-container-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.login-h2 {
+    font-size: 2rem;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+.login-h2:first-letter {
+    font-size: 3rem;
+}
+
+.logout-btn{
+    padding-bottom: 1rem;
+}
+
+/*Dan's awesome alert box*/
+.alert-error {
+    display: flex;
+    visibility: hidden;
+    align-items: flex-end;
+    color: #fff;
+    background: url("https://media4.giphy.com/media/5YooSrofwhUFq/200.gif#20") no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    width: 400px;
+    position: absolute;
+    left: 36%;
+    top: 10%;
+    border-radius: 8%;
+
+}
+
+.alert-error:hover {
+    cursor: pointer;
+}
+
+.text-wrap {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    height: 100%;
+}
+
+.text-position {
+    display: flex;
+    align-items: flex-end;
+}
+
+.text {
+    margin: 1rem;
+    text-align: center;
+}
+
+.icon {
+    align-self: flex-start;
+    position: absolute;
+    left: 89%;
+    top: 89%;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+
+.show-me {
+    visibility: visible;
+}
+
+.cancel {
+    visibility: hidden;
+}
+
+/*Dan's awesome alert box END*/
+
+.userList-wrapper {
+    display: flex;
+    font-family: 'Martel Sans', sans-serif;
+    font-size: 1.10rem;
+    font-weight: bold;
+}
+
+.userList {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.userList-image {
+
+}
+
+.userList-overview {
+    width: 65%;
+    display: flex;
+    align-items: center;
+}
+
+
+.userlist-detail {
+
+}
+
+.userList-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70%;
 }

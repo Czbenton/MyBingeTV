@@ -8,7 +8,7 @@ import com.theironyard.jsonInputEntities.Tags;
 /**
  * Created by Zach on 11/3/16.
  */
-public class ViewResult {
+public class ViewResult implements Comparable {
     private String artwork_448x252;
     private String artwork_208x117;
     private String id;
@@ -153,5 +153,10 @@ public class ViewResult {
 
     public void setGenres(Genres[] genres) {
         this.genres = genres;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getTitle().compareTo(((ViewResult) o).getTitle());
     }
 }
