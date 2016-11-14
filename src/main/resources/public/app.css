@@ -14,6 +14,10 @@ img {
     max-width: 100%;
 }
 
+a{
+    color: #004B8D;
+}
+
 .btn {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -84,7 +88,7 @@ a {
 
 .container {
     max-width: 65rem;
-    margin: auto;
+    /*margin: auto;*/
 }
 
 .result_image {
@@ -242,8 +246,13 @@ a {
 }
 
 .main-container-showDetail {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
     width: 100%;
     height: 100%;
+}
+.section{
+    background: none;
 }
 
 .fa {
@@ -375,4 +384,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.show-detail-font-size{
+    font-size: 16px;
 }

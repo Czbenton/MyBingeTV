@@ -34,62 +34,78 @@
 
         </div>
     </section>
-    <section class="section">
+    <section class="section show-detail-font-size">
         <div class="container">
-            <div class="content">
+            <div class="columns">
+
+                <div class="column">
+                    <p><strong>Rating:</strong> {{getRating}}</p>
+
+                    <p><strong>Original Air Date:</strong> {{getFirst_aired}}</p>
+
+                    <p><strong>Airtime:</strong> {{getAir_time}}</p>
+
+                    <p><strong>Genres:</strong>
+                        {{#getGenres}}{{.}}, {{/getGenres}}</p>
+
+                    <p><strong>Runtime:</strong> {{getRuntime}}</p>
 
 
-                <p>Original Air Date: {{getFirst_aired}}</p>
+                    <p><strong>Network:</strong> {{getNetwork}}</p>
 
-                <p>Genres:
-                    {{#getGenres}}{{.}}, {{/getGenres}}</p>
 
-                <p>Runtime: {{getRuntime}}</p>
+                    <p><strong>Channel:</strong> {{#getChannels}} {{getName}} {{/getChannels}}</p>
 
-                <p>Network: {{getNetwork}}</p>
 
-                {{#getSocial}}
-                {{#getTwitter}}
-                {{^getLink}}
-                <p>no twitter available</p>
-                {{/getLink}}
-                {{/getTwitter}}
-                {{/getSocial}}
+                    <p><strong>Status:</strong> {{getStatus}}</p>
+                </div>
 
-                {{#getSocial}}
-                {{#getTwitter}}
-                {{#getLink}}
-                <p><a class="twitter-link" href="{{getLink}}"><img
-                        src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a></p>
-                {{/getLink}}
-                {{/getTwitter}}
-                {{/getSocial}}
 
-                <p>Airtime: {{getAir_time}}</p>
+                <div class="column">
+                    <p><strong>Tags:</strong> {{#getTags}}
+                    <ul>
+                        {{.}}
+                    </ul>
+                    {{/getTags}}</p>
+                </div>
 
-                <p>Tags: {{#getTags}}
-                <ul>
-                    {{.}}
-                </ul>
-                {{/getTags}}</p>
 
-                <p>Status: {{getStatus}}</p>
+                <div class="column">
+                    <p><strong><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></strong></p>
 
-                <p>Channel: {{#getChannels}} {{getName}} {{/getChannels}}</p>
+                    <p>{{#getMetacritic}} <strong><a style="border: none" href="{{.}}">Metacritic</a></strong>
+                        {{/getMetacritic}}
+                    </p>
+                    <p>&nbsp</p>
 
-                <p><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></p>
+                    <p><strong>Cast Members:</strong>{{#getCast}}
+                        <ul class="show_detail_ul">
+                    <p><strong><a style="border: none;"
+                                  href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}:</a></strong>
+                        {{getCharacter_name}}</p>
+                    </ul>
+                    {{/getCast}}</p>
 
-                <p>{{#getMetacritic}} <a style="border: none" href="{{.}}">Metacritic</a> {{/getMetacritic}}</p>
 
-                <p>Cast Members:{{#getCast}}
-                    <ul class="show_detail_ul">
-                        <a style="border: none;" href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
-                <p>, {{getCharacter_name}}</p>
-                </ul>
-                {{/getCast}}</p>
+                    {{#getSocial}}
+                    {{#getTwitter}}
+                    {{^getLink}}
+                    <p>no twitter available</p>
+                    {{/getLink}}
+                    {{/getTwitter}}
+                    {{/getSocial}}
 
-                <p>Rating: {{getRating}}</p>
-
+                    <!--<div class="column">-->
+                    {{#getSocial}}
+                    {{#getTwitter}}
+                    {{#getLink}}
+                    <p><a class="twitter-link" href="{{getLink}}"><img
+                            src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a>
+                    </p>
+                    {{/getLink}}
+                    {{/getTwitter}}
+                    {{/getSocial}}
+                </div>
             </div>
         </div>
     </section>
