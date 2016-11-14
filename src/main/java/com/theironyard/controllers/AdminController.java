@@ -55,10 +55,8 @@ public class AdminController {
         session.setAttribute("resultList", viewList);
 
         model.addAttribute("resultList", viewList);
-        return "adminSearchResults";
+        return "searchResults";
     }
-
-
 
     @RequestMapping(path = "/adminShowDetail", method = RequestMethod.GET)
     public String showDetail(Model model, HttpSession session, String getDetailTitle) throws IOException {
@@ -73,5 +71,4 @@ public class AdminController {
 
         return "showDetail";
     }
-
 }
