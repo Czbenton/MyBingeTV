@@ -47,6 +47,7 @@ public class SearchController {
 
         session.setAttribute("resultList", viewList);
 
+        model.addAttribute("username" , session.getAttribute("username"));
         model.addAttribute("resultList", viewList);
         return "searchResults";
     }

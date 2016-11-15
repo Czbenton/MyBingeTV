@@ -3,14 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>MyBingeTV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
     <link rel="stylesheet" href="/app.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
 </head>
 <body>
 <div class="main-container-index">
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+                <img src="http://www.freeiconspng.com/uploads/tv-icon-13.png" alt="image">My Binge TV
+            </a>
+
+        </div>
+        <div class="nav-center">
+            {{#username}}
+            <form class="search-formSmall" action="/search" method="post">
+                <input  required class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
+            </form>
+            {{/username}}
+        </div>
+
+        <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+        <div class="nav-right nav-menu">
+
+            <span class="nav-item">
+                {{^username}}
+                <form action="/login" method="get">
+                    <button class="button is-info is-small" type="submit">Login / Create Account</button>
+                </form>
+                {{/username}}
+                {{#username}}
+                <form action="/logout" method="post">
+                    <button class="button is-info is-small" type="submit">Logout</button>
+                </form>
+                {{/username}}
+            </span>
+        </div>
+    </nav>
 
     <div class="alert-error" id="error-alert">
         <div class="icon">X</div>
@@ -24,9 +60,9 @@
 
     <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
     {{^username}}
-    <form action="/login" method="get">
-        <button class="button is-info" type="submit">Login / Create Account</button>
-    </form>
+    <!--<form action="/login" method="get">-->
+        <!--<button class="button is-info" type="submit">Login / Create Account</button>-->
+    <!--</form>-->
 
     <div class="index-container-wrapper">
         <div class="indexContainer">
@@ -48,13 +84,14 @@
         {{/username}}
 
         <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
-        <div class="logout-btn">
-            {{#username}}
-            <form action="/logout" method="post">
-                <button class="button is-info is-small" type="submit">Logout</button>
-            </form>
-            {{/username}}
-        </div>
+
+        <!--<div class="logout-btn">-->
+            <!--{{#username}}-->
+            <!--<form action="/logout" method="post">-->
+                <!--<button class="button is-info is-small" type="submit">Logout</button>-->
+            <!--</form>-->
+            <!--{{/username}}-->
+        <!--</div>-->
 
 
         {{#admin}}  <!--IF user is ADMIN, show admin search to contact backup API-->
@@ -67,9 +104,9 @@
 
 
         {{#username}}
-        <form class="search-formSmall" action="/search" method="post">
-            <input class="searchInputSmall" type="text" placeholder="Find More Shows" name="userInput">
-        </form>
+        <!--<form class="search-formSmall" action="/search" method="post">-->
+            <!--<input class="searchInputSmall" type="text" placeholder="Find More Shows" name="userInput">-->
+        <!--</form>-->
 
         {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
         <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
