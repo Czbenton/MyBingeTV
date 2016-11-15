@@ -11,16 +11,16 @@
 <div class="main-container-searchResults">
 
     <form action="/" method="get" class="homeBtn">
-        <button type="submit">Go Home</button>
+        <button class="button is-info is-small" type="submit">Go Home</button>
     </form>
 
     <form class="sort_search" action="/sortSearch" method="get">
-        <select onchange="this.form.submit();">
+        <select class="select is-info" onchange="this.form.submit();">
+            <option value="" disabled selected>Select your option</option>
             <option selected>Popularity</option>
             <option>Alphabetical</option>
         </select>
     </form>
-
 
     {{^resultList}}
     <div class="index-container-wrapper">

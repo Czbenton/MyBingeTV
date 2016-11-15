@@ -58,6 +58,10 @@ a {
     padding: 1rem;
 }
 
+.search-formSmall{
+    padding-bottom: 1rem;
+}
+
 .hero {
     display: flex;
     align-items: center;
@@ -352,6 +356,12 @@ a {
 
 .userList-image {
 
+}
+
+.userList-rating{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .userList-overview {

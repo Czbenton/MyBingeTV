@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
 import com.theironyard.entities.ViewResult;
+import com.theironyard.jsonInputEntities.Channels;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.jsonInputEntities.ShowDetail;
 
@@ -55,7 +56,7 @@ public class ControllerMethods {
         SavedShow addToList = null;
         for (ViewResult r : resultList) {
             if (r.getId().equals(getId)) {
-                addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), user);
+                addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), r.getRuntime(), user);
             }
         }
         return addToList;
@@ -85,6 +86,12 @@ public class ControllerMethods {
             viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
             viewResult.setId(show.getResults(i).getId());
             viewResult.setNetwork(showDetail.getNetwork());
+            viewResult.setChannels(showDetail.getChannels());
+            if (showDetail.getRuntime() == null) {
+                viewResult.setRuntime("Unavailable");
+            } else {
+                viewResult.setRuntime(showDetail.getRuntime());
+            }
 
             String s = Arrays.toString(showDetail.getTags());
 

@@ -30,19 +30,32 @@ public class SavedShow {
     @Column
     String rating;
 
+    @Column
+    String runtime;
+
     @ManyToOne
     User user;
 
     public SavedShow() {
     }
 
-    public SavedShow(String title, String artwork, String showid, String overview, String rating, User user) {
+    public SavedShow(String title, String artwork, String showid, String overview, String rating, String runtime, User user) {
         this.title = title;
         this.artwork = artwork;
         this.showid = showid;
         this.overview = overview;
         this.rating = rating;
+        this.runtime = runtime;
         this.user = user;
+    }
+
+    public String getRuntime() {
+
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
     public int getId() {

@@ -22,7 +22,15 @@ public class ViewResult implements Comparable {
     private Genres[] genres;
     private String tagString;
     private String url;
+    private String runtime;
 
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
 
     public ViewResult() {
     }
