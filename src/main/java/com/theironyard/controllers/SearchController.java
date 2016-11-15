@@ -1,10 +1,7 @@
 package com.theironyard.controllers;
 
-import com.google.gson.Gson;
-import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
-import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.utilities.ApiCall;
 import com.theironyard.utilities.ControllerMethods;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by jeremypitt on 11/6/16.
@@ -27,7 +25,7 @@ public class SearchController {
     public static final String API_KEY = "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO";
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)
-    public String search(Model model, HttpSession session, String userInput) throws IOException {
+    public String search(HttpSession session, String userInput) throws IOException {
 
         String jsonResults = "";
         String encoded = URLEncoder.encode(userInput, "UTF-8");
@@ -41,12 +39,11 @@ public class SearchController {
     }
 
     @RequestMapping(path = "/searchResults", method = RequestMethod.GET)
-    public String searchResults(Model model, HttpSession session, String getDetailId) throws IOException {
+    public String searchResults(Model model, HttpSession session) throws IOException {
 
-        Gson gson = new Gson();
-        Show show = ControllerMethods.getShow(session, gson);
+        Show show = ControllerMethods.getShow(session);
 
-        ArrayList<ViewResult> viewList = ControllerMethods.populateViewList(gson, show);
+        ArrayList<ViewResult> viewList = ControllerMethods.populateViewList(show);
 
         session.setAttribute("resultList", viewList);
 
@@ -60,12 +57,7 @@ public class SearchController {
         Collections.sort(viewList);
 
         model.addAttribute("resultList", viewList);
-        
 
         return "searchResults";
     }
-
-
-
-
 }

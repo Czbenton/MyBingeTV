@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MyBingeTvApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyBingeTvApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyBingeTvApplication.class, args);
+    }
 }

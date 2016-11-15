@@ -18,21 +18,17 @@
 
             <div class="text-wrap">
                 <p class="text"> Long range scanners detect nothing in the search bar captain.</p>
-                <!-- <p class="text">Damn.</p> -->
             </div>
         </div>
     </div>
 
+    <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
     {{^username}}
     <form action="/login" method="get">
         <button class="button is-info" type="submit">Login / Create Account</button>
     </form>
 
-
     <div class="index-container-wrapper">
-
-        <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
-
         <div class="indexContainer">
             <div class="MOAR_STUFF">
                 <h1 class="title">Welcome to MyBingeTv!!</h1>
@@ -49,9 +45,7 @@
             </div>
             <span class="fa "> <img src="http://www.asus.com/media/img/loadingAnimation.gif"></span>
         </div>
-
         {{/username}}
-
 
         <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
         <div class="logout-btn">
@@ -61,11 +55,12 @@
             </form>
             {{/username}}
         </div>
-        
 
-        {{#admin}}
+
+        {{#admin}}  <!--IF user is ADMIN, show admin search to contact backup API-->
         <form action="/adminSearch" method="post">
-            <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
+            <input type="text" placeholder="Perform Admin Search" name="adminSearch"/>
+            <!--Search options are: "house", "justified", and anything else will return default South Park-->
             <button type="submit">Search</button>
         </form>
         {{/admin}}
@@ -76,20 +71,28 @@
             <input class="searchInputSmall" type="text" placeholder="Find More Shows" name="userInput">
         </form>
 
+        {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
+        <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
+        {{/showList}}
 
-        {{#showList}}
+        {{#showList}}   <!--IF a user is logged in AND their list is NOT empty, display this...-->
         <div class="userList-wrapper">
             <div class="userList">
                 <div class="userList-image">
                     <img src="{{getArtwork}}">
                 </div>
-                    <div class="userList-overview">
-                        {{getOverview}}
-                    </div>
+                <div class="userList-rating">
+                    <p><strong>Rating:</strong></p>{{getRating}}
+                    <p>&nbsp;</p>
+                    <p><strong>Runtime:</strong></p>{{getRuntime}} minutes
+                </div>
+                <div class="userList-overview">
+                    {{getOverview}}
+                </div>
                 <div class="userList-links">
                     <div class="userList-detail">
                         <form class="form-stuff" action="/showDetail" method="get">
-                            <input type="hidden" value="{{getId}}" name="getDetailId">
+                            <input type="hidden" value="{{getShowid}}" name="getDetailId">
                             <button type="submit" class="button is-info is-small">Detailed Show Info</button>
                         </form>
                     </div>
@@ -106,6 +109,5 @@
         <script src="/app.js"></script>
     </div>
 </div>
-<!--<footer> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cupiditate dolore eius enim ex in, ipsum maxime quaerat quasi reiciendis repellat, sunt voluptatem! A adipisci aperiam explicabo nemo quibusdam quidem.</footer>-->
 </body>
 </html>

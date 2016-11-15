@@ -23,7 +23,8 @@ import static com.theironyard.controllers.SearchController.API_URL;
  */
 public class ControllerMethods {
 
-    public static Show getShow(HttpSession session, Gson gson) {
+    public static Show getShow(HttpSession session) {
+        Gson gson = new Gson();
         String results = (String) session.getAttribute("jsonResults");
         return gson.fromJson(results, Show.class);
     }
@@ -42,10 +43,10 @@ public class ControllerMethods {
         }
     }
 
-    public static void validateNewUserInfo(String newpassword, String validatepassword, User user) throws Exception {
+    public static void validateNewUserInfo(String newpassword, String validatePassword, User user) throws Exception {
         if (user != null) {
             throw new Exception("Username already in use, please choose another");
-        } else if (!newpassword.equals(validatepassword)) {
+        } else if (!newpassword.equals(validatePassword)) {
             throw new Exception("Error: passwords do not match");
         }
     }
@@ -55,13 +56,14 @@ public class ControllerMethods {
         SavedShow addToList = null;
         for (ViewResult r : resultList) {
             if (r.getId().equals(getId)) {
-                addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(), r.getOverview(), r.getRating(), user);
+                addToList = new SavedShow(r.getTitle(), r.getArtwork_208x117(), r.getId(),
+                        r.getOverview(), r.getRating(), r.getRuntime(), user);
             }
         }
         return addToList;
     }
 
-    public static ArrayList<ViewResult> populateViewList(Gson gson, Show show) throws IOException {
+    public static ArrayList<ViewResult> populateViewList(Show show) throws IOException {
         ArrayList<ViewResult> viewList = new ArrayList<>();
 
         int counterResults = show.getResults().length;
@@ -76,34 +78,41 @@ public class ControllerMethods {
             String jsonResults = "";
             URL url = new URL(API_URL + API_KEY + "/show/" + d);
             String detailedResults = ApiCall.queryJsonAPI(jsonResults, url);
+            Gson gson = new Gson();
             ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
-            String o = showDetail.getOverview();
-
-            ViewResult viewResult = new ViewResult();
-            viewResult.setTitle(show.getResults(i).getTitle());
-            viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
-            viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
-            viewResult.setId(show.getResults(i).getId());
-            viewResult.setNetwork(showDetail.getNetwork());
-
-            String s = Arrays.toString(showDetail.getTags());
-
-            viewResult.setTagString(s);
-            viewResult.setChannels(showDetail.getChannels());
-            viewResult.setSocial(showDetail.getSocial());
-            viewResult.setRating(showDetail.getRating());
-            viewResult.setGenres(showDetail.getGenres());
-            viewResult.setUrl(showDetail.getUrl());
-
-            if (o.equals("")) {
-                viewResult.setOverview("No description available.");
-            } else {
-                viewResult.setOverview(o);
-            }
-            viewList.add(viewResult);
-
+            addShowDetailToViewList(show, viewList, i, showDetail);
         }
         return viewList;
+    }
+
+    private static void addShowDetailToViewList(Show show, ArrayList<ViewResult> viewList, int i, ShowDetail showDetail) {
+
+        ViewResult viewResult = new ViewResult();
+        viewResult.setTitle(show.getResults(i).getTitle());
+        viewResult.setArtwork_448x252(show.getResults(i).getArtwork_448x252());
+        viewResult.setArtwork_208x117(show.getResults(i).getArtwork_208x117());
+        viewResult.setId(show.getResults(i).getId());
+        viewResult.setNetwork(showDetail.getNetwork());
+        viewResult.setChannels(showDetail.getChannels());
+        if (showDetail.getRuntime() == null) {
+            viewResult.setRuntime("Unavailable");
+        } else {
+            viewResult.setRuntime(showDetail.getRuntime());
+        }
+        viewResult.setChannels(showDetail.getChannels());
+        viewResult.setSocial(showDetail.getSocial());
+        viewResult.setRating(showDetail.getRating());
+        viewResult.setGenres(showDetail.getGenres());
+        viewResult.setUrl(showDetail.getUrl());
+        String s = Arrays.toString(showDetail.getTags());
+        viewResult.setTagString(s);
+        String o = showDetail.getOverview();
+        if (o.equals("")) {
+            viewResult.setOverview("No description available.");
+        } else {
+            viewResult.setOverview(o);
+        }
+        viewList.add(viewResult);
     }
 
     public static ArrayList<ViewResult> populateViewListADMIN(Gson gson, Show show) throws IOException {
@@ -111,7 +120,6 @@ public class ControllerMethods {
 
         int counterResults = show.getResults().length;
         int loop = 5;
-
         if (counterResults < 5) {
             loop = counterResults;
         }
@@ -120,12 +128,10 @@ public class ControllerMethods {
             if (!title.equalsIgnoreCase("house") && !title.equalsIgnoreCase("justified")) {
                 title = "ANYTHING";
             }
-
             String jsonResults = "";
             URL url = new URL(HEROKU_URL + HEROKU_DETAIL + title);
             String detailedResults = ApiCall.queryJsonAPI(jsonResults, url);
             ShowDetail showDetail = gson.fromJson(detailedResults, ShowDetail.class);
-            String o = showDetail.getOverview();
 
             ViewResult viewResult = new ViewResult();
             viewResult.setTitle(title);
@@ -135,23 +141,20 @@ public class ControllerMethods {
             viewResult.setNetwork(showDetail.getNetwork());
 
             String s = Arrays.toString(showDetail.getTags());
-
             viewResult.setTagString(s);
             viewResult.setChannels(showDetail.getChannels());
             viewResult.setSocial(showDetail.getSocial());
             viewResult.setRating(showDetail.getRating());
             viewResult.setGenres(showDetail.getGenres());
             viewResult.setUrl(showDetail.getUrl());
-
+            String o = showDetail.getOverview();
             if (o.equals("")) {
                 viewResult.setOverview("No description available.");
             } else {
                 viewResult.setOverview(o);
             }
             viewList.add(viewResult);
-
         }
         return viewList;
     }
-
 }

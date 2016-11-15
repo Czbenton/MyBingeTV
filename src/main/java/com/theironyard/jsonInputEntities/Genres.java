@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Genres {
     private String id;
-
     private String title;
 
     public String getId() {
@@ -29,6 +28,6 @@ public class Genres {
 
     @Override
     public String toString() {
-        return title;
+        return getTitle();
     }
 }

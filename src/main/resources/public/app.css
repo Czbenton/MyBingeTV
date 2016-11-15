@@ -14,6 +14,10 @@ img {
     max-width: 100%;
 }
 
+a {
+    color: #004B8D;
+}
+
 .btn {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -54,6 +58,10 @@ a {
     padding: 1rem;
 }
 
+.search-formSmall {
+    padding-bottom: 1rem;
+}
+
 .hero {
     display: flex;
     align-items: center;
@@ -84,7 +92,7 @@ a {
 
 .container {
     max-width: 65rem;
-    margin: auto;
+    /*margin: auto;*/
 }
 
 .result_image {
@@ -242,8 +250,14 @@ a {
 }
 
 .main-container-showDetail {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-168647.jpg") no-repeat center center;
+    background-size: cover;
     width: 100%;
     height: 100%;
+}
+
+.section {
+    background: none;
 }
 
 .fa {
@@ -268,7 +282,7 @@ a {
     font-size: 3rem;
 }
 
-.logout-btn{
+.logout-btn {
     padding-bottom: 1rem;
 }
 
@@ -341,9 +355,14 @@ a {
     width: 100%;
 }
 
-
 .userList-image {
 
+}
+
+.userList-rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .userList-overview {
@@ -352,14 +371,37 @@ a {
     align-items: center;
 }
 
-
 .userlist-detail {
 
 }
 
-.userList-links{
+.userList-links {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 70%;
 }
+
+.results-search {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 97px;
+}
+
+.empty-list {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-detail-font-size {
+    font-size: 16px;
+}
+
+.column-bg {
+    background: rgba(255, 255, 255, 0.2);
+}
+

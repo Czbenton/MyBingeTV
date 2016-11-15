@@ -1,7 +1,6 @@
 package com.theironyard.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 /**
  * Created by Zach on 10/31/16.
@@ -12,36 +11,24 @@ public class User {
 
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
     @Column(nullable = false, unique = true)
-    String name;
+    private String name;
 
     @Column(nullable = false)
-    String password;
+    private String password;
 
     @Column
-    boolean isAdmin = false;
-
-//    @Column
-//    ArrayList<Result> userList;
+    private boolean isAdmin = false;
 
     public User() {
-
     }
 
     public User(String userName, String password) {
         this.name = userName;
         this.password = password;
     }
-
-//    public ArrayList<Result> getUserList() {
-//        return userList;
-//    }
-
-//    public void setUserList(ArrayList<Result> userList) {
-//        this.userList = userList;
-//    }
 
     public int getId() {
         return id;

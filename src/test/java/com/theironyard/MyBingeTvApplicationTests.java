@@ -16,24 +16,7 @@ import java.util.ArrayList;
 @SpringBootTest
 public class MyBingeTvApplicationTests {
 
-    @Test
-    public void TestHaveUser() {
-        User user = new User("eric", "1234");
-        Assert.assertTrue(user != null);
-    }
 
-    @Test
-    public void UserAdmin() {
-        User user = new User("eric", "1234");
-        user.setAdmin(true);
-        Assert.assertTrue(user.isAdmin() == true);
-    }
-
-    @Test
-    public void UserPassword(){
-        User user = new User("eric", "1234");
-        Assert.assertTrue(user.getPassword() == "1234");
-    }
 }
 
 

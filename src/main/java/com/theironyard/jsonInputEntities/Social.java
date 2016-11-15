@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Social {
     private Twitter twitter;
-
     private Facebook facebook;
 
     public Twitter getTwitter() {

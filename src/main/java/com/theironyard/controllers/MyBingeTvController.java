@@ -1,11 +1,7 @@
 package com.theironyard.controllers;
 
-import com.google.gson.Gson;
 import com.theironyard.entities.SavedShow;
 import com.theironyard.entities.User;
-import com.theironyard.entities.ViewResult;
-import com.theironyard.jsonInputEntities.Show;
-import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.services.SavedShowRepo;
 import com.theironyard.services.UserRepo;
 import com.theironyard.utilities.ControllerMethods;
@@ -18,14 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by Zach on 10/31/16.

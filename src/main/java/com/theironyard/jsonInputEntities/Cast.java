@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cast {
     private String id;
-
     private String character_name;
-
     private String name;
 
     public String getId() {
@@ -37,8 +35,4 @@ public class Cast {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "character_name = " + character_name + ", name = " + name + "]";
-    }
 }
