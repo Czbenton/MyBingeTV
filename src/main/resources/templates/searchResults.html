@@ -10,17 +10,59 @@
 <body>
 <div class="main-container-searchResults">
 
-    <form action="/" method="get" class="homeBtn">
-        <button class="button is-info is-small" type="submit">Go Home</button>
-    </form>
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+                <img src="http://www.freeiconspng.com/uploads/tv-icon-13.png" alt="image">My Binge TV
+            </a>
 
-    <form class="sort_search" action="/sortSearch" method="get">
-        <select class="select is-info" onchange="this.form.submit();">
-            <option value="" disabled selected>Select your option</option>
-            <option selected>Popularity</option>
-            <option>Alphabetical</option>
-        </select>
-    </form>
+        </div>
+        <div class="nav-center">
+            <form class="search-formSmall" action="/search" method="post">
+                <input class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
+            </form>
+        </div>
+
+        <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+        <div class="nav-right nav-menu">
+
+            <form class="sort_search" action="/sortSearch" method="get">
+                <select class="select is-info" onchange="this.form.submit();">
+                    <option value="" disabled selected>Select your option</option>
+                    <option selected>Popularity</option>
+                    <option>Alphabetical</option>
+                </select>
+            </form>
+            <span class="nav-item">
+                {{^username}}
+                <form action="/login" method="get">
+                    <button class="button is-info is-small" type="submit">Login / Create Account</button>
+                </form>
+                {{/username}}
+                {{#username}}
+                <form action="/logout" method="post">
+                    <button class="button is-info is-small" type="submit">Logout</button>
+                </form>
+                {{/username}}
+            </span>
+        </div>
+    </nav>
+
+    <!--<form action="/" method="get" class="homeBtn">-->
+        <!--<button class="button is-info is-small" type="submit">Go Home</button>-->
+    <!--</form>-->
+
+    <!--<form class="sort_search" action="/sortSearch" method="get">-->
+        <!--<select class="select is-info" onchange="this.form.submit();">-->
+            <!--<option value="" disabled selected>Select your option</option>-->
+            <!--<option selected>Popularity</option>-->
+            <!--<option>Alphabetical</option>-->
+        <!--</select>-->
+    <!--</form>-->
 
     {{^resultList}}
     <div class="index-container-wrapper">
@@ -69,9 +111,9 @@
     </section>
 
     {{/resultList}}
-    <form class="search-formSmall" action="/search" method="post"> 
-        <input class="searchInputSmall results-search" type="text" placeholder="Search" name="userInput"> 
-    </form>
+    <!--<form class="search-formSmall" action="/search" method="post"> -->
+        <!--<input class="searchInputSmall results-search" type="text" placeholder="Search" name="userInput"> -->
+    <!--</form>-->
 
     <script src="/app.js"></script>
 </div>

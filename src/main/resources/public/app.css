@@ -73,11 +73,11 @@ a {
     left: 0;
 }
 
-.sort_search {
-    position: fixed;
-    top: 0;
-    right: 0;
-}
+/*.sort_search {*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*right: 0;*/
+/*}*/
 
 .userTable {
     width: 100%;
@@ -180,6 +180,17 @@ a {
 
 .searchInputSmall:focus {
     width: 20%;
+}
+
+.searchInputNav{
+    width: 175px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white url('http://www.dliflc.edu/wp-content/themes/DLIFLC/images/icon-find.png') no-repeat 0px 0px;
+    background-size: 20px;
+    padding: 0px 10px 5px 30px;
 }
 
 .title {
@@ -404,4 +415,5 @@ a {
 .column-bg {
     background: rgba(255, 255, 255, 0.2);
 }
+
 

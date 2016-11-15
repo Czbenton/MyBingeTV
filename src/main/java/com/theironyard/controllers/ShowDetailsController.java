@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URL;
 
@@ -17,7 +18,7 @@ import java.net.URL;
 @Controller
 public class ShowDetailsController {
     @RequestMapping(path = "/showDetail", method = RequestMethod.GET)
-    public String showDetail(Model model, String getDetailId) throws IOException {
+    public String showDetail(Model model, String getDetailId, HttpSession session) throws IOException {
         Gson gson = new Gson();
         String jsonResults = "";
         URL url = new URL(SearchController.API_URL + SearchController.API_KEY + "/show/" + getDetailId);
@@ -25,6 +26,7 @@ public class ShowDetailsController {
 
         ShowDetail showDetail = gson.fromJson(results, ShowDetail.class);
 
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("showDetail", showDetail);
 
         return "showDetail";
