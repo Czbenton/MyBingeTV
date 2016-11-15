@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Facebook {
     private String link;
-
     private String facebook_id;
 
     public String getLink() {
@@ -27,8 +26,4 @@ public class Facebook {
         this.facebook_id = facebook_id;
     }
 
-    @Override
-    public String toString() {
-        return "ClassPojo [link = " + link + ", facebook_id = " + facebook_id + "]";
-    }
 }

@@ -7,11 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Live_Stream {
-
     private String[] android;
-
     private String[] ios;
-
     private String[] web;
 
     public String[] getAndroid() {
@@ -38,8 +35,4 @@ public class Live_Stream {
         this.web = web;
     }
 
-    @Override
-    public String toString() {
-        return "ClassPojo [android = " + android + ", ios = " + ios + ", web = " + web + "]";
-    }
 }

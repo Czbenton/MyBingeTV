@@ -31,37 +31,26 @@
                     </h2>
                 </div>
             </div>
-
         </div>
     </section>
+
     <section class="section show-detail-font-size">
         <div class="container">
             <div class="columns">
 
-                <div class="column">
+                <div class="column column-bg">
                     <p><strong>Rating:</strong> {{getRating}}</p>
-
                     <p><strong>Original Air Date:</strong> {{getFirst_aired}}</p>
-
                     <p><strong>Airtime:</strong> {{getAir_time}}</p>
-
                     <p><strong>Genres:</strong>
                         {{#getGenres}}{{.}}, {{/getGenres}}</p>
-
                     <p><strong>Runtime:</strong> {{getRuntime}}</p>
-
-
                     <p><strong>Network:</strong> {{getNetwork}}</p>
-
-
                     <p><strong>Channel:</strong> {{#getChannels}} {{getName}} {{/getChannels}}</p>
-
-
                     <p><strong>Status:</strong> {{getStatus}}</p>
                 </div>
 
-
-                <div class="column">
+                <div class="column column-bg">
                     <p><strong>Tags:</strong> {{#getTags}}
                     <ul>
                         {{.}}
@@ -69,15 +58,12 @@
                     {{/getTags}}</p>
                 </div>
 
-
-                <div class="column">
+                <div class="column column-bg">
                     <p><strong><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></strong></p>
-
                     <p>{{#getMetacritic}} <strong><a style="border: none" href="{{.}}">Metacritic</a></strong>
                         {{/getMetacritic}}
                     </p>
                     <p>&nbsp</p>
-
                     <p><strong>Cast Members:</strong>{{#getCast}}
                         <ul class="show_detail_ul">
                     <p><strong><a style="border: none;"
@@ -85,7 +71,6 @@
                         {{getCharacter_name}}</p>
                     </ul>
                     {{/getCast}}</p>
-
 
                     {{#getSocial}}
                     {{#getTwitter}}

@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by jeremypitt on 11/10/16.
@@ -37,7 +36,7 @@ public class AdminController {
         URL url = new URL(HEROKU_URL + HEROKU_FUZZY + encoded);
 
         jsonResults = ApiCall.queryJsonAPI(jsonResults, url);
-        
+
         session.setAttribute("userInput", encoded);
         session.setAttribute("jsonResults", jsonResults);
         return "redirect:/adminSearchResults";
@@ -50,7 +49,7 @@ public class AdminController {
         String results = (String) session.getAttribute("jsonResults");
         Show show = gson.fromJson(results, Show.class);
 
-        ArrayList<ViewResult> viewList = ControllerMethods.populateViewListADMIN (gson, show);
+        ArrayList<ViewResult> viewList = ControllerMethods.populateViewListADMIN(gson, show);
 
         session.setAttribute("resultList", viewList);
 

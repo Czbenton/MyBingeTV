@@ -1,7 +1,5 @@
 package com.theironyard.entities;
 
-import com.theironyard.jsonInputEntities.Social;
-
 import javax.persistence.*;
 
 /**
@@ -13,28 +11,28 @@ public class SavedShow {
 
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
     @Column
-    String title;
+    private String title;
 
     @Column
-    String artwork;
+    private String artwork;
 
     @Column
-    String showid;
+    private String showid;
 
     @Column
-    String overview;
+    private String overview;
 
     @Column
-    String rating;
+    private String rating;
 
     @Column
-    String runtime;
+    private String runtime;
 
     @ManyToOne
-    User user;
+    private User user;
 
     public SavedShow() {
     }
@@ -62,16 +60,16 @@ public class SavedShow {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getOverview() {
         return overview;
     }
 
     public void setOverview(String overview) {
         this.overview = overview;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {

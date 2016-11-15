@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface SavedShowRepo extends CrudRepository<SavedShow, Integer> {
     SavedShow findFirstByShowid(String showid);
+
     List<SavedShow> findAllByUser(User user);
 }

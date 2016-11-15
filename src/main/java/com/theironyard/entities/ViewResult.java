@@ -24,23 +24,7 @@ public class ViewResult implements Comparable {
     private String url;
     private String runtime;
 
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
-    }
-
     public ViewResult() {
-    }
-
-    public ViewResult(String artwork_448x252, String artwork_208x117, String id, String title, String overview) {
-        this.artwork_448x252 = artwork_448x252;
-        this.artwork_208x117 = artwork_208x117;
-        this.id = id;
-        this.title = title;
-        this.overview = overview;
     }
 
     public ViewResult(String artwork_448x252, String artwork_208x117, String id, String title,
@@ -57,6 +41,19 @@ public class ViewResult implements Comparable {
         this.channels = channels;
         this.rating = rating;
         this.genres = genres;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getTitle().compareTo(((ViewResult) o).getTitle());
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
     public String getUrl() {
@@ -161,10 +158,5 @@ public class ViewResult implements Comparable {
 
     public void setGenres(Genres[] genres) {
         this.genres = genres;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return this.getTitle().compareTo(((ViewResult) o).getTitle());
     }
 }

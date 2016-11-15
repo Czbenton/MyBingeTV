@@ -14,7 +14,7 @@ img {
     max-width: 100%;
 }
 
-a{
+a {
     color: #004B8D;
 }
 
@@ -58,7 +58,7 @@ a {
     padding: 1rem;
 }
 
-.search-formSmall{
+.search-formSmall {
     padding-bottom: 1rem;
 }
 
@@ -255,7 +255,8 @@ a {
     width: 100%;
     height: 100%;
 }
-.section{
+
+.section {
     background: none;
 }
 
@@ -358,7 +359,7 @@ a {
 
 }
 
-.userList-rating{
+.userList-rating {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -388,7 +389,7 @@ a {
     width: 97px;
 }
 
-.empty-list{
+.empty-list {
     font-size: 2.5rem;
     font-weight: bold;
     display: flex;
@@ -396,6 +397,11 @@ a {
     align-items: center;
 }
 
-.show-detail-font-size{
+.show-detail-font-size {
     font-size: 16px;
 }
+
+.column-bg {
+    background: rgba(255, 255, 255, 0.2);
+}
+
