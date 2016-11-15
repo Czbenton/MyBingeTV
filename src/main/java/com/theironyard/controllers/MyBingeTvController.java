@@ -81,6 +81,7 @@ public class MyBingeTvController {
         User user = users.findFirstByName((String) session.getAttribute("username"));
 
         savedShows.save(ControllerMethods.addToUserList(session, getId, user));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("resultList", session.getAttribute("resultList"));
         return "searchResults";
     }

@@ -15,14 +15,12 @@
             <a class="nav-item is-brand" href="/">
                 <img src="http://www.freeiconspng.com/uploads/tv-icon-13.png" alt="image">My Binge TV
             </a>
-            {{#username}}
+
+        </div>
+        <div class="nav-center">
             <form class="search-formSmall" action="/search" method="post">
                 <input class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
             </form>
-            {{/username}}
-        </div>
-        <div class="nav-center">
-            <!--center of nav bar-->
         </div>
 
         <span class="nav-toggle">
@@ -31,16 +29,14 @@
     <span></span>
   </span>
         <div class="nav-right nav-menu">
-            <a class="nav-item" href="#">
-                Home
-            </a>
-            <a class="nav-item" href="#">
-                Documentation
-            </a>
-            <a class="nav-item" href="#">
-                Blog
-            </a>
 
+            <form class="sort_search" action="/sortSearch" method="get">
+                <select class="select is-info" onchange="this.form.submit();">
+                    <option value="" disabled selected>Select your option</option>
+                    <option selected>Popularity</option>
+                    <option>Alphabetical</option>
+                </select>
+            </form>
             <span class="nav-item">
                 {{^username}}
                 <form action="/login" method="get">
@@ -56,17 +52,17 @@
         </div>
     </nav>
 
-    <form action="/" method="get" class="homeBtn">
-        <button class="button is-info is-small" type="submit">Go Home</button>
-    </form>
+    <!--<form action="/" method="get" class="homeBtn">-->
+        <!--<button class="button is-info is-small" type="submit">Go Home</button>-->
+    <!--</form>-->
 
-    <form class="sort_search" action="/sortSearch" method="get">
-        <select class="select is-info" onchange="this.form.submit();">
-            <option value="" disabled selected>Select your option</option>
-            <option selected>Popularity</option>
-            <option>Alphabetical</option>
-        </select>
-    </form>
+    <!--<form class="sort_search" action="/sortSearch" method="get">-->
+        <!--<select class="select is-info" onchange="this.form.submit();">-->
+            <!--<option value="" disabled selected>Select your option</option>-->
+            <!--<option selected>Popularity</option>-->
+            <!--<option>Alphabetical</option>-->
+        <!--</select>-->
+    <!--</form>-->
 
     {{^resultList}}
     <div class="index-container-wrapper">
@@ -115,9 +111,9 @@
     </section>
 
     {{/resultList}}
-    <form class="search-formSmall" action="/search" method="post"> 
-        <input class="searchInputSmall results-search" type="text" placeholder="Search" name="userInput"> 
-    </form>
+    <!--<form class="search-formSmall" action="/search" method="post"> -->
+        <!--<input class="searchInputSmall results-search" type="text" placeholder="Search" name="userInput"> -->
+    <!--</form>-->
 
     <script src="/app.js"></script>
 </div>

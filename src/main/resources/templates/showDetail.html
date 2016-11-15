@@ -10,6 +10,43 @@
 {{#showDetail}}
 <body>
 <div class="main-container-showDetail">
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+                <img src="http://www.freeiconspng.com/uploads/tv-icon-13.png" alt="image">My Binge TV
+            </a>
+
+        </div>
+        <div class="nav-center">
+            <form class="search-formSmall" action="/search" method="post">
+                <input  required class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
+            </form>
+        </div>
+
+        <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" href="/searchResults">
+                Back to Results
+            </a>
+            <span class="nav-item">
+                {{^username}}
+                <form action="/login" method="get">
+                    <button class="button is-info is-small" type="submit">Login / Create Account</button>
+                </form>
+                {{/username}}
+                {{#username}}
+                <form action="/logout" method="post">
+                    <button class="button is-info is-small" type="submit">Logout</button>
+                </form>
+                {{/username}}
+            </span>
+        </div>
+    </nav>
+
     <section class="section">
         <div class="container">
             <div class="columns">
