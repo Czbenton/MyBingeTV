@@ -1,5 +1,6 @@
 package com.theironyard.controllers;
 
+import com.samskivert.mustache.Mustache;
 import com.theironyard.entities.ViewResult;
 import com.theironyard.jsonInputEntities.Show;
 import com.theironyard.utilities.ApiCall;
@@ -23,6 +24,12 @@ import java.util.Collections;
 public class SearchController {
     public static final String API_URL = "http://api-public.guidebox.com/v1.43/US/";
     public static final String API_KEY = "rKVdjAvM4AXw3fZezT3teadiAUMHfpbO";
+    public static final Mustache.Lambda httpsReplace = (Mustache.Lambda) (frag, out) -> {
+        String old = frag.execute();
+        String text = old.replace("http://", "https://");
+        out.write(text);
+    };
+
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(HttpSession session, String userInput) throws IOException {
@@ -49,6 +56,7 @@ public class SearchController {
 
         model.addAttribute("username" , session.getAttribute("username"));
         model.addAttribute("resultList", viewList);
+        model.addAttribute("httpsReplace", httpsReplace);
         return "searchResults";
     }
 
@@ -58,6 +66,7 @@ public class SearchController {
         Collections.sort(viewList);
 
         model.addAttribute("resultList", viewList);
+        model.addAttribute("httpsReplace", httpsReplace);
 
         return "searchResults";
     }

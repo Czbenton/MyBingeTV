@@ -3,90 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>MyBingeTV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
     <link rel="stylesheet" href="/app.css">
-    <link rel="shortcut icon" type="image/png" href="/templates/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
-
-
 <div class="main-container-index">
-    {{^username}}
-    <form action="/login" method="get">
-        <button type="submit">Login / Create Account</button>
-    </form>
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+                <img src="/tv-icon-13.png" alt="image">My Binge TV
+            </a>
 
+        </div>
+        <div class="nav-center">
+            {{#username}}
+            <form class="search-formSmall" action="/search" method="post">
+                <input required class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
+            </form>
+            {{/username}}
+        </div>
+
+        <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+        <div class="nav-right nav-menu">
+
+            <span class="nav-item">
+                {{^username}}
+                <form action="/login" method="get">
+                    <button class="button is-info is-small" type="submit">Login / Create Account</button>
+                </form>
+                {{/username}}
+                {{#username}}
+                <form action="/logout" method="post">
+                    <button class="button is-info is-small" type="submit">Logout</button>
+                </form>
+                {{/username}}
+            </span>
+        </div>
+    </nav>
+
+    <div class="alert-error" id="error-alert">
+        <div class="icon">X</div>
+        <div class="text-position">
+
+            <div class="text-wrap">
+                <p class="text"> Long range scanners detect nothing in the search bar captain.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
+    {{^username}}
 
     <div class="index-container-wrapper">
 
-    <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
+            <div class="MOAR_STUFF">
+                <div class="logo-wrapper"><span class="logo"><img src="/mybinge4.png"></span></div>
+                <div class="titleSubText-wrapper"><p class="titleSubText">Here you can search to get information about
+                    any TV show. If you want to add
+                    shows
+                    to your custom list,
+                    please create an account.</p></div>
+            </div>
+            <div class="indexSection">
+                <form class="search-form" action="/search" method="post">
+                    <input class="searchInput" type="text" placeholder="Search..." name="userInput">
+                </form>
+            </div>
+            <span class="fa "> <img src="https://www.asus.com/media/img/loadingAnimation.gif"></span>
 
-    <div class="indexContainer">
-        <div class="MOAR_STUFF">
-            <h1 class="title">Welcome to MyBingeTv!!</h1>
-            <p class="titleSubText">Here you can search to get information about any TV show. If you want to add shows
-                to your custom list,
-                please create an account.</p></div>
-        <div class="indexSection">
-            <form class="search-form" action="/search" method="post">
-                <input class="searchInput" type="text" placeholder="Search..." name="userInput">
-            </form>
-        </div>
-        <span class="fa fa-spinner fa-spin"></span>
-    </div>
+        {{/username}}
 
-    {{/username}}
-
-
-    <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
-    {{#username}}
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
-    {{/username}}
-
-
-    {{#admin}}
-    <form action="/adminSearch" method="post">
-        <input type="text" placeholder="Perform an Admin Search" name="adminSearch"/>
-        <button type="submit">Search</button>
-    </form>
-    {{/admin}}
+        <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
+        {{#admin}}  <!--IF user is ADMIN, show admin search to contact backup API-->
+        <form action="/adminSearch" method="post">
+            <input type="text" placeholder="Perform Admin Search" name="adminSearch"/>
+            <!--Search options are: "house", "justified", and anything else will return default South Park-->
+            <button type="submit">Search</button>
+        </form>
+        {{/admin}}
 
 
-    {{#username}}
-    <form class="search-formSmall" action="/search" method="post">
-        <input class="searchInputSmall" type="text" placeholder="Search..." name="userInput">
-    </form>
+        {{#username}}
 
+        {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
+        <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
+        {{/showList}}
 
-    {{#showList}}
-    <div class="columns">
-
-        <table class="userTable">
-            <tr>
-                <td><img src="{{getArtwork}}"></td>
-                <td>{{getOverview}}</td>
-                <td>{{getRating}}</td>
-                <td>{{#getSocial}}{{.}}{{/getSocial}}</td>
-                <td>
+        {{#showList}}   <!--IF a user is logged in AND their list is NOT empty, display this...-->
+        <div class="userList-wrapper">
+            <div class="userList">
+                <div class="userList-image">
+                    <img src="{{getArtwork}}">
+                </div>
+                <div class="userList-rating">
+                    <p><strong>Rating:</strong></p>{{getRating}}
+                    <p>&nbsp;</p>
+                    <p><strong>Runtime:</strong></p>{{getRuntime}} minutes
+                </div>
+                <div class="userList-overview">
+                    {{getOverview}}
+                </div>
+                <div class="userList-links">
+                    <div class="userList-detail">
+                        <form class="form-stuff" action="/showDetail" method="get">
+                            <input type="hidden" value="{{getShowid}}" name="getDetailId">
+                            <button type="submit" class="button is-info is-small">Detailed Show Info</button>
+                        </form>
+                    </div>
                     <form action="/removeFromUserList" method="post">
                         <input type="hidden" value="{{getId}}" name="getId"/>
-                        <button type="submit">Remove from My List</button>
+                        <button class="button is-info is-small" type="submit">Remove from My List</button>
                     </form>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        {{/showList}}
+        {{/username}}
 
-
+        <script src="/app.js"></script>
     </div>
-    {{/showList}}
-    {{/username}}
-
-    <script src="/app.js"></script>
 </div>
-</div>
-<!--<footer> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cupiditate dolore eius enim ex in, ipsum maxime quaerat quasi reiciendis repellat, sunt voluptatem! A adipisci aperiam explicabo nemo quibusdam quidem.</footer>-->
 </body>
 </html>
