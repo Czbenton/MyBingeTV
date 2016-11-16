@@ -53,6 +53,7 @@ public class AdminController {
 
         session.setAttribute("resultList", viewList);
 
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("resultList", viewList);
         return "searchResults";
     }
