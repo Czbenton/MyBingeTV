@@ -52,18 +52,6 @@
         </div>
     </nav>
 
-    <!--<form action="/" method="get" class="homeBtn">-->
-        <!--<button class="button is-info is-small" type="submit">Go Home</button>-->
-    <!--</form>-->
-
-    <!--<form class="sort_search" action="/sortSearch" method="get">-->
-        <!--<select class="select is-info" onchange="this.form.submit();">-->
-            <!--<option value="" disabled selected>Select your option</option>-->
-            <!--<option selected>Popularity</option>-->
-            <!--<option>Alphabetical</option>-->
-        <!--</select>-->
-    <!--</form>-->
-
     {{^resultList}}
     <div class="index-container-wrapper">
         <div class="indexContainer">
@@ -71,7 +59,6 @@
             <div class="indexSection">
                 <form class="search-form" action="/search" method="post">
                     <input class="searchInput" type="text" placeholder="Search..." name="userInput">
-                    <!--<button type="submit">Search</button>-->
                 </form>
             </div>
         </div>
@@ -101,7 +88,6 @@
                     </div>
                     <div class="search_result_text" style="color: aliceblue">
                         <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>
-                        <!--add scrollable or a 2nd div with truncated message-->
                         <button class="open-truncate">Show More</button>
                         <p>{{getRating}}</p>
                     </div>
@@ -111,9 +97,6 @@
     </section>
 
     {{/resultList}}
-    <!--<form class="search-formSmall" action="/search" method="post"> -->
-        <!--<input class="searchInputSmall results-search" type="text" placeholder="Search" name="userInput"> -->
-    <!--</form>-->
 
     <script src="/app.js"></script>
 </div>

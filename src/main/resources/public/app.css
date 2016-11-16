@@ -59,7 +59,7 @@ a {
 }
 
 .search-formSmall {
-    padding-bottom: 1rem;
+    align-self: center;
 }
 
 .hero {
@@ -73,11 +73,9 @@ a {
     left: 0;
 }
 
-/*.sort_search {*/
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*right: 0;*/
-/*}*/
+.sort_search {
+   padding-top: .5rem;
+}
 
 .userTable {
     width: 100%;
