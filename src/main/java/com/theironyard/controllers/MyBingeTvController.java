@@ -83,6 +83,7 @@ public class MyBingeTvController {
         savedShows.save(ControllerMethods.addToUserList(session, getId, user));
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("resultList", session.getAttribute("resultList"));
+        model.addAttribute("httpsReplace", SearchController.httpsReplace);
         return "searchResults";
     }
 
