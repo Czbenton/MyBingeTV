@@ -416,4 +416,15 @@ a {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.logo{
+    max-width: 30%;
+}
+
+.logo-wrapper{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-bottom: 5rem;
+}
 
