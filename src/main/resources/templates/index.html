@@ -60,14 +60,10 @@
 
     <!--PAGE TO DISPLAY IF USER IS NOT LOGGED IN-->
     {{^username}}
-    <!--<form action="/login" method="get">-->
-        <!--<button class="button is-info" type="submit">Login / Create Account</button>-->
-    <!--</form>-->
 
     <div class="index-container-wrapper">
         <div class="indexContainer">
             <div class="MOAR_STUFF">
-                <!--<h1 class="title">Welcome to MyBingeTv!!</h1>-->
                 <div class="logo-wrapper"><span class="logo"><img src="/mybinge4.png"></span></div>
                 <div class="titleSubText-wrapper"><p class="titleSubText">Here you can search to get information about
                     any TV show. If you want to add
@@ -85,16 +81,6 @@
         {{/username}}
 
         <!--PAGE TO DISPLAY IF USER IS LOGGED IN-->
-
-        <!--<div class="logout-btn">-->
-            <!--{{#username}}-->
-            <!--<form action="/logout" method="post">-->
-                <!--<button class="button is-info is-small" type="submit">Logout</button>-->
-            <!--</form>-->
-            <!--{{/username}}-->
-        <!--</div>-->
-
-
         {{#admin}}  <!--IF user is ADMIN, show admin search to contact backup API-->
         <form action="/adminSearch" method="post">
             <input type="text" placeholder="Perform Admin Search" name="adminSearch"/>
@@ -105,9 +91,6 @@
 
 
         {{#username}}
-        <!--<form class="search-formSmall" action="/search" method="post">-->
-            <!--<input class="searchInputSmall" type="text" placeholder="Find More Shows" name="userInput">-->
-        <!--</form>-->
 
         {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
         <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
