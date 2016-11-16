@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.google.gson.Gson;
+import com.samskivert.mustache.Mustache;
 import com.theironyard.jsonInputEntities.ShowDetail;
 import com.theironyard.utilities.ApiCall;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,12 @@ import java.net.URL;
  */
 @Controller
 public class ShowDetailsController {
+    public static final Mustache.Lambda httpsReplace = (Mustache.Lambda) (frag, out) -> {
+        String old = frag.execute();
+        String text = old.replace("http://", "https://");
+        out.write(text);
+    };
+
     @RequestMapping(path = "/showDetail", method = RequestMethod.GET)
     public String showDetail(Model model, String getDetailId, HttpSession session) throws IOException {
         Gson gson = new Gson();
@@ -28,6 +35,7 @@ public class ShowDetailsController {
 
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("showDetail", showDetail);
+        model.addAttribute("httpsReplace", httpsReplace);
 
         return "showDetail";
     }
