@@ -92,39 +92,63 @@
 
         {{#username}}
 
-        {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
-        <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
-        {{/showList}}
+        <div class="section">
+            <div class="container">
+                <h2 class="title is-3 has-text-centered">Welcome to your binge list.</h2>
+                {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
+                <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
+                {{/showList}}
 
-        {{#showList}}   <!--IF a user is logged in AND their list is NOT empty, display this...-->
-        <div class="userList-wrapper">
-            <div class="userList">
-                <div class="userList-image">
-                    <img src="{{getArtwork}}">
-                </div>
-                <div class="userList-rating">
-                    <p><strong>Rating:</strong></p>{{getRating}}
-                    <p>&nbsp;</p>
-                    <p><strong>Runtime:</strong></p>{{getRuntime}} minutes
-                </div>
-                <div class="userList-overview">
-                    {{getOverview}}
-                </div>
-                <div class="userList-links">
-                    <div class="userList-detail">
-                        <form class="form-stuff" action="/showDetail" method="get">
-                            <input type="hidden" value="{{getShowid}}" name="getDetailId">
-                            <button type="submit" class="button is-info is-small">Detailed Show Info</button>
-                        </form>
+                {{#showList}}   <!--IF a user is logged in AND their list is NOT empty, display this...-->
+                <div class="columns">
+                    <div class="column is-12">
+                        <div class="card is-fullwidth">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-16by9 min-image">
+                                            <img src="{{getArtwork}}">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <nav class="level">
+                                            <div class="level-item has-text-centered">
+                                                <p class="heading">Rating</p>
+                                                <p class="subtitle">{{getRating}}</p>
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <p class="heading">Runtime</p>
+                                                <p class="subtitle">{{getRuntime}}</p>
+                                            </div>
+                                        </nav>
+                                        <p>
+                                            {{getOverview}}
+                                        </p>
+                                        <div class="userList-links">
+                                            <div class="userList-detail">
+                                                <form class="form-stuff" action="/showDetail" method="get">
+                                                    <input type="hidden" value="{{getShowid}}" name="getDetailId">
+                                                    <button type="submit" class="button is-info is-small">Detailed Show
+                                                        Info
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <form action="/removeFromUserList" method="post">
+                                                <input type="hidden" value="{{getId}}" name="getId"/>
+                                                <button class="button is-info is-small" type="submit">Remove from My
+                                                    List
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <form action="/removeFromUserList" method="post">
-                        <input type="hidden" value="{{getId}}" name="getId"/>
-                        <button class="button is-info is-small" type="submit">Remove from My List</button>
-                    </form>
                 </div>
+                {{/showList}}
             </div>
         </div>
-        {{/showList}}
         {{/username}}
 
         <script src="/app.js"></script>

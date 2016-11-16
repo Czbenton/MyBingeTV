@@ -191,10 +191,19 @@ a {
     padding: 0px 10px 5px 30px;
 }
 
+.card {
+    background: rgba(255, 255, 255,0.75);
+}
+
 .title {
     align-self: center;
     max-width: 50%;
     padding-bottom: 1rem
+}
+
+.title.is-3 {
+    max-width: initial;
+    font-size: 3.5rem;
 }
 
 .titleSubText {
@@ -313,6 +322,14 @@ a {
 
 }
 
+.min-image {
+    min-width: 22rem;
+}
+
+.min-image img {
+    object-fit: cover;
+}
+
 .alert-error:hover {
     cursor: pointer;
 }
@@ -363,6 +380,7 @@ a {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding-top: 1rem;
 }
 
 .userList-image {
@@ -387,9 +405,12 @@ a {
 
 .userList-links {
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
-    height: 70%;
+}
+
+.userList-links > * {
+    padding: 1rem;
+    padding-bottom: 0;
 }
 
 .results-search {
@@ -412,7 +433,7 @@ a {
 }
 
 .column-bg {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .logo{
