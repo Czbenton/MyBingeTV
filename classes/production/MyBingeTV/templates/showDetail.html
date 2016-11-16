@@ -10,6 +10,43 @@
 {{#showDetail}}
 <body>
 <div class="main-container-showDetail">
+    <nav class="nav">
+        <div class="nav-left">
+            <a class="nav-item is-brand" href="/">
+                <img src="/tv-icon-13.png" alt="image">My Binge TV
+            </a>
+
+        </div>
+        <div class="nav-center">
+            <form class="search-formSmall" action="/search" method="post">
+                <input  required class="searchInputNav" type="text" placeholder="Find More Shows" name="userInput">
+            </form>
+        </div>
+
+        <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" href="/searchResults">
+                Back to Results
+            </a>
+            <span class="nav-item">
+                {{^username}}
+                <form action="/login" method="get">
+                    <button class="button is-info is-small" type="submit">Login / Create Account</button>
+                </form>
+                {{/username}}
+                {{#username}}
+                <form action="/logout" method="post">
+                    <button class="button is-info is-small" type="submit">Logout</button>
+                </form>
+                {{/username}}
+            </span>
+        </div>
+    </nav>
+
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -17,7 +54,7 @@
                     <div class="card is-fullwidth">
                         <div class="card-image">
                             <figure class="image is-16by9">
-                                <img src="{{getArtwork_608x342}}" alt="{{getTitle}}">
+                                <img src="{{#httpsReplace}}{{getArtwork_608x342}}{{/httpsReplace}}" alt="{{getTitle}}">
                             </figure>
                         </div>
                     </div>
@@ -31,65 +68,65 @@
                     </h2>
                 </div>
             </div>
-
         </div>
     </section>
-    <section class="section">
+
+    <section class="section show-detail-font-size">
         <div class="container">
-            <div class="content">
+            <div class="columns">
 
+                <div class="column column-bg">
+                    <p><strong>Rating:</strong> {{getRating}}</p>
+                    <p><strong>Original Air Date:</strong> {{getFirst_aired}}</p>
+                    <p><strong>Airtime:</strong> {{getAir_time}}</p>
+                    <p><strong>Genres:</strong>
+                        {{#getGenres}}{{.}}, {{/getGenres}}</p>
+                    <p><strong>Runtime:</strong> {{getRuntime}}</p>
+                    <p><strong>Network:</strong> {{getNetwork}}</p>
+                    <p><strong>Channel:</strong> {{#getChannels}} {{getName}} {{/getChannels}}</p>
+                    <p><strong>Status:</strong> {{getStatus}}</p>
+                </div>
 
-                <p>Original Air Date: {{getFirst_aired}}</p>
+                <div class="column column-bg">
+                    <p><strong>Tags:</strong> {{#getTags}}
+                    <ul>
+                        {{.}}
+                    </ul>
+                    {{/getTags}}</p>
+                </div>
 
-                <p>Genres:
-                    {{#getGenres}}{{.}}, {{/getGenres}}</p>
+                <div class="column column-bg">
+                    <p><strong><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></strong></p>
+                    <p>{{#getMetacritic}} <strong><a style="border: none" href="{{.}}">Metacritic</a></strong>
+                        {{/getMetacritic}}
+                    </p>
+                    <p>&nbsp</p>
+                    <p><strong>Cast Members:</strong>{{#getCast}}
+                        <ul class="show_detail_ul">
+                    <p><strong><a style="border: none;"
+                                  href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}:</a></strong>
+                        {{getCharacter_name}}</p>
+                    </ul>
+                    {{/getCast}}</p>
 
-                <p>Runtime: {{getRuntime}}</p>
+                    {{#getSocial}}
+                    {{#getTwitter}}
+                    {{^getLink}}
+                    <p>no twitter available</p>
+                    {{/getLink}}
+                    {{/getTwitter}}
+                    {{/getSocial}}
 
-                <p>Network: {{getNetwork}}</p>
-
-                {{#getSocial}}
-                {{#getTwitter}}
-                {{^getLink}}
-                <p>no twitter available</p>
-                {{/getLink}}
-                {{/getTwitter}}
-                {{/getSocial}}
-
-                {{#getSocial}}
-                {{#getTwitter}}
-                {{#getLink}}
-                <p><a class="twitter-link" href="{{getLink}}"><img
-                        src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a></p>
-                {{/getLink}}
-                {{/getTwitter}}
-                {{/getSocial}}
-
-                <p>Airtime: {{getAir_time}}</p>
-
-                <p>Tags: {{#getTags}}
-                <ul>
-                    {{.}}
-                </ul>
-                {{/getTags}}</p>
-
-                <p>Status: {{getStatus}}</p>
-
-                <p>Channel: {{#getChannels}} {{getName}} {{/getChannels}}</p>
-
-                <p><a style="border: none;" href="{{getUrl}}">Go To Show Page</a></p>
-
-                <p>{{#getMetacritic}} <a style="border: none" href="{{.}}">Metacritic</a> {{/getMetacritic}}</p>
-
-                <p>Cast Members:{{#getCast}}
-                    <ul class="show_detail_ul">
-                        <a style="border: none;" href="http://www.imdb.com/find?ref_=nv_sr_fn&q={{getName}}&s=all">{{getName}}</a>
-                <p>, {{getCharacter_name}}</p>
-                </ul>
-                {{/getCast}}</p>
-
-                <p>Rating: {{getRating}}</p>
-
+                    {{#getSocial}}
+                    {{#getTwitter}}
+                    {{#getLink}}
+                    <p><a class="twitter-link" href="{{getLink}}"><img
+                            src="/icon-twitterLogo.png"></a>
+                    </p>
+                    {{/getLink}}
+                    {{/getTwitter}}
+                    {{/getSocial}}
+                </div>
             </div>
         </div>
     </section>

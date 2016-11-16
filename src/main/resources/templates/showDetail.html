@@ -13,7 +13,7 @@
     <nav class="nav">
         <div class="nav-left">
             <a class="nav-item is-brand" href="/">
-                <img src="http://www.freeiconspng.com/uploads/tv-icon-13.png" alt="image">My Binge TV
+                <img src="/tv-icon-13.png" alt="image">My Binge TV
             </a>
 
         </div>
@@ -54,7 +54,7 @@
                     <div class="card is-fullwidth">
                         <div class="card-image">
                             <figure class="image is-16by9">
-                                <img src="{{getArtwork_608x342}}" alt="{{getTitle}}">
+                                <img src="{{#httpsReplace}}{{getArtwork_608x342}}{{/httpsReplace}}" alt="{{getTitle}}">
                             </figure>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     {{#getTwitter}}
                     {{#getLink}}
                     <p><a class="twitter-link" href="{{getLink}}"><img
-                            src="http://newsroom.border.gov.au/assets/images/icons/logos/icon-twitterLogo.png"></a>
+                            src="/icon-twitterLogo.png"></a>
                     </p>
                     {{/getLink}}
                     {{/getTwitter}}
