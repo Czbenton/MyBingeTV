@@ -100,9 +100,9 @@
 
         <div class="section">
             <div class="container">
-                <h2 class="title is-3 has-text-centered">Welcome to your binge list.</h2>
+                <h2 class="title is-3 has-text-centered">Welcome to your BingeList.</h2>
                 {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
-                <p class="empty-list">Your list is empty! Search for a show to add it to your list.</p>
+                <p class="empty-list">Your list is empty! Use the search above to find a show.</p>
                 {{/showList}}
 
                 {{#showList}}   <!--IF a user is logged in AND their list is NOT empty, display this...-->
@@ -141,8 +141,7 @@
                                             </div>
                                             <form action="/removeFromUserList" method="post">
                                                 <input type="hidden" value="{{getId}}" name="getId"/>
-                                                <button class="button is-info is-small" type="submit">Remove from My
-                                                    List
+                                                <button class="button is-info is-small" type="submit">Remove from BingeList
                                                 </button>
                                             </form>
                                         </div>
