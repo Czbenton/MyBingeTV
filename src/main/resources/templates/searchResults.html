@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>SearchResults</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
     <link rel="stylesheet" href="/app.css">
     <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
 </head>
 <body>
 <div class="main-container-searchResults">
@@ -69,27 +69,37 @@
     <section class="section-search-results">
         <div class="container">
             <div class="columns">
-                <div class="result_image">
-                    <img src="{{#httpsReplace}}{{getArtwork_448x252}}{{/httpsReplace}}">
-                </div>
-                <div class="right-side">
-                    <div class="search_result_links">
-                        <form class="form-stuff" action="/showDetail" method="get">
-                            <input type="hidden" value="{{getId}}" name="getDetailId">
-                            <button type="submit" class="button is-info">Detailed Show Info</button>
-                        </form>
-                        <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
-                            <input type="hidden" value="{{getId}}" name="getId">
-                            <button type="submit" class="button is-info">Add to your shows</button>
-                        </form>
-                        <form class="form-stuff" action="{{getUrl}}">
-                            <button type="submit" class="button is-info">Go to show</button>
-                        </form>
-                    </div>
-                    <div class="search_result_text" style="color: aliceblue">
-                        <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>
-                        <button class="open-truncate">Show More</button>
-                        <p>{{getRating}}</p>
+                <div class="column is-12">
+                    <div class="card is-fullwidth">
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left result_image">
+                                    <figure class="image is-16by9 min-image">
+                                        <img src="{{#httpsReplace}}{{getArtwork_448x252}}{{/httpsReplace}}">
+                                    </figure>
+                                </div>
+                                <div class="right-side">
+                                    <div class="search_result_links">
+                                        <form class="form-stuff" action="/showDetail" method="get">
+                                            <input type="hidden" value="{{getId}}" name="getDetailId">
+                                            <button type="submit" class="button is-info">Detailed Show Info</button>
+                                        </form>
+                                        <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
+                                            <input type="hidden" value="{{getId}}" name="getId">
+                                            <button type="submit" class="button is-info">Add to your shows</button>
+                                        </form>
+                                        <form class="form-stuff" action="{{getUrl}}">
+                                            <button type="submit" class="button is-info">Go to show</button>
+                                        </form>
+                                    </div>
+                                    <div class="search_result_text">
+                                        <div class="truncate" style="white-space: nowrap">{{getOverview}}</div>
+                                        <button class="open-truncate">Show More</button>
+                                        <p>{{getRating}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
