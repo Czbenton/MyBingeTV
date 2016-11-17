@@ -108,7 +108,6 @@ a {
 }
 
 .search_result_links {
-    width: 70%;
     display: flex;
     flex-direction: row;
     margin-bottom: .5rem;
