@@ -100,7 +100,7 @@
 
         <div class="section">
             <div class="container">
-                <h2 class="title is-3 has-text-centered">Welcome to your BingeList.</h2>
+                <h2 class="title is-3 has-text-centered">Welcome to your BingeList<span ondblclick="window.location.href='http://isjohnwearingatshirt.surge.sh/';">.</span></h2>
                 {{^showList}}  <!--IF a user is logged in AND their list is empty, display this...-->
                 <p class="empty-list">Your list is empty! Use the search above to find a show.</p>
                 {{/showList}}
@@ -155,7 +155,6 @@
             </div>
         </div>
         {{/username}}
-
         <script src="/app.js"></script>
     </div>
 </div>
