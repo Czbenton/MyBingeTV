@@ -84,10 +84,19 @@
                                             <input type="hidden" value="{{getId}}" name="getDetailId">
                                             <button type="submit" class="button is-info">Detailed Show Info</button>
                                         </form>
+                                        {{#username}}
                                         <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
                                             <input type="hidden" value="{{getId}}" name="getId">
                                             <button type="submit" class="button is-info">Add to your shows</button>
                                         </form>
+                                        {{/username}}
+                                        {{^username}}
+                                        <form class="form-stuff" action="/addToUserList" method="post" class="addBtn">
+                                            <input type="hidden" value="{{getId}}" name="getId">
+                                            <button disabled class="button is-info">Login to save show
+                                            </button>
+                                        </form>
+                                        {{/username}}
                                         <form class="form-stuff" action="{{getUrl}}">
                                             <button type="submit" class="button is-info">Go to show</button>
                                         </form>
