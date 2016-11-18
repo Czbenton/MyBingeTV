@@ -66,6 +66,7 @@ public class SearchController {
         Collections.sort(viewList);
 
         model.addAttribute("resultList", viewList);
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("httpsReplace", httpsReplace);
 
         return "searchResults";
