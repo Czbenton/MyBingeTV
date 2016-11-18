@@ -120,11 +120,13 @@
                                         <nav class="level">
                                             <div class="level-item has-text-centered">
                                                 <p class="heading">Rating</p>
-                                                <p class="subtitle">{{getRating}}</p>
+                                                {{^getRating}}<p class="subtitle">No Rating Available</p>{{/getRating}}
+                                                {{#getRating}}<p class="subtitle">{{.}}</p>{{/getRating}}
                                             </div>
                                             <div class="level-item has-text-centered">
                                                 <p class="heading">Runtime</p>
-                                                <p class="subtitle">{{getRuntime}}</p>
+                                                {{^getRuntime}}<p class="subtitle">No Runtime Available</p>{{/getRuntime}}
+                                                {{#getRuntime}}<p class="subtitle">{{.}}</p>{{/getRuntime}}
                                             </div>
                                         </nav>
                                         <p>
