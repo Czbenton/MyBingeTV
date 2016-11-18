@@ -55,6 +55,7 @@ public class AdminController {
 
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("resultList", viewList);
+        model.addAttribute("httpsReplace", SearchController.httpsReplace);
         return "searchResults";
     }
 
